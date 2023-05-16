@@ -1,33 +1,17 @@
-# Gradle files
-.gradle/
-build/
-
-# Local configuration file (sdk path, etc)
-local.properties
-
-# Log/OS Files
-*.log
-
-# Android Studio generated files and folders
-captures/
-.externalNativeBuild/
-.cxx/
-*.apk
-output.json
-
-# IntelliJ
-*.iml
-.idea/
-misc.xml
-deploymentTargetDropDown.xml
-render.experimental.xml
-
-# Keystore files
+node_modules/
+.expo/
+dist/
+npm-debug.*
 *.jks
-*.keystore
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
 
-# Google Services (e.g. APIs or Firebase)
-google-services.json
+# macOS
+.DS_Store
 
-# Android Profiling
-*.hprof
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*
