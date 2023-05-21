@@ -11,10 +11,10 @@ Fitter is a fitness app which helps users track their physical activity, monitor
 
 # Feature List
 * Dark Mode
-* Goal Setting
-* Progress Tracking
-* Display timely notifications
-* Search (Workouts)
+* Goal Setting (weight gai, weight loss)
+* Progress Tracking (weekly/daily report of calories burnt)
+* Display timely notifications reminding users to workout
+* Search Workouts by Name
 * Water Intake Tracker
 * Workout Quotes
 * Wellness/Health Blogs List
