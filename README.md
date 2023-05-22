@@ -11,7 +11,7 @@ Fitter is a fitness app which helps users track their physical activity, monitor
 
 # Feature List
 * Users can switch between Dark and Light Mode.
-* Users can set their workout preferences like number of hours in a day, weight goals, experience level, etc. 
+* Users can set their workout preferences like number of hours in a day to workout, current weight and height, experience level, and training rest time (recovery between workouts).
 * Users will be shown workouts based on their selected preferences.  
 * Users can start their workout on their preferred time based on the selected preferences. 
 * Users can choose to pause their workout or cancel their workout for the day. 
