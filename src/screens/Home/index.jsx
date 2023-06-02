@@ -37,7 +37,6 @@ const HomeScreen = () => {
           ),
         }}
       />
-
       <Tab.Screen
         name="Discover"
         component={DiscoverScreen}
