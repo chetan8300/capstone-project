@@ -1,101 +1,98 @@
 import { useState } from 'react'
 
-import { View, Text, Button, TouchableOpacity } from 'react-native'
-import { ProgressBar, MD3Colors, useTheme } from 'react-native-paper';
+import { View, TouchableOpacity } from 'react-native'
+import { Card, Button, Text, TouchableRipple, useTheme } from 'react-native-paper';
 
 // Common Components
 import hoc from '../../components/HOC'
+import PreferenceTopBar from '../../components/Preference/TopBar'
+import GenderSelect from '../../components/Preference/GenderSelect';
+import FocusArea from '../../components/Preference/FocusArea';
+import WeeklyGoal from '../../components/Preference/WeeklyGoal';
 
-const preferences = [
-  {
-    id: 0,
-    title: "What's your gender?",
-    subtitle: "Let us know you better",
-    options: [
-      {
-        id: 'male',
-        label: 'Male',
-        image: '../../assets/preference/male.png'
-      },
-      {
-        id: 'female',
-        label: 'Female',
-        image: '../../assets/preference/female.png'
-      }
-    ]
-  },
-  {
-    id: 1,
-    title: "What's your goal?",
-    subtitle: "Let us know you better",
-    options: [
-      {
-        id: 'lose-weight',
-        label: 'Lose Weight',
-        image: '../../assets/preference/lose-weight.png'
-      },
-      {
-        id: 'gain-muscle',
-        label: 'Gain Muscle',
-        image: '../../assets/preference/gain-muscle.png'
-      },
-      {
-        id: 'stay-fit',
-        label: 'Stay Fit',
-        image: '../../assets/preference/stay-fit.png'
-      },
-      {
-        id: 'gain-weight',
-        label: 'Gain Weight',
-        image: '../../assets/preference/gain-weight.png'
-      },
-    ]
-  }
-]
+import preferences from './preference';
+
+const defaultPreference = {
+  gender: '',
+  focusArea: '',
+  goal: '',
+  pushUpAtOneTime: '',
+  activityLevel: '',
+  weeklyTrainingDays: '',
+  weight: '',
+  weightUnit: '',
+  height: '',
+  heightUnit: '',
+}
 
 const WorkoutPreferenceScreen = ({ navigation }) => {
-  const [currentPreference, setCurrentPreference] = useState(0)
+  const [currentPreference, setCurrentPreference] = useState("gender_select")
+  const [preferenceValues, setPreferenceValues] = useState(defaultPreference)
   const { colors } = useTheme()
 
-  const preference = preferences[currentPreference]
+  const preference = preferences.find(preference => preference.id === currentPreference)
+
+  const buttonDisabled = () => {
+    let disabled = false
+
+    if (currentPreference === "gender_select" && preferenceValues.gender === "") {
+      disabled = true
+    } else if (currentPreference === "focus_area" && preferenceValues.focusArea === "") {
+      disabled = true
+    } else if (currentPreference === "goal_select" && preferenceValues.goal === "") {
+      disabled = true
+    } else if (currentPreference === "pushup" && preferenceValues.pushUpAtOneTime === "") {
+      disabled = true
+    }
+
+    return disabled
+  }
 
   return (
-    <View style={{ flex: 1, width: '100%' }}>
-      <View style={{ flex: 1, width: '100%', paddingLeft: 20, paddingRight: 20 }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%' }}>
-          {currentPreference > 0 ? (
-            <TouchableOpacity style={{ padding: 10 }} onPress={() => setCurrentPreference(current => current - 1)}>
-              <Text>Back</Text>
-            </TouchableOpacity>
-          ) : (
-            <Text style={{ color: 'transparent' }}>Back</Text>
-          )}
-          <View style={{ paddingLeft: 10, paddingRight: 10, flex: 1 }}>
-            <ProgressBar progress={0.5} color={colors.primary} />
+    <View style={{ flex: 1, width: '100%', paddingLeft: 20, paddingRight: 20 }}>
+      <View style={{ flex: 1, width: '100%' }}>
+        <PreferenceTopBar
+          preference={preference}
+          setCurrentPreference={setCurrentPreference}
+          navigation={navigation}
+        />
+        {preference && (
+          <View style={{ alignItems: 'center', marginTop: 10 }}>
+            {preference?.title && (
+              <Text variant="headlineMedium" style={{ fontWeight: 'bold', textAlign: 'center', textTransform: 'uppercase' }}>
+                {preference ? preference.title : ""}
+              </Text>
+            )}
+
+            {preference?.subtitle && (
+              <Text variant="bodyMedium" style={{ marginTop: 10, textAlign: 'center' }}>
+                {preference.subtitle}
+              </Text>
+            )}
+
+            {preference.id === "gender_select" && (
+              <GenderSelect preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
+            )}
+
+            {(preference.id === "focus_area" || preference.id === "goal_select" || preference.id === "pushup" || preference.id === "activity_level") && (
+              <FocusArea preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
+            )}
+
+            {preference.id === "weekly_goal" && (
+              <WeeklyGoal preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
+            )}
           </View>
-          <TouchableOpacity style={{ padding: 10 }} onPress={() => navigation.navigate('MainApp')}>
-            <Text>Skip</Text>
-          </TouchableOpacity>
-        </View>
-        {/* <Text>
-          {preference ? preference.title : ""}
-        </Text> */}
+        )}
       </View>
-      <Button
-        onPress={() => navigation.navigate('MainApp')}
-        style={{ alignSelf: 'flex-end' }}
-        title="Start Workout"
-        color="#000080"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      <Button
-        onPress={() => {
-          setCurrentPreference(current => current + 1)
-        }}
-        title="Next"
-        color="#000080"
-        accessibilityLabel="Learn more about this purple button"
-      />
+      {preference?.next ? (
+        <Button mode="contained" labelStyle={{ fontSize: 24, lineHeight: 30, borderRadius: 30 }} onPress={() => setCurrentPreference(preference.next)} disabled={buttonDisabled()}>
+          Next
+        </Button>
+      ) : (
+        <Button mode="contained" labelStyle={{ fontSize: 24, lineHeight: 30, borderRadius: 30 }} onPress={() => navigation.navigate("MainApp")}>
+          Start Workout
+        </Button>
+      )}
     </View>
   )
 }
