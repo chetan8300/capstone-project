@@ -14,7 +14,36 @@ const CalculateBMIScreen = () => {
   const [bmi, setBMI] = React.useState(null);
   var bmiResult = ""
 
-
+  const calculateBMI = () => {
+      if (height && weight) {
+        const heightInMeters = height / 100;
+        const bmiValue = weight / (heightInMeters * heightInMeters);
+        setBMI(bmiValue.toFixed(2));
+      }
+    };
+  
+    const bmiResultRender = () => {
+      let bmiResult = ""
+      if(bmi < 18.5) {
+        bmiResult = 'Underweight'
+        console.log(bmiResult)
+  
+      }
+      if(bmi >= 18.5 && bmi <= 24.9) {
+        bmiResult = 'Normal'
+        console.log(bmiResult)
+      }
+      if(bmi >= 25 && bmi <= 29.9) {
+        bmiResult = 'Overweight'
+        console.log(bmiResult)
+      }
+      if(bmi >= 30) {
+        bmiResult = 'Obese'
+        console.log(bmiResult)
+      }
+  
+      return bmiResult
+    }
   return (
    <View>
     <Text style={styles.title}>
@@ -38,7 +67,7 @@ const CalculateBMIScreen = () => {
           mode="outlined"
           placeholder='Weight (kg)'
       />
-      <Button mode="contained" style={styles.button} >
+      <Button mode="contained" style={styles.button} onPress={calculateBMI}>
         Calculate
       </Button>
       {bmi && (
