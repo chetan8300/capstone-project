@@ -3,7 +3,7 @@ import React from 'react';
 import { View } from 'react-native'
 import { Button, ProgressBar, IconButton, useTheme } from 'react-native-paper';
 
-const PreferenceTopBar = ({ preference, setCurrentPreference, navigation }) => {
+const PreferenceTopBar = ({ preference, setCurrentPreference, navigation, progress }) => {
   const { colors } = useTheme()
 
   return (
@@ -23,7 +23,7 @@ const PreferenceTopBar = ({ preference, setCurrentPreference, navigation }) => {
         />
       )}
       <View style={{ paddingLeft: 30, paddingRight: 30, flex: 1 }}>
-        <ProgressBar progress={0.5} color={colors.primary} />
+        <ProgressBar progress={progress} color={colors.primary} />
       </View>
       <Button mode="text" onPress={() => navigation.navigate('MainApp')} labelStyle={{ fontSize: 20 }}>
         Skip
