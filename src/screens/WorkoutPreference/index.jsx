@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import { View, TouchableOpacity } from 'react-native'
-import { Card, Button, Text, TouchableRipple, useTheme, Surface } from 'react-native-paper';
+import { View } from 'react-native'
+import { Button, Text, Surface } from 'react-native-paper';
 
 // Common Components
 import hoc from '../../components/HOC'
@@ -32,6 +32,7 @@ const WorkoutPreferenceScreen = ({ navigation }) => {
   const [isGeneratingPlan, setIsGeneratingPlan] = useState(false)
 
   const preference = preferences.find(preference => preference.id === currentPreference)
+  const preferenceIndex = preferences.findIndex(preference => preference.id === currentPreference) + 1
 
   const buttonDisabled = () => {
     let disabled = false
@@ -58,65 +59,79 @@ const WorkoutPreferenceScreen = ({ navigation }) => {
     setTimeout(() => {
       setIsGeneratingPlan(false)
       navigation.navigate("MainApp")
-    }, 2000)
+    }, 1500)
   }
 
   return (
     <View style={{ flex: 1, width: '100%', paddingLeft: 20, paddingRight: 20 }}>
-      <View style={{ flex: 1, width: '100%' }}>
-        <PreferenceTopBar
-          preference={preference}
-          setCurrentPreference={setCurrentPreference}
-          navigation={navigation}
-        />
-        {preference && (
-          <View style={{ alignItems: 'center', marginTop: 10 }}>
-            {preference?.title && (
-              <Text variant="headlineMedium" style={{ fontWeight: 'bold', textAlign: 'center', textTransform: 'uppercase' }}>
-                {preference ? preference.title : ""}
-              </Text>
-            )}
+      {!isGeneratingPlan ? (
+        <>
+          <View style={{ flex: 1, width: '100%' }}>
+            <PreferenceTopBar
+              preference={preference}
+              setCurrentPreference={setCurrentPreference}
+              navigation={navigation}
+              progress={preferenceIndex / preferences.length}
+            />
+            {preference && (
+              <View style={{ alignItems: 'center', marginTop: 10 }}>
+                {preference?.title && (
+                  <Text variant="headlineMedium" style={{ fontWeight: 'bold', textAlign: 'center', textTransform: 'uppercase' }}>
+                    {preference ? preference.title : ""}
+                  </Text>
+                )}
 
-            {preference?.subtitle && (
-              <Text variant="bodyMedium" style={{ marginTop: 10, textAlign: 'center' }}>
-                {preference.subtitle}
-              </Text>
-            )}
+                {preference?.subtitle && (
+                  <Text variant="bodyMedium" style={{ marginTop: 10, textAlign: 'center' }}>
+                    {preference.subtitle}
+                  </Text>
+                )}
 
-            {preference.id === "gender_select" && (
-              <GenderSelect preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
-            )}
+                {preference.id === "gender_select" && (
+                  <GenderSelect preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
+                )}
 
-            {(preference.id === "focus_area" || preference.id === "goal_select" || preference.id === "pushup" || preference.id === "activity_level") && (
-              <FocusArea preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
-            )}
+                {(preference.id === "focus_area" || preference.id === "goal_select" || preference.id === "pushup" || preference.id === "activity_level") && (
+                  <FocusArea preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
+                )}
 
-            {preference.id === "weekly_goal" && (
-              <WeeklyGoal preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
-            )}
+                {preference.id === "weekly_goal" && (
+                  <WeeklyGoal preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
+                )}
 
-            {preference.id === "height_weight" && (
-              <HeightWeightRecoveryTime preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
+                {preference.id === "height_weight" && (
+                  <HeightWeightRecoveryTime preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
+                )}
+              </View>
             )}
           </View>
-        )}
-      </View>
-      <Surface style={{ borderRadius: 30 }}>
-        {preference?.next ? (
-          <Button mode="contained" style={{ borderRadius: 30 }} labelStyle={{ fontSize: 24, lineHeight: 30, textTransform: 'uppercase' }} onPress={() => setCurrentPreference(preference.next)} disabled={buttonDisabled()}>
-            Next
-          </Button>
-        ) : (
-          <Button
-            mode="contained"
-            style={{ borderRadius: 30 }}
-            labelStyle={{ fontSize: 24, lineHeight: 30, textTransform: 'uppercase' }}
-            onPress={handleGeneratePlan}
-          >
-            Get My Plan
-          </Button>
-        )}
-      </Surface>
+          <Surface style={{ borderRadius: 30 }}>
+            {preference?.next ? (
+              <Button mode="contained" style={{ borderRadius: 30 }} labelStyle={{ fontSize: 24, lineHeight: 30, textTransform: 'uppercase' }} onPress={() => setCurrentPreference(preference.next)} disabled={buttonDisabled()}>
+                Next
+              </Button>
+            ) : (
+              <Button
+                mode="contained"
+                style={{ borderRadius: 30 }}
+                labelStyle={{ fontSize: 24, lineHeight: 30, textTransform: 'uppercase' }}
+                onPress={handleGeneratePlan}
+              >
+                Get My Plan
+              </Button>
+            )}
+          </Surface>
+        </>
+      ) : (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text variant="headlineMedium" style={{ fontWeight: 'bold', textAlign: 'center', textTransform: 'uppercase' }}>
+            Generating your plan
+          </Text>
+          <Text variant="bodyMedium" style={{ marginTop: 10, textAlign: 'center' }}>
+            Preparing your plan based on your goal...
+          </Text>
+        </View>
+      )}
     </View>
   )
 }
