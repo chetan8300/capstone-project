@@ -462,56 +462,380 @@ const exercise = {
     intermediate: 12,
     advanced: 15
   },
+  squats: {
+    description: `
+
+    `,
+    steps: [
+      "Stand with your feet slightly wider than shoulder-width apart, with your toes pointed slightly outward. You can choose to hold a dumbbell or a barbell across your shoulders or keep your hands clasped in front of you.",
+      "Engage your core muscles by drawing your belly button in towards your spine and keep your chest lifted.",
+      "Begin the movement by pushing your hips back and bending your knees to lower your body down into a squatting position. Imagine sitting back into an imaginary chair.",
+      "Lower yourself until your thighs are parallel to the ground, or as close as you can comfortably go while maintaining proper form. Ensure that your knees track over your toes and do not collapse inward.",
+      "Pause at the bottom of the squat, then exhale and push through your heels to return to the starting position. Focus on squeezing your glutes as you rise.",
+      "Repeat the exercise for the desired number of repetitions."
+    ],
+    focusArea: [
+      "quadriceps",
+      "hamstrings",
+      "glutes",
+      "calves"
+    ],
+    count: "reps",
+    beginner: 10,
+    intermediate: 12,
+    advanced: 15
+  },
+  backward_lunges: {
+    description: `
+
+    `,
+    steps: [
+      "Stand tall with your feet hip-width apart and your hands on your hips or relaxed at your sides.",
+      "Take a step backward with one foot, landing on the ball of your foot first. Your back knee should be slightly bent, and your front knee should be positioned directly above your ankle.",
+      "Lower your body down by bending both knees, allowing your back knee to hover just above the ground.",
+      "Keep your torso upright and engage your core muscles for stability.",
+      "Push through the heel of your front foot to return to the starting position, extending both knees.",
+      "Repeat the movement with the opposite leg, alternating between legs for the desired number of repetitions."
+    ],
+    focusArea: [
+      "quadriceps",
+      "hamstrings",
+      "glutes",
+      "calves"
+    ],
+    count: "reps",
+    beginner: 10,
+    intermediate: 12,
+    advanced: 15
+  },
+  forward_lunges: {
+    description: `
+
+    `,
+    steps: [
+      "Stand tall with your feet hip-width apart and your hands on your hips or relaxed at your sides.",
+      "Take a step forward with one foot, landing on the heel first. Your front knee should be positioned directly above your ankle, and your back knee should be slightly bent.",
+      "Lower your body down by bending both knees, allowing your back knee to lower towards the ground. Your front thigh should be parallel to the ground or slightly lower.",
+      "Keep your torso upright and engage your core muscles for stability.",
+      "Push through the heel of your front foot to return to the starting position, extending both knees.",
+      "Repeat the movement with the opposite leg, alternating between legs for the desired number of repetitions."
+    ],
+    focusArea: [
+      "quadriceps",
+      "hamstrings",
+      "glutes",
+      "calves"
+    ],
+    count: "reps",
+    beginner: 10,
+    intermediate: 12,
+    advanced: 15
+  },
+  butt_kicks: {
+    description: `
+      Butt kicks are beneficial for runners, athletes, and anyone looking to improve lower body conditioning, leg power, and overall agility.
+    `,
+    steps: [
+      "Stand tall with your feet hip-width apart and your arms relaxed at your sides.",
+      "Begin by jogging in place, lifting your feet off the ground and driving your knees up towards your chest.",
+      "As you continue jogging, focus on kicking your heels back towards your buttocks. The goal is to make contact between your heels and your glutes.",
+      "Maintain a quick and continuous rhythm, alternating legs with each stride.",
+      "Keep your upper body upright and engage your core muscles to maintain stability.",
+      "Continue performing the butt kicks for the desired duration or number of repetitions."
+    ],
+    focusArea: [
+      "quadriceps",
+      "hamstrings",
+      "glutes"
+    ],
+    count: "reps",
+    beginner: 10,
+    intermediate: 12,
+    advanced: 15
+  },
+  high_knees: {
+    description: `
+
+    `,
+    steps: [
+      "Stand tall with your feet hip-width apart and your arms relaxed at your sides.",
+      "Begin by jogging in place, lifting your knees up towards your chest as high as possible.",
+      "As you lift one knee, simultaneously drive the opposite arm up to chest level, creating a coordinated arm and leg movement.",
+      "Alternate legs with each stride, maintaining a quick and continuous rhythm.",
+      "Engage your core muscles to help stabilize your body and maintain balance.",
+      "Continue performing the high knees for the desired duration or number of repetitions."
+    ],
+    focusArea: [
+      "quadriceps",
+      "hamstrings",
+      "glutes",
+      "calves"
+    ],
+    count: "reps",
+    beginner: 10,
+    intermediate: 12,
+    advanced: 15
+  },
+  jumping_squats: {
+    description: `
+    
+    `,
+    steps: [
+      "Stand with your feet shoulder-width apart, toes pointed slightly outward. Keep your arms by your sides or in front of your chest for balance.",
+      "Begin by performing a regular squat: Bend your knees and hips, pushing your hips back and lowering your body down as if you were sitting back into a chair. Keep your chest lifted, back straight, and core engaged.",
+      "Once you reach the lowest point of the squat, explode upward by pushing through your heels and extending your legs and hips. As you jump, swing your arms overhead for momentum.",
+      "Land softly on the balls of your feet, immediately bending your knees and hips to absorb the impact and transition into the next squat.",
+      "Repeat the movement for the desired number of repetitions."
+    ],
+    focusArea: [
+      "quadriceps",
+      "hamstrings",
+      "glutes",
+      "calves"
+    ],
+    count: "reps",
+    beginner: 10,
+    intermediate: 12,
+    advanced: 15
+  },
+  stretch_with_ball: {
+    description: `
+    
+    `,
+    steps: [
+      "Start by selecting a stability ball that is appropriate for your height. Sit on the ball and walk your feet forward, allowing the ball to roll underneath your body until your lower back is resting on the ball. Your feet should be shoulder-width apart, with your knees bent at a 90-degree angle.",
+      "Extend your arms out to the sides for stability, or place your hands behind your head, whichever is more comfortable for you.",
+      "Relax your body onto the ball and allow your back to curve naturally over the ball. This will create a gentle stretch through your back, chest, and shoulders.",
+      "Take slow, deep breaths and try to relax into the stretch. You can gently rock side to side or roll slightly up and down on the ball to increase the stretch and target different areas.",
+      "Hold the stretch for 30 seconds to 1 minute, or longer if desired. Focus on maintaining a comfortable and relaxed position throughout."
+    ],
+    focusArea: [
+      "back",
+      "chest",
+      "shoulders"
+    ],
+    count: "seconds",
+    beginner: 5,
+    intermediate: 10,
+    advanced: 15
+  },
+  shoulder_stretch: {
+    description: `
+    
+    `,
+    steps: [
+      "Stand or sit up straight with good posture.",
+      "Extend your right arm straight out in front of you at shoulder height.",
+      "Keep your right arm extended and bring it across your body towards the left side. Aim to bring your right hand towards your left shoulder or as close to it as possible.",
+      "With your left hand, gently hold the right elbow or forearm and apply slight pressure to deepen the stretch. Be careful not to pull too hard or cause any pain.",
+      "Hold the stretch for 15 to 30 seconds while maintaining relaxed breathing.",
+      "Release the stretch and repeat on the other side, extending your left arm and bringing it across your body towards the right side."
+    ],
+    focusArea: [
+      "deltoids",
+      "rotator cuff"
+    ],
+    count: "seconds",
+    beginner: 5,
+    intermediate: 10,
+    advanced: 15
+  },
+  triceps_stretch: {
+    description: `
+    
+    `,
+    steps: [
+      "Stand up straight or sit on a chair with good posture.",
+      "Raise your right arm overhead and bend it at the elbow, bringing your right hand to touch the upper middle part of your back, between your shoulder blades. Your right forearm should be pointing straight down behind your head.",
+      "With your left hand, reach behind your back and grasp your right elbow.",
+      "Gently pull your right elbow towards your head, increasing the stretch in your triceps muscle. You should feel a stretch along the back of your right arm.",
+      "Hold the stretch for 15 to 30 seconds while maintaining relaxed breathing.",
+      "Release the stretch and repeat on the other side, raising your left arm overhead and bending it at the elbow, with your left hand touching your upper middle back, and using your right hand to grasp your left elbow.",
+    ],
+    focusArea: [
+      "triceps"
+    ],
+    count: "seconds",
+    beginner: 5,
+    intermediate: 10,
+    advanced: 15
+  },
+  knee_to_chest_stretch: {
+    description: `
+    
+    `,
+    steps: [
+      "Lie on your back on a comfortable surface, such as a mat or carpeted floor.",
+      "Relax your body and bend both knees, keeping your feet flat on the floor.",
+      "Start with your feet hip-width apart and your arms relaxed at your sides.",
+      "Take a deep breath in and as you exhale, bring one knee up towards your chest. Use your hands to gently pull your knee closer to your chest, hugging it as comfortably as possible.",
+      "Hold the stretch for 15 to 30 seconds, feeling a gentle stretch in your lower back, glutes, and hip of the bent leg.",
+      "Release the stretch and lower your leg back to the starting position.",
+      "Repeat the stretch with the opposite leg, bringing the other knee up towards your chest and holding for the same duration.",
+    ],
+    focusArea: [
+      "lower back",
+      "glutes",
+      "hip flexors"
+    ],
+    count: "seconds",
+    beginner: 5,
+    intermediate: 10,
+    advanced: 15
+  },
+  butterfly_stretch: {
+    description: `
+    
+    `,
+    steps:[
+      "Sit on the floor or a mat with a straight back and bring the soles of your feet together, allowing your knees to naturally fall out to the sides. This position should resemble the shape of butterfly wings.",
+      "Use your hands to hold onto your ankles or feet, depending on your comfort level. You can gently grasp the toes or the outer edges of your feet.",
+      "Sit up tall and engage your core muscles to maintain an upright posture.",
+      "Relax your thighs and allow your knees to drop towards the ground, feeling a gentle stretch in your inner thighs and groin area.",
+      "If you want to deepen the stretch, you can gently press down on your thighs with your elbows or use your hands to apply a slight downward pressure on your knees. Be sure to do this in a controlled manner and only to the extent that feels comfortable.",
+      "Hold the stretch for 15 to 30 seconds while maintaining relaxed breathing.",
+      "Slowly release the stretch and return to the starting position."
+    ],
+    focusArea: [
+      "adductor muscles",
+      "hips",
+      "groins"
+    ],
+  },
+  crunches: {
+    description: `
+    
+    `,
+    steps: [
+      "Lie flat on your back on a mat or carpeted surface, with your knees bent and feet flat on the floor. Keep your feet about hip-width apart and place your hands lightly behind your head, supporting the weight of your head with your fingertips (avoid pulling on your head or neck).",
+      "Engage your core muscles by drawing your navel towards your spine. This will help stabilize your torso during the movement.",
+      "Slowly exhale and lift your head, shoulder blades, and upper back off the floor, curling your body forward. Imagine bringing your ribcage towards your hips.",
+      "Keep your neck relaxed and maintain a small space between your chin and your chest. Focus on using your abdominal muscles to initiate the movement, rather than pulling with your arms or straining your neck.",
+      "Hold the contracted position for a brief moment and then slowly lower your upper body back down to the starting position while inhaling.",
+      "Repeat the movement for the desired number of repetitions."
+    ],
+    focusArea: [
+      "obliques",
+      "ectus abdominis"
+    ],
+    count: "reps",
+    beginner: 10,
+    intermediate: 12,
+    advanced: 15
+  }
 };
 
-// const warmup = {
-// 	jumping_jacks,
-// 	burpees,
-// 	arm_swings,
-// 	leg_swings,
-// 	skipping,
-// };
+const beginner = {
+  jumping_jacks,
+  arm_swings,
+  leg_swings,
+  skipping,
+  flutter_kicks,
+  crunches,
+  planks,
+  pull_ups,
+  knee_push_ups,
+  push_ups,
+  squats,
+  forward_lunges,
+  leg_raise,
+  knee_to_chest_stretch,
+  shoulder_stretch,
+}
 
-// const core = {
-// 	flutter_kicks,
-// 	mountain_climbers,
-// 	russian_twist,
-// 	bicycle_crunches,
-// 	crunches,
-// 	planks,
-// 	side_planks,
-// 	leg_raise,
-// };
+const intermediate = {
+  jumping_jacks,
+  burpees,
+  skipping,
+  mountain_climbers,
+  bicycle_crunches,
+  planks,
+  leg_raise,
+  pull_ups,
+  chest_press,
+  incline_push_ups,
+  push_ups,
+  squats,
+  backward_lunges,
+  forward_lunges,
+  knee_to_chest_stretch,
+  shoulder_stretch,
+  stretch_with_ball
+}
 
-// const upperBodyWorkouts = {
-// 	pull_ups,
-// 	chest_press,
-// 	jumping_jacks,
-// 	incline_push_ups,
-// 	knee_push_ups,
-// 	push_ups,
-// 	tricep_dips,
-// 	shoulder_press,
-// };
+const advanced = {
+  burpees,
+  leg_swings,
+  arm_swings,
+  skipping,
+  mountain_climbers,
+  russian_twist,
+  planks,
+  side_planks,
+  chest_press,
+  tricep_dips,
+  shoulder_press,
+  push_ups,
+  squats,
+  forward_lunges,
+  backward_lunges,
+  high_knees,
+  butt_kicks,
+  jumping_squats,
+  stretch_with_ball,
+	shoulder_stretch,
+	triceps_stretch,
+	knee_to_chest_stretch,
+	butterfly_stretch,
+}
 
-// const lowerBodyWorkouts = {
-// 	squats,
-// 	backward_lunges,
-// 	forward_lunges,
-// 	leg_raise,
-// 	butt_kicks,
-// 	high_knees,
-// 	jumping_squats,
-// };
+const warmup = {
+	jumping_jacks,
+	burpees,
+	arm_swings,
+	leg_swings,
+	skipping,
+};
 
-// const stretching = {
-// 	knee_stretch,
-// 	stretch_with_wall,
-// 	shoulder_stretch,
-// 	triceps_stretch,
-// 	knee_to_chest_stretch,
-// 	butterfly_stretch,
-// };
+const core = {
+	flutter_kicks,
+	mountain_climbers,
+	russian_twist,
+	bicycle_crunches,
+	crunches,
+	planks,
+	side_planks,
+	leg_raise,
+};
+
+const upperBodyWorkouts = {
+	pull_ups,
+	chest_press,
+	jumping_jacks,
+	incline_push_ups,
+	knee_push_ups,
+	push_ups,
+	tricep_dips,
+	shoulder_press,
+};
+
+const lowerBodyWorkouts = {
+	squats,
+	backward_lunges,
+	forward_lunges,
+	leg_raise,
+	butt_kicks,
+	high_knees,
+	jumping_squats,
+};
+
+const stretching = {
+	stretch_with_ball,
+	shoulder_stretch,
+	triceps_stretch,
+	knee_to_chest_stretch,
+	butterfly_stretch,
+};
 
 const workoutByType = {
 	"7x4": [
