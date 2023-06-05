@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { View, TouchableOpacity } from 'react-native'
-import { Card, Button, Text, TouchableRipple, useTheme } from 'react-native-paper';
+import { Card, Button, Text, TouchableRipple, useTheme, Surface } from 'react-native-paper';
 
 // Common Components
 import hoc from '../../components/HOC'
@@ -9,6 +9,7 @@ import PreferenceTopBar from '../../components/Preference/TopBar'
 import GenderSelect from '../../components/Preference/GenderSelect';
 import FocusArea from '../../components/Preference/FocusArea';
 import WeeklyGoal from '../../components/Preference/WeeklyGoal';
+import HeightWeightRecoveryTime from '../../components/Preference/HeightWeightRecoveryTime';
 
 import preferences from './preference';
 
@@ -28,7 +29,7 @@ const defaultPreference = {
 const WorkoutPreferenceScreen = ({ navigation }) => {
   const [currentPreference, setCurrentPreference] = useState("gender_select")
   const [preferenceValues, setPreferenceValues] = useState(defaultPreference)
-  const { colors } = useTheme()
+  const [isGeneratingPlan, setIsGeneratingPlan] = useState(false)
 
   const preference = preferences.find(preference => preference.id === currentPreference)
 
@@ -43,9 +44,21 @@ const WorkoutPreferenceScreen = ({ navigation }) => {
       disabled = true
     } else if (currentPreference === "pushup" && preferenceValues.pushUpAtOneTime === "") {
       disabled = true
+    } else if (currentPreference === "activity_level" && preferenceValues.activityLevel === "") {
+      disabled = true
+    } else if (currentPreference === "weekly_goal" && preferenceValues.weeklyTrainingDays === "") {
+      disabled = true
     }
 
     return disabled
+  }
+
+  const handleGeneratePlan = () => {
+    setIsGeneratingPlan(true)
+    setTimeout(() => {
+      setIsGeneratingPlan(false)
+      navigation.navigate("MainApp")
+    }, 2000)
   }
 
   return (
@@ -81,18 +94,29 @@ const WorkoutPreferenceScreen = ({ navigation }) => {
             {preference.id === "weekly_goal" && (
               <WeeklyGoal preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
             )}
+
+            {preference.id === "height_weight" && (
+              <HeightWeightRecoveryTime preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
+            )}
           </View>
         )}
       </View>
-      {preference?.next ? (
-        <Button mode="contained" labelStyle={{ fontSize: 24, lineHeight: 30, borderRadius: 30 }} onPress={() => setCurrentPreference(preference.next)} disabled={buttonDisabled()}>
-          Next
-        </Button>
-      ) : (
-        <Button mode="contained" labelStyle={{ fontSize: 24, lineHeight: 30, borderRadius: 30 }} onPress={() => navigation.navigate("MainApp")}>
-          Start Workout
-        </Button>
-      )}
+      <Surface style={{ borderRadius: 30 }}>
+        {preference?.next ? (
+          <Button mode="contained" style={{ borderRadius: 30 }} labelStyle={{ fontSize: 24, lineHeight: 30, textTransform: 'uppercase' }} onPress={() => setCurrentPreference(preference.next)} disabled={buttonDisabled()}>
+            Next
+          </Button>
+        ) : (
+          <Button
+            mode="contained"
+            style={{ borderRadius: 30 }}
+            labelStyle={{ fontSize: 24, lineHeight: 30, textTransform: 'uppercase' }}
+            onPress={handleGeneratePlan}
+          >
+            Get My Plan
+          </Button>
+        )}
+      </Surface>
     </View>
   )
 }

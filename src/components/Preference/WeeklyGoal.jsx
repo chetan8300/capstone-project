@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { View } from 'react-native'
-import { RadioButton, Chip, Text, Surface, useTheme } from 'react-native-paper';
+import { Chip, Text, useTheme } from 'react-native-paper';
 
 const WeeklyGoal = ({ preference, preferenceValues, setPreferenceValues }) => {
   const { colors } = useTheme()
@@ -14,19 +14,15 @@ const WeeklyGoal = ({ preference, preferenceValues, setPreferenceValues }) => {
       <View style={{ flexDirection: 'row', gap: 10, justifyContent: 'center', marginTop: 20, flexWrap: 'wrap' }}>
         {preference.options.map((option) => {
           return (
-            <Surface key={option.id} style={{ marginBottom: 16, borderRadius: 25, backgroundColor: '#fff' }} elevation={2}>
-              <Chip
-                style={{ borderWidth: 0, width: 60, height: 60 }}
-                textStyle={{ fontWeight: 'bold', fontSize: 30, lineHeight: 30 }}
-                mode={preferenceValues.weeklyTrainingDays === option.id ? 'flat' : 'outlined'}
-                selected={preferenceValues.weeklyTrainingDays === option.id}
-                onPress={() => setPreferenceValues(prev => ({ ...prev, weeklyTrainingDays: option.id }))}
-                icon={false}
-                elevated
-              >
-                {option.id}
-              </Chip>
-            </Surface>
+            <Chip
+              key={option.id}
+              style={{ borderWidth: 0, width: 60, height: 60, ...(preferenceValues.weeklyTrainingDays === option.id ? { backgroundColor: colors.primary } : { borderWidth: 2, borderColor: colors.primary}) }}
+              textStyle={{ fontWeight: 'bold', fontSize: 25, lineHeight: 30, marginLeft: 'auto', marginRight: 'auto', ...(preferenceValues.weeklyTrainingDays === option.id ? { color: '#fff' } : { color: colors.primary}) }}
+              mode={preferenceValues.weeklyTrainingDays === option.id ? 'flat' : 'outlined'}
+              onPress={() => setPreferenceValues(prev => ({ ...prev, weeklyTrainingDays: option.id }))}
+            >
+              {option.id}
+            </Chip>
           )
         })}
       </View>

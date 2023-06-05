@@ -24,22 +24,27 @@ const preferences = [
       {
         id: 'full_body',
         label: 'Full Body',
+        icon: require('../../assets/preference/full_body.png'),
       },
       {
         id: 'arm',
         label: 'Arm',
+        icon: require('../../assets/preference/arm.png'),
       },
       {
         id: 'chest',
         label: 'Chest',
+        icon: require('../../assets/preference/chest.png'),
       },
       {
         id: 'abs',
         label: 'Abs',
+        icon: require('../../assets/preference/abs.png'),
       },
       {
         id: 'leg',
         label: 'Leg',
+        icon: require('../../assets/preference/leg.png'),
       },
     ],
     next: 'goal_select',
@@ -53,14 +58,17 @@ const preferences = [
       {
         id: 'lose_weight',
         label: 'Lose Weight',
+        icon: require('../../assets/preference/lose_weight.png'),
       },
       {
         id: 'build_muscle',
         label: 'Gain Muscle',
+        icon: require('../../assets/preference/build_muscle.png'),
       },
       {
         id: 'keep_fit',
         label: 'Stay Fit',
+        icon: require('../../assets/preference/keep_fit.png'),
       },
     ],
     next: 'pushup',
@@ -73,14 +81,17 @@ const preferences = [
       {
         id: 'beginner',
         label: 'Beginner (3-5 push-ups)',
+        icon: require('../../assets/preference/beginner_pushup.png'),
       },
       {
         id: 'intermediate',
         label: 'Intermediate (6-10 push-ups)',
+        icon: require('../../assets/preference/intermediate_pushup.png'),
       },
       {
         id: 'advanced',
         label: 'Advanced (11-20 push-ups)',
+        icon: require('../../assets/preference/advanced_pushup.png'),
       },
     ],
     next: 'activity_level',
@@ -93,18 +104,26 @@ const preferences = [
       {
         id: 'sedentary',
         label: 'Sedentary',
+        icon: require('../../assets/preference/sedentary.png'),
+        helperText: "I sit at my desk all day"
       },
       {
         id: 'lightly_active',
         label: 'Lightly Active',
+        icon: require('../../assets/preference/lightly_active.png'),
+        helperText: "I occasionally exercise or walk for 30 minutes"
       },
       {
         id: 'moderately_active',
         label: 'Moderately Active',
+        icon: require('../../assets/preference/moderately_active.png'),
+        helperText: "I spend an hour or more working out every day"
       },
       {
         id: 'very_active',
         label: 'Very Active',
+        icon: require('../../assets/preference/very_active.png'),
+        helperText: "I love working out, and want to get more exercises"
       },
     ],
     next: 'weekly_goal',
@@ -144,11 +163,11 @@ const preferences = [
         label: '7 days',
       },
     ],
-    next: 'weight_height',
+    next: 'height_weight',
     prev: 'pushup'
   },
   {
-    id: "weight_height",
+    id: "height_weight",
     title: "Let us know you better",
     subtitle: "Let us know you better to help boost your workout results",
     prev: 'weekly_goal',
