@@ -1,4 +1,4 @@
-const exercise = {
+const exercises = {
 	jumping_jacks: {
 		description: `
       Start with your feet together and your arms by your sides, then jump up with your feet apart and your hands overhead.
@@ -725,117 +725,117 @@ const exercise = {
   }
 };
 
-const beginner = {
-  jumping_jacks,
-  arm_swings,
-  leg_swings,
-  skipping,
-  flutter_kicks,
-  crunches,
-  planks,
-  pull_ups,
-  knee_push_ups,
-  push_ups,
-  squats,
-  forward_lunges,
-  leg_raise,
-  knee_to_chest_stretch,
-  shoulder_stretch,
-}
+// const beginner = [
+//   exercises.jumping_jacks,
+//   exercises.arm_swings,
+//   exercises.leg_swings,
+//   exercises.skipping,
+//   exercises.flutter_kicks,
+//   exercises.crunches,
+//   exercises.planks,
+//   exercises.pull_ups,
+//   exercises.knee_push_ups,
+//   exercises.push_ups,
+//   exercises.squats,
+//   exercises.forward_lunges,
+//   exercises.leg_raise,
+//   exercises.knee_to_chest_stretch,
+//   exercises.shoulder_stretch,
+// ]
 
-const intermediate = {
-  jumping_jacks,
-  burpees,
-  skipping,
-  mountain_climbers,
-  bicycle_crunches,
-  planks,
-  leg_raise,
-  pull_ups,
-  chest_press,
-  incline_push_ups,
-  push_ups,
-  squats,
-  backward_lunges,
-  forward_lunges,
-  knee_to_chest_stretch,
-  shoulder_stretch,
-  stretch_with_ball
-}
+// const intermediate = [
+//   exercises.jumping_jacks,
+//   exercises.burpees,
+//   exercises.skipping,
+//   exercises.mountain_climbers,
+//   exercises.bicycle_crunches,
+//   exercises.planks,
+//   exercises.leg_raise,
+//   exercises.pull_ups,
+//   exercises.chest_press,
+//   exercises.incline_push_ups,
+//   exercises.push_ups,
+//   exercises.squats,
+//   exercises.backward_lunges,
+//   exercises.forward_lunges,
+//   exercises.knee_to_chest_stretch,
+//   exercises.shoulder_stretch,
+//   exercises.stretch_with_ball
+// ]
 
-const advanced = {
-  burpees,
-  leg_swings,
-  arm_swings,
-  skipping,
-  mountain_climbers,
-  russian_twist,
-  planks,
-  side_planks,
-  chest_press,
-  tricep_dips,
-  shoulder_press,
-  push_ups,
-  squats,
-  forward_lunges,
-  backward_lunges,
-  high_knees,
-  butt_kicks,
-  jumping_squats,
-  stretch_with_ball,
-	shoulder_stretch,
-	triceps_stretch,
-	knee_to_chest_stretch,
-	butterfly_stretch,
-}
+// const advanced = [
+//   exercises.burpees,
+//   exercises.leg_swings,
+//   exercises.arm_swings,
+//   exercises.skipping,
+//   exercises.mountain_climbers,
+//   exercises.russian_twist,
+//   exercises.planks,
+//   exercises.side_planks,
+//   exercises.chest_press,
+//   exercises.tricep_dips,
+//   exercises.shoulder_press,
+//   exercises.push_ups,
+//   exercises.squats,
+//   exercises.forward_lunges,
+//   exercises.backward_lunges,
+//   exercises.high_knees,
+//   exercises.butt_kicks,
+//   exercises.jumping_squats,
+//   exercises.stretch_with_ball,
+// 	exercises.shoulder_stretch,
+// 	exercises.triceps_stretch,
+// 	exercises.knee_to_chest_stretch,
+// 	exercises.butterfly_stretch,
+// ]
 
-const warmup = {
-	jumping_jacks,
-	burpees,
-	arm_swings,
-	leg_swings,
-	skipping,
-};
+const warmup = [
+	exercises.jumping_jacks,
+	exercises.burpees,
+	exercises.arm_swings,
+	exercises.leg_swings,
+	exercises.skipping,
+];
 
-const core = {
-	flutter_kicks,
-	mountain_climbers,
-	russian_twist,
-	bicycle_crunches,
-	crunches,
-	planks,
-	side_planks,
-	leg_raise,
-};
+const core = [
+	exercises.flutter_kicks,
+	exercises.mountain_climbers,
+	exercises.russian_twist,
+	exercises.bicycle_crunches,
+	exercises.crunches,
+	exercises.planks,
+	exercises.side_planks,
+	exercises.leg_raise,
+];
 
-const upperBodyWorkouts = {
-	pull_ups,
-	chest_press,
-	jumping_jacks,
-	incline_push_ups,
-	knee_push_ups,
-	push_ups,
-	tricep_dips,
-	shoulder_press,
-};
+const upperBodyWorkouts = [
+	exercises.pull_ups,
+	exercises.chest_press,
+	exercises.jumping_jacks,
+	exercises.incline_push_ups,
+	exercises.knee_push_ups,
+	exercises.push_ups,
+	exercises.tricep_dips,
+	exercises.shoulder_press,
+];
 
-const lowerBodyWorkouts = {
-	squats,
-	backward_lunges,
-	forward_lunges,
-	leg_raise,
-	butt_kicks,
-	high_knees,
-	jumping_squats,
-};
+const lowerBodyWorkouts = [
+	exercises.squats,
+	exercises.backward_lunges,
+	exercises.forward_lunges,
+	exercises.leg_raise,
+	exercises.butt_kicks,
+	exercises.high_knees,
+	exercises.jumping_squats,
+];
 
-const stretching = {
-	stretch_with_ball,
-	shoulder_stretch,
-	triceps_stretch,
-	knee_to_chest_stretch,
-	butterfly_stretch,
-};
+const stretching = [
+	exercises.stretch_with_ball,
+	exercises.shoulder_stretch,
+	exercises.triceps_stretch,
+	exercises.knee_to_chest_stretch,
+	exercises.butterfly_stretch,
+];
 
 const workoutByType = {
 	"7x4": [
@@ -853,7 +853,7 @@ const workoutByType = {
 	beginner: [
 		{
 			id: "abs_beginner",
-			name: "ABS Beginners",
+			name: "Abs Beginners",
 			subtitle: "",
       difficultyLevel: 1,
 		},
@@ -885,7 +885,7 @@ const workoutByType = {
   intermediate: [
 		{
 			id: "abs_intermediate",
-			name: "ABS Intermediate",
+			name: "Abs Intermediate",
 			subtitle: "",
       difficultyLevel: 2,
 		},
@@ -917,7 +917,7 @@ const workoutByType = {
   advanced: [
 		{
 			id: "abs_advanced",
-			name: "ABS Advanced",
+			name: "Abs Advanced",
 			subtitle: "",
       difficultyLevel: 3,
 		},
@@ -949,5 +949,6 @@ const workoutByType = {
 };
 
 export {
-  workoutByType 
+  workoutByType,
+  exercises
 }
