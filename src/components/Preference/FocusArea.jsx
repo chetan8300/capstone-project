@@ -1,13 +1,9 @@
 import React from 'react'
 
-import { View, Platform } from 'react-native'
-import { RadioButton, Surface, useTheme } from 'react-native-paper';
-
-const os = Platform.OS === 'ios' ? 'ios' : 'android'
+import { Image, View } from 'react-native'
+import { Button, Divider, HelperText } from 'react-native-paper';
 
 const FocusArea = ({ preference, preferenceValues, setPreferenceValues }) => {
-  const { colors } = useTheme()
-
   let key = "focusArea"
   if (preference.id === "goal_select") {
     key = "goal"
@@ -19,20 +15,39 @@ const FocusArea = ({ preference, preferenceValues, setPreferenceValues }) => {
 
   return (
     <View style={{ paddingTop: 40, paddingLeft: 20, paddingRight: 20, width: '100%' }}>
-      <RadioButton.Group onValueChange={newValue => setPreferenceValues(prev => ({ ...prev, [key]: newValue }))} value={preferenceValues[key]}>
+      <View style={{ gap: 16 }}>
         {preference.options.map((option) => {
           return (
-            <Surface key={option.id} style={{ marginBottom: 16, borderRadius: 25, backgroundColor: '#fff' }} elevation={2}>
-              <RadioButton.Item
-                value={option.id}
-                mode={os}
-                label={option.label}
-                labelStyle={{ color: colors.primary, fontWeight: 'bold' }}
-              />
-            </Surface>
+            <View key={option.id}>
+              <Button
+                icon={option.icon ?
+                  ({ size }) => (
+                    <Image
+                      source={option.icon}
+                      style={{ width: size, height: size }}
+                    />
+                  ) : "camera"
+                }
+                style={{ borderRadius: 30 }}
+                labelStyle={{ fontSize: 18, lineHeight: 30 }}
+                mode={preferenceValues[key] === option.id ? "contained" : "contained-tonal"}
+                onPress={() => setPreferenceValues(prev => ({ ...prev, [key]: option.id }))}
+              >
+                {option.label}
+              </Button>
+
+              {option?.helperText && (
+                <>
+                  <HelperText>
+                    {option.helperText}
+                  </HelperText>
+                  <Divider />
+                </>
+              )}
+            </View>
           )
         })}
-      </RadioButton.Group>
+      </View>
     </View>
   )
 }
