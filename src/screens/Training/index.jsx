@@ -1,19 +1,32 @@
 import { useNavigation } from "@react-navigation/native";
-import { View, Text } from "react-native"
+import { View, Text } from "react-native";
 
 // Common Components
-import hoc from '../../components/HOC'
+import hoc from "../../components/HOC";
+
+// Utils
+import { workoutByType } from "../../utils/workouts";
 
 const TrainingScreen = () => {
-  const navigation = useNavigation();
+	const navigation = useNavigation();
 
-  return (
-    <View style={{ flex: 1 }}>
-      <Text>
-        TrainingScreen
-      </Text>
-    </View>
-  )
-}
+	return (
+		<View style={{ flex: 1 }}>
+			{Object.keys(workoutByType).map((key) => {
+        const workouts = workoutByType[key]
+				return (
+          <View key={key}>
+            <Text>{key} {workouts.length}</Text>
+            {workouts.map(workout => {
+              return (
+                <Text key={`${key}-${workout.id}`}>{workout.name}</Text>
+              )
+            })}
+          </View>
+        );
+			})}
+		</View>
+	);
+};
 
-export default hoc(TrainingScreen)
+export default hoc(TrainingScreen);
