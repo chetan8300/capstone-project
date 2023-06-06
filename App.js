@@ -1,7 +1,5 @@
 import 'react-native-gesture-handler';
 
-import { Fragment } from 'react';
-
 // React Native & Expo Components
 import { StatusBar } from 'expo-status-bar';
 import { MD3LightTheme as DefaultTheme, PaperProvider } from 'react-native-paper';

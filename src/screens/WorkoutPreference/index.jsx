@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { View } from 'react-native'
 import { Button, Text, Surface } from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 // Common Components
 import hoc from '../../components/HOC'
@@ -20,10 +21,11 @@ const defaultPreference = {
   pushUpAtOneTime: '',
   activityLevel: '',
   weeklyTrainingDays: '',
-  weight: '',
-  weightUnit: '',
-  height: '',
-  heightUnit: '',
+  weight: '0',
+  weightUnit: 'kg',
+  height: '0',
+  heightUnit: 'cm',
+  restTime: '15'
 }
 
 const WorkoutPreferenceScreen = ({ navigation }) => {
@@ -54,8 +56,13 @@ const WorkoutPreferenceScreen = ({ navigation }) => {
     return disabled
   }
 
-  const handleGeneratePlan = () => {
+  const handleGeneratePlan = async () => {
     setIsGeneratingPlan(true)
+    try {
+      await AsyncStorage.setItem('workoutPreference', JSON.stringify(preferenceValues))
+    } catch (error) {
+      console.log("error while saving workout preference")
+    }
     setTimeout(() => {
       setIsGeneratingPlan(false)
       navigation.navigate("MainApp")
