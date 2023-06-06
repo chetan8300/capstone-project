@@ -21,10 +21,11 @@ const defaultPreference = {
   pushUpAtOneTime: '',
   activityLevel: '',
   weeklyTrainingDays: '',
-  weight: '',
-  weightUnit: '',
-  height: '',
-  heightUnit: '',
+  weight: '0',
+  weightUnit: 'kg',
+  height: '0',
+  heightUnit: 'cm',
+  restTime: '15'
 }
 
 const WorkoutPreferenceScreen = ({ navigation }) => {

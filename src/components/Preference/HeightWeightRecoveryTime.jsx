@@ -3,13 +3,7 @@ import React from 'react'
 import { View } from 'react-native'
 import { Divider, Text, HelperText, TextInput, SegmentedButtons } from 'react-native-paper'
 
-const HeightWeightRecoveryTime = () => {
-  const [weight, setWeight] = React.useState('0')
-  const [height, setHeight] = React.useState('0')
-  const [weightMeasure, setWeightMeasure] = React.useState('kg')
-  const [heightMeasure, setHeightMeasure] = React.useState('cm')
-  const [restTime, setRestTime] = React.useState('15')
-
+const HeightWeightRecoveryTime = ({ preferenceValues, setPreferenceValues }) => {
   return (
     <View>
       <View style={{ flexDirection: 'row', gap: 10, marginBottom: 20, marginTop: 20, width: '100%', alignItems: 'flex-end' }}>
@@ -18,17 +12,17 @@ const HeightWeightRecoveryTime = () => {
             Weight
           </Text>
           <TextInput
-            value={weight}
-            onChangeText={text => setWeight(text)}
+            value={preferenceValues.weight}
+            onChangeText={text => setPreferenceValues(prev => ({ ...prev, weight: text }))}
             keyboardType="numeric"
             mode="flat"
-            placeholder={weightMeasure === 'kg' ? 'KG' : 'LB'}
+            placeholder={preferenceValues.weightUnit === 'kg' ? 'KG' : 'LB'}
             dense
           />
         </View>
         <SegmentedButtons
-          value={weightMeasure}
-          onValueChange={value => setWeightMeasure(value)}
+          value={preferenceValues.weightUnit}
+          onValueChange={value => setPreferenceValues(prev => ({ ...prev, weightUnit: value }))}
           style={{ flex: 1 }}
           density="small"
           buttons={[
@@ -52,17 +46,17 @@ const HeightWeightRecoveryTime = () => {
             Height
           </Text>
           <TextInput
-            value={height}
-            onChangeText={text => setHeight(text)}
+            value={preferenceValues.height}
+            onChangeText={text => setPreferenceValues(prev => ({ ...prev, height: text }))}
             keyboardType="numeric"
             mode="flat"
-            placeholder={heightMeasure === 'cm' ? 'CM' : 'IN'}
+            placeholder={preferenceValues.heightUnit === 'cm' ? 'CM' : 'IN'}
             dense
           />
         </View>
         <SegmentedButtons
-          value={heightMeasure}
-          onValueChange={value => setHeightMeasure(value)}
+          value={preferenceValues.heightUnit}
+          onValueChange={value => setPreferenceValues(prev => ({ ...prev, heightUnit: value }))}
           style={{ flex: 1 }}
           density="small"
           buttons={[
@@ -85,8 +79,8 @@ const HeightWeightRecoveryTime = () => {
           Rest Time
         </Text>
         <TextInput
-          value={restTime}
-          onChangeText={text => setRestTime(text)}
+          value={preferenceValues.restTime}
+          onChangeText={text => setPreferenceValues(prev => ({ ...prev, restTime: text }))}
           keyboardType="numeric"
           mode="outlined"
           dense
