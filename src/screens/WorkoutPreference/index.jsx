@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { View } from 'react-native'
 import { Button, Text, Surface } from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 // Common Components
 import hoc from '../../components/HOC'
@@ -54,8 +55,13 @@ const WorkoutPreferenceScreen = ({ navigation }) => {
     return disabled
   }
 
-  const handleGeneratePlan = () => {
+  const handleGeneratePlan = async () => {
     setIsGeneratingPlan(true)
+    try {
+      await AsyncStorage.setItem('workoutPreference', JSON.stringify(preferenceValues))
+    } catch (error) {
+      console.log("error while saving workout preference")
+    }
     setTimeout(() => {
       setIsGeneratingPlan(false)
       navigation.navigate("MainApp")
