@@ -1,5 +1,5 @@
-import { View, Text } from 'react-native'
-import { TextInput, Button } from 'react-native-paper'
+import { View } from 'react-native'
+import { TextInput, Button, Surface, Text, Divider } from 'react-native-paper'
 import * as React from 'react'
 import styles from './styles'
 import { useTheme } from 'react-native-paper';
@@ -15,73 +15,112 @@ const CalculateBMIScreen = () => {
   var bmiResult = ""
 
   const calculateBMI = () => {
-      if (height && weight) {
-        const heightInMeters = height / 100;
-        const bmiValue = weight / (heightInMeters * heightInMeters);
-        setBMI(bmiValue.toFixed(2));
-      }
-    };
-  
-    const bmiResultRender = () => {
-      let bmiResult = ""
-      if(bmi < 18.5) {
-        bmiResult = 'Underweight'
-        console.log(bmiResult)
-  
-      }
-      if(bmi >= 18.5 && bmi <= 24.9) {
-        bmiResult = 'Normal'
-        console.log(bmiResult)
-      }
-      if(bmi >= 25 && bmi <= 29.9) {
-        bmiResult = 'Overweight'
-        console.log(bmiResult)
-      }
-      if(bmi >= 30) {
-        bmiResult = 'Obese'
-        console.log(bmiResult)
-      }
-  
-      return bmiResult
+    if (height && weight) {
+      const heightInMeters = height / 100;
+      const bmiValue = weight / (heightInMeters * heightInMeters);
+      setBMI(bmiValue.toFixed(2));
     }
+  };
+
+  const bmiResultRender = () => {
+    let bmiResult = ""
+    if (bmi < 18.5) {
+      bmiResult = 'Underweight'
+
+    }
+    if (bmi >= 18.5 && bmi <= 24.9) {
+      bmiResult = 'Normal'
+
+    }
+    if (bmi >= 25 && bmi <= 29.9) {
+      bmiResult = 'Overweight'
+
+    }
+    if (bmi >= 30) {
+      bmiResult = 'Obese'
+
+    }
+
+    return bmiResult
+  }
+
+  const renderLine = (color, style, bmiOriginalDiff, deduct = 0) => {
+    const bmiActualDiff = bmi - deduct
+    const percentage = bmiActualDiff / bmiOriginalDiff * 100
+
+    let show = false
+    if (bmiActualDiff < bmiOriginalDiff && (bmiActualDiff / bmiOriginalDiff < 1) && (bmiActualDiff / bmiOriginalDiff > 0)) {
+      show = true
+    }
+
+    return (
+      <View style={{ flex: 1, height: 10, backgroundColor: color, position: 'relative', ...style }}>
+        {show && (
+          <View style={{ position: 'absolute', left: `${percentage}%`, top: -1, marginLeft: -6, width: 12, height: 12, borderRadius: '50%', borderColor: '#fff', borderWidth: 2, backgroundColor: 'black' }} />
+        )}
+      </View>
+    )
+  }
+
   return (
-   <View>
-    <Text style={styles.title}>
-      Calculate BMI
-    </Text>
-    <Text style={styles.subTitle}>
-      Previously recorded BMI: 0
-    </Text>
-    <View style={styles.inputContainer}>
-      <TextInput style={styles.textInput}
+    <View style={{ flex: 1, width: '100%', paddingLeft: 20, paddingRight: 20 }}>
+      <Text style={styles.title}>
+        Calculate BMI
+      </Text>
+      <Text style={styles.subTitle}>
+        Previously recorded BMI: 0
+      </Text>
+      <View style={styles.inputContainer}>
+        <Text variant="bodyLarge" style={{ fontWeight: 'bold', marginBottom: 5 }}>
+          Height
+        </Text>
+        <TextInput style={styles.textInput}
           mode='outlined'
           value={height}
           onChangeText={setHeight}
           keyboardType="numeric"
-          placeholder='Height (cm)'
+          placeholder='180 cm'
         />
-      <TextInput style={styles.textInput}
+
+        <Text variant="bodyLarge" style={{ fontWeight: 'bold', marginBottom: 5 }}>
+          Weight
+        </Text>
+        <TextInput style={styles.textInput}
           value={weight}
           onChangeText={setWeight}
           keyboardType="numeric"
           mode="outlined"
-          placeholder='Weight (kg)'
-      />
-      <Button mode="contained" style={styles.button} onPress={calculateBMI}>
-        Calculate
-      </Button>
-      {bmi && (
-        <View>
-          <Text style={styles.result}>
-          Your BMI is: {bmi}
-          </Text>
-          <Text style={styles.result}>
-          Your result is considered: {bmiResultRender()}
-          </Text>
-        </View>
-      )}
+          placeholder='70 kg'
+        />
+        <Button mode="contained" style={styles.button} onPress={calculateBMI}>
+          Calculate
+        </Button>
+        {bmi && (
+          <Surface style={styles.resultSurface}>
+            <View style={styles.resultContainer}>
+              <Text style={styles.result}>
+                Your BMI is {bmiResultRender()}
+              </Text>
+              <Text style={styles.resultBmi}>
+                {bmi}
+              </Text>
+              <Text style={styles.bmiInfo}>
+                Body Mass Index (BMI) is a person's weight in kilograms divided by the square of height in meters.
+              </Text>
+              <View style={{ marginTop: 40, marginBottom: 20 }}>
+                <View style={{ flexDirection: 'row', gap: 2 }}>
+                  {renderLine('lightgrey', { borderTopLeftRadius: 4, borderBottomLeftRadius: 4 }, 18.5)}
+                  {renderLine('green', {}, 6.3, 18.6)}
+                  {renderLine('yellow', {}, 4.9, 24.9)}
+                  {renderLine('red', { borderTopRightRadius: 4, borderBottomRightRadius: 4 }, 100, 30)}
+                </View>
+              </View>
+            </View>
+          </Surface>
+        )}
+      </View>
+
     </View>
-   </View>
   )
 }
 

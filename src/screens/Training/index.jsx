@@ -1,31 +1,97 @@
 import { useNavigation } from "@react-navigation/native";
-import { View, Text } from "react-native";
+import { TouchableOpacity, View, ScrollView } from "react-native";
+import { Text, Card, useTheme } from "react-native-paper";
 
 // Common Components
 import hoc from "../../components/HOC";
 
 // Utils
-import { workoutByType } from "../../utils/workouts";
+import { workoutByType, beginner, exercises } from "../../utils/workouts";
 
 const TrainingScreen = () => {
 	const navigation = useNavigation();
+  const { colors } = useTheme()
 
 	return (
-		<View style={{ flex: 1 }}>
-			{Object.keys(workoutByType).map((key) => {
-        const workouts = workoutByType[key]
-				return (
-          <View key={key}>
-            <Text>{key} {workouts.length}</Text>
-            {workouts.map(workout => {
-              return (
-                <Text key={`${key}-${workout.id}`}>{workout.name}</Text>
-              )
-            })}
-          </View>
-        );
-			})}
+		<View style={{ flex: 1, paddingLeft: 16, paddingRight: 16, width: "100%" }}>
+			<ScrollView>
+				{Object.keys(workoutByType).map((key) => {
+					const workouts = workoutByType[key];
+					return (
+						<View key={key} style={{ marginBottom: 16 }}>
+							<Text variant="displaySmall" style={{ paddingBottom: 16, textTransform: 'capitalize' }}>{key}</Text>
+							<View style={{ gap: 16 }}>
+								{workouts.map((workout) => {
+									return (
+										<TouchableOpacity
+											key={`${key}-${workout.id}`}
+											onPress={() => {
+												// navigation.navigate("SecondScreen", {
+												//   workoutType: key,
+												//   workout: workout.id,
+												// });
+											}}
+										>
+											<Card style={{ position: "relative" }}>
+												<Card.Cover
+													source={{ uri: "https://picsum.photos/700" }}
+												></Card.Cover>
+												<Card.Title
+													title={workout.name}
+													subtitle={workout.subtitle}
+													titleStyle={{
+														color: "#fff",
+														fontSize: 24,
+														fontWeight: "bold",
+													}}
+													subtitleStyle={{
+														color: "#fff",
+														fontSize: 16,
+														fontWeight: "bold",
+													}}
+													style={{ position: "absolute", top: 10 }}
+												/>
+                        <View style={{ position: 'absolute', bottom: 16, paddingLeft: 16, paddingRight: 16, width: '100%' }}>
+                          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 6 }}>
+                            <Text style={{ color: '#fff' }}>
+                              27 Days Left
+                            </Text>
+                            <Text style={{ color: '#fff' }}>
+                              4%
+                            </Text>
+                          </View>
+                          <View style={{ position: 'relative', width: '100%', backgroundColor: '#d4f1f9', height: 10, borderRadius: 8 }}>
+                            <View style={{ position: 'absolute', width: `${(2 / 28) * 100}%`, height: 10, backgroundColor: colors.primary, borderRadius: 8 }} />
+                          </View>
+                        </View>
+											</Card>
+										</TouchableOpacity>
+									);
+								})}
+							</View>
+						</View>
+					);
+				})}
+			</ScrollView>
 		</View>
+
+		//   <View style={{ flex: 1 }}>
+		//   {Object.keys(exercises).map((key) => {
+		//     const exercise = exercises[key]
+		//     return (
+		//       <View key={key}>
+		//         {/* <Text>{key} {exercises.length}</Text> */}
+		//         <Text>{exercise.focusArea.map(x => x)}</Text>
+		//         {/* <Text>{exercises.map()}</Text> */}
+		//         {/* {exercises.map(exercise => {
+		//           return (
+		//             <Text key={`${key}-${exercise.id}`}>{exercise}</Text>
+		//           )
+		//         })} */}
+		//       </View>
+		//     );
+		//   })}
+		// </View>
 	);
 };
 
