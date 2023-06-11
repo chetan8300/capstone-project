@@ -843,13 +843,13 @@ const workoutByType = {
 			id: "full_body_7x4",
 			name: "Full Body",
 			subtitle: "7x4 Challenge",
-      icon: require('../assets/workouts/full_body_workout_female.jpg')
+      icon: require('../assets/workouts/full_body_male-min.jpg')
 		},
 		{
 			id: "lower_body_7x4",
 			name: "Lower Body",
 			subtitle: "7x4 Challenge",
-      icon: require('../assets/workouts/lower_body_female-min.jpg')
+      icon: require('../assets/workouts/lower_body_female.jpg')
 		},
 	],
 	beginner: [
@@ -858,12 +858,14 @@ const workoutByType = {
 			name: "Abs Beginners",
 			subtitle: "",
       difficultyLevel: 1,
+      icon: require('../assets/workouts/abs_male-min.jpg')
 		},
     {
 			id: "chest_beginner",
 			name: "Chest Beginners",
 			subtitle: "",
       difficultyLevel: 1,
+      icon: require('../assets/workouts/chest_male-min.jpg')
 		},
     {
 			id: "arm_beginner",

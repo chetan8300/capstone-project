@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
+import React, { useState } from 'react';
 import { TouchableOpacity, View, ScrollView } from "react-native";
-import { Text, Card, useTheme } from "react-native-paper";
+import { Text, Card, useTheme, Searchbar } from "react-native-paper";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles'
@@ -15,9 +16,16 @@ const TrainingScreen = () => {
   const navigation = useNavigation();
   const { colors } = useTheme()
 
+  //Search bar accessories
+  const [searchQuery, setSearchQuery] = useState('');
+  const onChangeSearch = query => setSearchQuery(query);
+
   return (
     <View style={{ flex: 1, paddingLeft: 16, paddingRight: 16, width: "100%" }}>
-      <Text variant="displaySmall">Fittr</Text>
+      <View style={styles.header}>
+      <Text variant="displaySmall" style={styles.name}>Fitter</Text>
+      </View>
+      <Searchbar placeholder="Search" onChangeText={onChangeSearch} value={searchQuery} style={styles.searchBar} />
       <ScrollView>
         {Object.keys(workoutByType).map((key) => {
           const workouts = workoutByType[key];
