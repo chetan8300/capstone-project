@@ -25,15 +25,20 @@ const TrainingScreen = () => {
       <View style={styles.header}>
       <Text variant="displaySmall" style={styles.name}>Fitter</Text>
       </View>
+
       <Searchbar placeholder="Search" onChangeText={onChangeSearch} value={searchQuery} style={styles.searchBar} />
+
       <ScrollView>
         {Object.keys(workoutByType).map((key) => {
           const workouts = workoutByType[key];
+          const filteredWorkouts = workouts.filter((workout) =>
+            workout.name.toLowerCase().includes(searchQuery.toLowerCase())
+          );
           return (
             <View key={key} style={{ marginBottom: 16 }}>
               <Text variant="headlineMedium" style={{ paddingBottom: 16, textTransform: 'capitalize' }}>{key}</Text>
               <View style={{ gap: 16 }}>
-                {workouts.map((workout) => {
+              {(searchQuery ? filteredWorkouts : workouts).map((workout) =>{
                   return (
                     <TouchableOpacity
                       key={`${key}-${workout.id}`}

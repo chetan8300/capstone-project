@@ -112,7 +112,7 @@ const WorkoutPreferenceScreen = ({ navigation }) => {
               </View>
             )}
           </View>
-          <Surface style={{ borderRadius: 30 }}>
+          <Surface style={{ borderRadius: 30, marginBottom: 20 }}>
             {preference?.next ? (
               <Button mode="contained" style={{ borderRadius: 30 }} labelStyle={{ fontSize: 24, lineHeight: 30, textTransform: 'uppercase' }} onPress={() => setCurrentPreference(preference.next)} disabled={buttonDisabled()}>
                 Next
