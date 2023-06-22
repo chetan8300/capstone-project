@@ -205,7 +205,9 @@ const exercises = {
   mountain_climbers: {
     id: "mountain_climbers",
     description: `
-    
+      Start in the push-up position. Bend your right knee towards your chest and keep your left leg straight, then quickly switch from one leg to other.
+
+      This exercise strengthens multiple muscle groups.
     `,
     steps: [
       "Start in a plank position with your hands directly under your shoulders and your body forming a straight line from head to heels.",
@@ -230,7 +232,9 @@ const exercises = {
   russian_twist: {
     id: "russian_twist",
     description: `
+      Sit on the floor with your knees bent, feet lifted a little bit and back tilted backwards.
 
+      Then hold your hands together and twist from side to side.
     `,
     steps: [
       "Sit on the floor with your knees bent and your feet flat on the ground. Lean back slightly, creating a V-shape with your torso and thighs.",
@@ -253,7 +257,9 @@ const exercises = {
   bicycle_crunches: {
     id: "bicycle_crunches",
     description: `
-    
+      Lie on the floor with your hands behind your ears. Raise your knees and close your right elbow toward your left knee, then close your left elbow toward your right knee.
+
+      Repeat the exercise.
     `,
     steps: [
       "Lie flat on your back on a mat or the floor, with your lower back pressed against the ground. Bend your knees and place your hands lightly behind your head, elbows pointing out to the sides.",
@@ -274,7 +280,9 @@ const exercises = {
   planks: {
     id: "planks",
     description: `
-    
+      Lie on the floor with your toes and forearms on the ground. Keep your body straight and hold this position as long as you can.
+
+      This exercise strengthens the abdomen, back and shoulders.
     `,
     steps: [
       "Start by positioning yourself face down on a mat or the floor. Place your forearms on the ground, with your elbows directly under your shoulders.",
@@ -297,7 +305,9 @@ const exercises = {
   side_planks: {
     id: "side_planks",
     description: `
+      Lie on one side with your forearm supporting your body. Hold your body in a straight line.
 
+      This exercise targets the abdominal muscles and obliques.
     `,
     steps: [
       "Start by lying on your side, with your legs extended and stacked on top of each other. Place your elbow directly under your shoulder, forearm flat on the ground.",
@@ -320,7 +330,11 @@ const exercises = {
   leg_raise: {
     id: "leg_raise",
     description: `
+      Lie down on your back and put your hands beneath your hips for support.
 
+      Then lift your legs up until they form a right angle with the floor.
+
+      Slowly bring your legs back down and repeat the exercise.
     `,
     steps: [
       "Lie flat on your back on a mat or the floor, with your legs fully extended and your arms resting by your sides.",
@@ -342,7 +356,7 @@ const exercises = {
   pull_ups: {
     id: "pull_ups",
     description: `
-    
+      Pull-ups are an upper-body exercise where you hang from a bar and pull your body upward. They target the back muscles and improve upper-body strength.
     `,
     steps: [
       "Find a pull-up bar that is secure and can support your body weight. Grab the bar with an overhand grip, slightly wider than shoulder-width apart.",
@@ -367,7 +381,7 @@ const exercises = {
   chest_press: {
     id: "chest_press",
     description: `
-    
+      The chest press is an exercise that targets the chest muscles by pushing weights away from your body, strengthening your upper body.
     `,
     steps: [
       "Begin by lying flat on a bench or mat with your feet firmly planted on the ground. Hold a dumbbell in each hand, palms facing forward, and position your hands at chest level, just outside your shoulders.",
@@ -388,34 +402,12 @@ const exercises = {
     intermediate: 12,
     advanced: 15
   },
-  jumping_jacks: {
-    id: "jumping_jacks",
-    description: `
-
-    `,
-    steps: [
-      "Start by standing upright with your feet together and your arms by your sides.",
-      "Engage your core muscles and prepare to jump.",
-      "Simultaneously jump off the ground, spreading your legs wider than shoulder-width apart. As you jump, raise your arms out to the sides and overhead, forming a 'Y' shape with your body.",
-      "Land softly on the balls of your feet, with your knees slightly bent, and your arms extended out to the sides.",
-      "Quickly jump again, returning to the starting position by bringing your legs together and lowering your arms back to your sides.",
-      "Repeat the jumping jack motion for the desired duration or number of repetitions."
-    ],
-    focusArea: [
-      "Calves",
-      "Quadriceps",
-      "Glutes",
-      "Core"
-    ],
-    count: "reps",
-    beginner: 10,
-    intermediate: 12,
-    advanced: 15
-  },
   push_ups: {
     id: "push_ups",
     description: `
-    
+      Push-ups are a classic bodyweight exercise that targets multiple muscles, including the chest, shoulders, triceps, and core. 
+
+      Push-ups are a versatile and effective exercise for building upper-body strength, enhancing muscular endurance, and improving overall fitness.
     `,
     steps: [
       "Start in a plank position with your hands placed slightly wider than shoulder-width apart, directly under your shoulders. Your feet should be together, and your body should form a straight line from head to heels.",
@@ -439,7 +431,9 @@ const exercises = {
   tricep_dips: {
     id: "tricep_dips",
     description: `
+      Tricep dips are an effective exercise that targets the triceps, the muscles on the back of your upper arms.
 
+      Incorporating tricep dips into your workout routine can improve upper-body strength and enhance the overall aesthetics of your arms.
     `,
     steps: [
       "Find a stable surface, such as parallel bars, a bench, or a step. Position yourself facing away from the surface and place your hands shoulder-width apart on the edge of the surface, fingers pointing forward.",
@@ -462,7 +456,11 @@ const exercises = {
   shoulder_press: {
     id: "shoulder_press",
     description: `
+      Tricep dips target the triceps, the muscles on the back of your upper arms.
 
+      By placing your hands on a stable surface behind you, bending your elbows, and lowering your body, you engage and strengthen the triceps.
+
+      Tricep dips are an effective exercise for toning and building upper-arm strength.
     `,
     steps: [
       "Start by standing with your feet shoulder-width apart and hold a dumbbell in each hand. Alternatively, you can use a barbell or a resistance band.",
@@ -485,7 +483,11 @@ const exercises = {
   squats: {
     id: "squats",
     description: `
+      Squats are a fundamental lower-body exercise that targets the muscles of the legs, primarily the quadriceps, hamstrings, and glutes.
 
+      They can be performed with bodyweight or added resistance, such as barbells or dumbbells, making them a versatile exercise for individuals at various fitness levels.
+
+      Regularly incorporating squats into your workout routine can contribute to improved strength, functional mobility, and lower-body aesthetics.
     `,
     steps: [
       "Stand with your feet slightly wider than shoulder-width apart, with your toes pointed slightly outward. You can choose to hold a dumbbell or a barbell across your shoulders or keep your hands clasped in front of you.",
@@ -509,7 +511,11 @@ const exercises = {
   backward_lunges: {
     id: "backward_lunges",
     description: `
+      Backward lunges are a lower-body exercise that targets the legs, particularly the quadriceps, hamstrings, and glutes.
 
+      By stepping backward and bending both knees, you strengthen your lower body and improve balance.
+
+      Backward lunges are effective for leg development and functional movement.
     `,
     steps: [
       "Stand tall with your feet hip-width apart and your hands on your hips or relaxed at your sides.",
@@ -533,7 +539,11 @@ const exercises = {
   forward_lunges: {
     id: "forward_lunges",
     description: `
+      Forward lunges target the legs, particularly the quadriceps, hamstrings, and glutes.
 
+      By stepping forward and bending both knees, you strengthen your lower body and improve balance.
+
+      Forward lunges are effective for leg development and functional movement.
     `,
     steps: [
       "Stand tall with your feet hip-width apart and your hands on your hips or relaxed at your sides.",
@@ -580,7 +590,9 @@ const exercises = {
   high_knees: {
     id: "high_knees",
     description: `
+      High knees are a dynamic cardio exercise that involves lifting your knees as high as possible while running or marching in place.
 
+      It targets the lower body, improves coordination, and boosts cardiovascular fitness.
     `,
     steps: [
       "Stand tall with your feet hip-width apart and your arms relaxed at your sides.",
@@ -604,7 +616,9 @@ const exercises = {
   jumping_squats: {
     id: "jumping_squats",
     description: `
-    
+      Jumping squats are explosive exercises that combine squats with jumping.
+
+      They target the lower body, build strength, and improve power.
     `,
     steps: [
       "Stand with your feet shoulder-width apart, toes pointed slightly outward. Keep your arms by your sides or in front of your chest for balance.",
@@ -627,7 +641,11 @@ const exercises = {
   stretch_with_ball: {
     id: "stretch_with_ball",
     description: `
-    
+      Stretching with a ball involves using a ball, such as a foam roller or tennis ball, to enhance stretching exercises.
+
+      It can be particularly effective for targeting areas like the back, glutes, hamstrings, and calves.
+      
+      Incorporating stretching with a ball into your routine can help promote muscle relaxation, reduce stiffness, and improve overall flexibility and mobility.
     `,
     steps: [
       "Start by selecting a stability ball that is appropriate for your height. Sit on the ball and walk your feet forward, allowing the ball to roll underneath your body until your lower back is resting on the ball. Your feet should be shoulder-width apart, with your knees bent at a 90-degree angle.",
@@ -649,7 +667,7 @@ const exercises = {
   shoulder_stretch: {
     id: "shoulder_stretch",
     description: `
-    
+      Shoulder stretches improve flexibility and relieve tension in the shoulder muscles. They enhance mobility, reduce stiffness, and promote better posture.
     `,
     steps: [
       "Stand or sit up straight with good posture.",
@@ -671,8 +689,12 @@ const exercises = {
   triceps_stretch: {
     id: "triceps_stretch",
     description: `
-    
-    `,
+      Tricep stretches target the triceps muscles located on the back of the upper arms.
+
+      Tricep stretches help increase flexibility, alleviate tightness, and improve range of motion in the arms.
+      
+      Incorporating tricep stretches into your routine can enhance upper body mobility and relieve muscle tension.
+    `,  
     steps: [
       "Stand up straight or sit on a chair with good posture.",
       "Raise your right arm overhead and bend it at the elbow, bringing your right hand to touch the upper middle part of your back, between your shoulder blades. Your right forearm should be pointing straight down behind your head.",
@@ -692,7 +714,11 @@ const exercises = {
   knee_to_chest_stretch: {
     id: "knee_to_chest_stretch",
     description: `
-    
+      The knee to chest stretch targets the lower back, glutes, and hips.
+      
+      By pulling one knee towards the chest, you can increase flexibility and relieve tension in those areas.
+      
+      It improves lower body mobility and helps alleviate lower back tightness.
     `,
     steps: [
       "Lie on your back on a comfortable surface, such as a mat or carpeted floor.",
@@ -716,7 +742,9 @@ const exercises = {
   butterfly_stretch: {
     id: "butterfly_stretch",
     description: `
-    
+      The butterfly stretch targets the inner thighs and groin muscles. 
+      
+      By bringing the soles of your feet together and allowing your knees to fall out to the sides, you can improve hip mobility and flexibility in that area.
     `,
     steps:[
       "Sit on the floor or a mat with a straight back and bring the soles of your feet together, allowing your knees to naturally fall out to the sides. This position should resemble the shape of butterfly wings.",
@@ -736,7 +764,11 @@ const exercises = {
   crunches: {
     id: "crunches",
     description: `
-    
+      Crunches are abdominal exercises that target the core muscles. 
+      
+      By lifting your upper body off the ground, you strengthen and tone the abs. 
+      
+      They help improve core strength and enhance abdominal definition.
     `,
     steps: [
       "Lie flat on your back on a mat or carpeted surface, with your knees bent and feet flat on the floor. Keep your feet about hip-width apart and place your hands lightly behind your head, supporting the weight of your head with your fingertips (avoid pulling on your head or neck).",
