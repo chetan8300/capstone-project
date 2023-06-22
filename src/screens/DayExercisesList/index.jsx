@@ -8,19 +8,6 @@ import Toast from 'react-native-root-toast';
 import hoc from "../../components/HOC";
 import RoutineDetail from './routine-detail'
 import { workoutByType } from '../../utils/workouts';
-import { exercises } from '../../utils/workouts'
-
-const routineForTheDay = [
-  exercises.jumping_jacks,
-  exercises.skipping,
-  exercises.incline_push_ups,
-  exercises.push_ups,
-  exercises.squats,
-  exercises.forward_lunges,
-  exercises.tricep_dips,
-  exercises.shoulder_stretch,
-  exercises.knee_to_chest_stretch
-]
 
 const DayExercisesList = ({ route, navigation }) => {
   const { workoutType, workout: workoutId, day: workoutDay } = route.params
@@ -28,6 +15,7 @@ const DayExercisesList = ({ route, navigation }) => {
   const [showRoutine, setShowRoutine] = React.useState(null);
 
   const workout = workoutByType[workoutType].find((workout) => workout.id === workoutId)
+  const routineForTheDay = workout.exercise
 
   const handlePressRouting = (index) => {
     setShowRoutine(index)
@@ -68,7 +56,7 @@ const DayExercisesList = ({ route, navigation }) => {
       </Card>
       <Surface elevation={0} style={{ marginLeft: 8, marginRight: 8, marginTop: 8, borderRadius: 12, paddingVertical: 10, paddingHorizontal: 16, backgroundColor: '#fff', justifyContent: 'space-between', flexDirection: 'row' }}>
         <Text variant="bodyLarge">Routine for the day</Text>
-        <Text variant="bodyLarge">15 workouts</Text>
+        <Text variant="bodyLarge">{routineForTheDay.length} workouts</Text>
       </Surface>
       <FlatList
         data={routineForTheDay}

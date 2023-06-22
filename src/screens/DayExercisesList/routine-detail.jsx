@@ -24,6 +24,11 @@ const RoutineDetail = ({ visible, setVisible, routineIndex, exercises }) => {
 
                 <ScrollView style={{ paddingVertical: 10, paddingHorizontal: 20 }}>
                   <View>
+                    <Text variant="headlineSmall" style={{ fontWeight: 'bold' }}>Description:</Text>
+                    <Text variant="bodyLarge" style={{ marginBottom: 10 }}>{exercise.description}</Text>
+                  </View>
+
+                  <View>
                     <Text variant="headlineSmall" style={{ fontWeight: 'bold', marginBottom: 10 }}>Steps:</Text>
                     {exercise.steps.map((step, index) => {
                       return (
