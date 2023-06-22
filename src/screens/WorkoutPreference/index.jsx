@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { View } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Button, Text, Surface } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
@@ -70,7 +71,7 @@ const WorkoutPreferenceScreen = ({ navigation }) => {
   }
 
   return (
-    <View style={{ flex: 1, width: '100%', paddingLeft: 20, paddingRight: 20 }}>
+    <View style={{ flex: 1, width: '100%', paddingLeft: 8, paddingRight: 8 }}>
       {!isGeneratingPlan ? (
         <>
           <View style={{ flex: 1, width: '100%' }}>
@@ -81,38 +82,40 @@ const WorkoutPreferenceScreen = ({ navigation }) => {
               progress={preferenceIndex / preferences.length}
             />
             {preference && (
-              <View style={{ alignItems: 'center', marginTop: 10 }}>
-                {preference?.title && (
-                  <Text variant="headlineMedium" style={{ fontWeight: 'bold', textAlign: 'center', textTransform: 'uppercase' }}>
-                    {preference ? preference.title : ""}
-                  </Text>
-                )}
+              <KeyboardAwareScrollView>
+                <View style={{ alignItems: 'center', marginTop: 10, marginLeft: 12, marginRight: 12 }}>
+                  {preference?.title && (
+                    <Text variant="headlineMedium" style={{ fontWeight: 'bold', textAlign: 'center', textTransform: 'uppercase' }}>
+                      {preference ? preference.title : ""}
+                    </Text>
+                  )}
 
-                {preference?.subtitle && (
-                  <Text variant="bodyMedium" style={{ marginTop: 10, textAlign: 'center' }}>
-                    {preference.subtitle}
-                  </Text>
-                )}
+                  {preference?.subtitle && (
+                    <Text variant="bodyMedium" style={{ marginTop: 10, textAlign: 'center' }}>
+                      {preference.subtitle}
+                    </Text>
+                  )}
 
-                {preference.id === "gender_select" && (
-                  <GenderSelect preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
-                )}
+                  {preference.id === "gender_select" && (
+                    <GenderSelect preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
+                  )}
 
-                {(preference.id === "focus_area" || preference.id === "goal_select" || preference.id === "pushup" || preference.id === "activity_level") && (
-                  <FocusArea preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
-                )}
+                  {(preference.id === "focus_area" || preference.id === "goal_select" || preference.id === "pushup" || preference.id === "activity_level") && (
+                    <FocusArea preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
+                  )}
 
-                {preference.id === "weekly_goal" && (
-                  <WeeklyGoal preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
-                )}
+                  {preference.id === "weekly_goal" && (
+                    <WeeklyGoal preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
+                  )}
 
-                {preference.id === "height_weight" && (
-                  <HeightWeightRecoveryTime preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
-                )}
-              </View>
+                  {preference.id === "height_weight" && (
+                    <HeightWeightRecoveryTime preference={preference} preferenceValues={preferenceValues} setPreferenceValues={setPreferenceValues} />
+                  )}
+                </View>
+              </KeyboardAwareScrollView>
             )}
           </View>
-          <Surface style={{ borderRadius: 30 }}>
+          <Surface style={{ borderRadius: 30, marginBottom: 20, marginLeft: 12, marginRight: 12 }}>
             {preference?.next ? (
               <Button mode="contained" style={{ borderRadius: 30 }} labelStyle={{ fontSize: 24, lineHeight: 30, textTransform: 'uppercase' }} onPress={() => setCurrentPreference(preference.next)} disabled={buttonDisabled()}>
                 Next

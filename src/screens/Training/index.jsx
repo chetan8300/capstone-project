@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from 'react';
-import { TouchableOpacity, View, ScrollView } from "react-native";
+import { TouchableHighlight, View, ScrollView } from "react-native";
 import { Text, Card, useTheme, Searchbar } from "react-native-paper";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -35,13 +35,14 @@ const TrainingScreen = () => {
               <View style={{ gap: 16 }}>
                 {workouts.map((workout) => {
                   return (
-                    <TouchableOpacity
+                    <TouchableHighlight
+                      style={{ borderRadius: 12 }}
                       key={`${key}-${workout.id}`}
                       onPress={() => {
-                        // navigation.navigate("SecondScreen", {
-                        //   workoutType: key,
-                        //   workout: workout.id,
-                        // });
+                        navigation.navigate("WorkoutWeeksList", {
+                          workoutType: key,
+                          workout: workout.id,
+                        });
                       }}
                     >
                       <Card style={{ position: "relative" }}>
@@ -90,7 +91,7 @@ const TrainingScreen = () => {
                           </View>
                         )}
                       </Card>
-                    </TouchableOpacity>
+                    </TouchableHighlight>
                   );
                 })}
               </View>

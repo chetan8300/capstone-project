@@ -17,6 +17,7 @@ const HeightWeightRecoveryTime = ({ preferenceValues, setPreferenceValues }) => 
             keyboardType="numeric"
             mode="flat"
             placeholder={preferenceValues.weightUnit === 'kg' ? 'KG' : 'LB'}
+            returnKeyType="done"
             dense
           />
         </View>
@@ -51,6 +52,7 @@ const HeightWeightRecoveryTime = ({ preferenceValues, setPreferenceValues }) => 
             keyboardType="numeric"
             mode="flat"
             placeholder={preferenceValues.heightUnit === 'cm' ? 'CM' : 'IN'}
+            returnKeyType="done"
             dense
           />
         </View>
@@ -83,6 +85,7 @@ const HeightWeightRecoveryTime = ({ preferenceValues, setPreferenceValues }) => 
           onChangeText={text => setPreferenceValues(prev => ({ ...prev, restTime: text }))}
           keyboardType="numeric"
           mode="outlined"
+          returnKeyType="done"
           dense
         />
         <HelperText>
