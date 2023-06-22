@@ -3,8 +3,7 @@ import React from 'react'
 import { ScrollView, View } from 'react-native'
 import { Button, IconButton, Modal, Text, Chip, Portal } from 'react-native-paper'
 
-const RoutineDetail = ({ visible, setVisible, routineIndex, exercises }) => {
-  const exercise = routineIndex !== null ? exercises[routineIndex] : null
+const RoutineDetail = ({ visible, setVisible, routine: exercise }) => {
   return (
     <Portal>
       <Modal
@@ -56,28 +55,6 @@ const RoutineDetail = ({ visible, setVisible, routineIndex, exercises }) => {
                 </ScrollView>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, padding: 10, borderTopWidth: 1, borderColor: "#d6d6d6" }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                  <IconButton
-                    icon="chevron-left"
-                    mode='contained'
-                    size={30}
-                    disabled={routineIndex === 0}
-                    onPress={() => setVisible(prev => prev - 1)}
-                  />
-                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Text variant='titleLarge'>
-                      {routineIndex + 1}
-                    </Text>
-                    <Text variant='titleSmall'> / {exercises.length}</Text>
-                  </View>
-                  <IconButton
-                    icon="chevron-right"
-                    mode='contained'
-                    size={30}
-                    disabled={routineIndex === exercises.length - 1}
-                    onPress={() => setVisible(prev => prev + 1)}
-                  />
-                </View>
                 <Button
                   mode="contained"
                   style={{ borderRadius: 30, flex: 1 }}

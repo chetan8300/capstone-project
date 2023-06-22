@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { View, StatusBar, TouchableOpacity, ScrollView } from 'react-native'
-import { Text, IconButton, Card, useTheme, Surface } from 'react-native-paper'
+import { View, StatusBar, TouchableOpacity, ScrollView, Alert } from 'react-native'
+import { Text, IconButton, Card, useTheme, Surface, Button } from 'react-native-paper'
 import { MaterialCommunityIcons, Octicons } from '@expo/vector-icons';
 import Toast from 'react-native-root-toast';
 
@@ -10,67 +10,65 @@ import hoc from "../../components/HOC";
 import { workoutByType } from '../../utils/workouts';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 const defaultData = {
-  daysCompleted: 0,
-  weekWiseData: [
-    {
-      week: 1,
-      daysCompleted: 0,
-      completed: false,
-    },
-    {
-      week: 2,
-      daysCompleted: 0,
-      completed: false,
-    },
-    {
-      week: 3,
-      daysCompleted: 0,
-      completed: false,
-    },
-    {
-      week: 4,
-      daysCompleted: 0,
-      completed: false,
-    },
-  ]
+  current: {
+    daysCompleted: 0,
+    weekWiseData: [
+      {
+        week: 1,
+        daysCompleted: 0,
+        completed: false,
+      },
+      {
+        week: 2,
+        daysCompleted: 0,
+        completed: false,
+      },
+      {
+        week: 3,
+        daysCompleted: 0,
+        completed: false,
+      },
+      {
+        week: 4,
+        daysCompleted: 0,
+        completed: false,
+      },
+    ]
+  },
+  history: [],
 }
 
 const WorkoutWeeksList = ({ route, navigation }) => {
   const { workoutType, workout: workoutId } = route.params
   const { colors } = useTheme()
-  const [progress, setProgress] = React.useState(null);
+  const [progress, setProgress] = React.useState(defaultData);
 
   const workout = workoutByType[workoutType].find((workout) => workout.id === workoutId)
 
-  React.useEffect(() => {
+  useFocusEffect(React.useCallback(() => {
     const loadHistory = async () => {
       try {
         const jsonValue = await AsyncStorage.getItem('@workout:history');
         const parsedValue = jsonValue ? JSON.parse(jsonValue) : {}
-        if (!parsedValue[workoutId]) {
-          const dataToSave = {
-            ...parsedValue,
-            [workoutId]: JSON.parse(JSON.stringify(defaultData))
-          }
-          await AsyncStorage.setItem('@workout:history', JSON.stringify(dataToSave));
-          setProgress(dataToSave[workoutId])
-        } else {
+        if (parsedValue[workoutId] && parsedValue[workoutId]?.current) {
           const parsedValue = JSON.parse(jsonValue);
           setProgress(parsedValue[workoutId]);
         }
       } catch (error) {
-        console.log('Error loading history: ', error);
+        console.log('Error loading history week list: ', error);
       }
     };
 
     loadHistory()
-  }, [])
+  }, []))
 
-  const handlePressWeekDay = (currentDayOfMonth) => {
-    if (currentDayOfMonth <= progress?.daysCompleted + 1) {
-      navigation.navigate("DayExercisesList", { workoutType, workout: workoutId, day: currentDayOfMonth })
+  const handlePressWeekDay = (currentDayOfMonth, currentWeekOfMonth) => {
+    if (currentDayOfMonth <= progress?.current?.daysCompleted + 1) {
+      // week: Math.ceil(currentDayOfMonth / 7)
+      navigation.navigate("DayExercisesList", { workoutType, workout: workoutId, day: currentDayOfMonth, week: currentWeekOfMonth })
     } else {
       Toast.show('Please finish previous challenges date first.', {
         animation: true,
@@ -81,8 +79,26 @@ const WorkoutWeeksList = ({ route, navigation }) => {
     }
   }
 
-  if (!progress) {
+  if (!progress || !progress?.current) {
     return null
+  }
+
+  const saveToHistoryAndReset = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('@workout:history');
+      const parsedValue = jsonValue ? JSON.parse(jsonValue) : {}
+      if (parsedValue[workoutId] && parsedValue[workoutId]?.current) {
+        parsedValue[workoutId].history.push({
+          date: new Date().toISOString(),
+          ...parsedValue[workoutId].current,
+        })
+        parsedValue[workoutId].current = defaultData.current
+        await AsyncStorage.setItem('@workout:history', JSON.stringify(parsedValue));
+        setProgress(parsedValue[workoutId]);
+      }
+    } catch (error) {
+      console.log('Error loading history - save history and reset: ', error);
+    }
   }
 
   return (
@@ -94,7 +110,7 @@ const WorkoutWeeksList = ({ route, navigation }) => {
       <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%' }}>
         <IconButton
           icon="keyboard-backspace"
-          size={20}
+          size={30}
           iconColor={colors.primary}
           onPress={() => navigation.goBack()}
         />
@@ -115,26 +131,47 @@ const WorkoutWeeksList = ({ route, navigation }) => {
           subtitleStyle={{ color: "#fff", fontSize: 16, fontWeight: "bold" }}
           style={{ position: "absolute", top: 10 }}
         />
+        {progress.current.daysCompleted > 0 && (
+          <View style={{ position: 'absolute', top: 10, right: 10 }}>
+            <Button
+              mode="contained-tonal"
+              color={colors.primary}
+              onPress={() => {
+                Alert.alert('Hold on!', `Are you sure you want to reset?.`, [
+                  {
+                    text: 'Cancel',
+                    onPress: () => null,
+                    style: 'cancel',
+                  },
+                  { text: 'YES', onPress: saveToHistoryAndReset },
+                ]);
+              }}
+            >
+              Reset
+            </Button>
+          </View>
+        )}
         <View style={{ position: 'absolute', bottom: 16, paddingLeft: 16, paddingRight: 16, width: '100%' }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 6 }}>
             <Text style={{ color: '#fff' }}>
-              {28 - progress.daysCompleted} Days Left
+              {28 - progress.current.daysCompleted} Days Left
             </Text>
             <Text style={{ color: '#fff' }}>
-              {Math.ceil((progress.daysCompleted / 28) * 100)}%
+              {Math.ceil((progress.current.daysCompleted / 28) * 100)}%
             </Text>
           </View>
           <View style={{ position: 'relative', width: '100%', backgroundColor: '#9BABB8', height: 10, borderRadius: 8 }}>
-            <View style={{ position: 'absolute', width: `${(progress.daysCompleted / 28) * 100}%`, height: 10, backgroundColor: colors.primary, borderRadius: 8 }} />
+            <View style={{ position: 'absolute', width: `${(progress.current.daysCompleted / 28) * 100}%`, height: 10, backgroundColor: colors.primary, borderRadius: 8 }} />
           </View>
         </View>
       </Card>
       <ScrollView style={{ marginTop: 10, marginBottom: 10 }}>
         <View style={{ gap: 16, paddingBottom: 10 }}>
-          {progress?.weekWiseData.map((week, index) => {
+          {progress?.current?.weekWiseData.map((week, index) => {
+            const currentWeekOfMonth = week.week
             const weekStartingDay = index * 7 + 1
             const isWeekCompleted = week.completed
-            const isWeekInProgress = progress.daysCompleted - (weekStartingDay - 1) >= 0
+            const isWeekInProgress = progress.current.daysCompleted - (weekStartingDay - 1) >= 0
             return (
               <View key={`week-${index}`} style={{ flexDirection: 'row', gap: 6, marginLeft: 12, marginRight: 12 }}>
                 <View style={{ width: 35, alignItems: 'center' }}>
@@ -165,7 +202,7 @@ const WorkoutWeeksList = ({ route, navigation }) => {
                         return (
                           <React.Fragment key={`week-${index}-${currentDayOfWeek}`}>
                             <TouchableOpacity
-                              onPress={() => handlePressWeekDay(currentDayOfMonth)}
+                              onPress={() => handlePressWeekDay(currentDayOfMonth, currentWeekOfMonth)}
                             >
                               {isCompletedDay ?
                                 <Octicons name="check-circle-fill" size={40} color={colors.primary} />
@@ -200,7 +237,7 @@ const WorkoutWeeksList = ({ route, navigation }) => {
                         return (
                           <React.Fragment key={`week-${index}-${currentDayOfWeek}`}>
                             <TouchableOpacity
-                              onPress={() => handlePressWeekDay(currentDayOfMonth)}
+                              onPress={() => handlePressWeekDay(currentDayOfMonth, currentWeekOfMonth)}
                             >
                               {isCompletedDay ?
                                 <Octicons name="check-circle-fill" size={40} color={colors.primary} />

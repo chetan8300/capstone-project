@@ -28,6 +28,7 @@ import MainAppScreens from './src/screens/Home';
 import WorkoutPreferenceScreen from './src/screens/WorkoutPreference';
 import WorkoutWeeksListScreen from './src/screens/WorkoutWeeksList';
 import DayExercisesListScreen from './src/screens/DayExercisesList';
+import StartWorkoutScreen from './src/screens/StartWorkout';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -115,6 +116,14 @@ const App = () => {
                 name="DayExercisesList"
                 component={DayExercisesListScreen}
                 options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="StartWorkout"
+                component={StartWorkoutScreen}
+                options={{
+                  headerShown: false,
+                  gestureEnabled: false
+                }}
               />
             </Stack.Navigator>
           </NavigationContainer>

@@ -62,7 +62,7 @@ const WorkoutPreferenceScreen = ({ navigation }) => {
     try {
       await AsyncStorage.setItem('workoutPreference', JSON.stringify(preferenceValues))
     } catch (error) {
-      console.log("error while saving workout preference")
+      console.log("Error saving workout preference: ", error)
     }
     setTimeout(() => {
       setIsGeneratingPlan(false)
