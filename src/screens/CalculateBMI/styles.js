@@ -2,15 +2,21 @@ import { StyleSheet } from "react-native";
 import { useTheme } from "react-native-paper";
 
 const styles = StyleSheet.create({
+    appBar:{
+        width: '100%',
+        height: 70,
+        padding: 20,
+        backgroundColor: '#4e32bc',
+    },
     container: {
         flex: 1,
         backgroundColor: '#fff'
     },
     title: {
-        fontSize: 30,
+        fontSize: 25,
         fontWeight: 'bold',
-        textAlign: 'center',
-      
+        textAlign: 'left',
+        color: '#fff',
     },
     subTitle: {
         fontSize: 20,

@@ -15,7 +15,7 @@ import CalculateBMIScreen from '../CalculateBMI';
 
 // Components
 import MainAppDrawer from '../../components/MainAppDrawer';
-
+import WaterTrackerScreen from '../WaterIntake';
 const Tab = createMaterialBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -88,9 +88,9 @@ const MainAppDrawerScreen = () => {
       drawerContent={props => <MainAppDrawer {...props} />}
       screenOptions={{
         headerShown: false,
-        drawerActiveBackgroundColor: '#fff',
+        drawerActiveBackgroundColor: '#d2d2d2',
         drawerActiveTintColor: 'white',
-        drawerInactiveTintColor: '#fff',
+        drawerInactiveTintColor: '#d2d2d2',
         drawerStyle: {
           backgroundColor: '#fff'
         }
@@ -99,8 +99,13 @@ const MainAppDrawerScreen = () => {
       <Drawer.Screen
         name="Home"
         component={HomeScreen}
-        options={{ drawerItemStyle: { display: 'none' } }}
+        options={{ title: 'Home' }} 
       />
+      <Drawer.Screen
+        name="Water Intake Tracker"
+        component={WaterTrackerScreen}
+        options={{ title: 'Water Intake Tracker' }}
+        />
     </Drawer.Navigator>
   )
 }

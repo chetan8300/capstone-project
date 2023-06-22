@@ -1,5 +1,6 @@
 const exercises = {
 	jumping_jacks: {
+    id: "jumping_jacks",
 		description: `
       Start with your feet together and your arms by your sides, then jump up with your feet apart and your hands overhead.
 
@@ -26,6 +27,7 @@ const exercises = {
     advanced: 40
 	},
 	incline_push_ups: {
+    id: "incline_push_ups",
     description: `
       Start in the regular push-up position but with your hands elevated on a chair or a bench.
     
@@ -51,6 +53,7 @@ const exercises = {
     advanced: 15
   },
 	knee_push_ups: {
+    id: "knee_push_ups",
     description: `
       Start in the regular push-up position. then let your knees touch the floor and raise your feet up off the floor.
 
@@ -74,6 +77,7 @@ const exercises = {
     advanced: 15
   },
   burpees: {
+    id: "burpees",
     description: `
       Burpees are a full-body exercise that targets multiple muscle groups and provides a cardiovascular challenge. 
 
@@ -102,6 +106,7 @@ const exercises = {
     advanced: 15
   },
   arm_swings: {
+    id: "arm_swings",
     description: `
       Arm swings are a simple exercise that can be done to warm up the shoulder joints and improve mobility. 
 
@@ -123,6 +128,7 @@ const exercises = {
     advanced: 15
   },
   leg_swings: {
+    id: "leg_swings",
     description: `
       Leg swings are a dynamic stretching exercise that helps improve flexibility and mobility in the hip joints and leg muscles. 
 
@@ -149,6 +155,7 @@ const exercises = {
     advanced: 15
   },
   skipping: {
+    id: "skipping",
     description: `
       Skipping is a great cardiovascular exercise that improves coordination, agility, and endurance. It can also help burn calories and enhance overall body conditioning.
     `,
@@ -172,6 +179,7 @@ const exercises = {
     advanced: 15
   },
   flutter_kicks: {
+    id: "flutter_kicks",
     description: `
       Flutter kicks help improve core strength, stability, and endurance. 
 
@@ -195,6 +203,7 @@ const exercises = {
     advanced: 15
   },
   mountain_climbers: {
+    id: "mountain_climbers",
     description: `
     
     `,
@@ -219,6 +228,7 @@ const exercises = {
     advanced: 15
   },
   russian_twist: {
+    id: "russian_twist",
     description: `
 
     `,
@@ -241,6 +251,7 @@ const exercises = {
     advanced: 15
   },
   bicycle_crunches: {
+    id: "bicycle_crunches",
     description: `
     
     `,
@@ -261,6 +272,7 @@ const exercises = {
     advanced: 15
   },
   planks: {
+    id: "planks",
     description: `
     
     `,
@@ -283,6 +295,7 @@ const exercises = {
     advanced: 60
   },
   side_planks: {
+    id: "side_planks",
     description: `
 
     `,
@@ -305,6 +318,7 @@ const exercises = {
     advanced: 60
   },
   leg_raise: {
+    id: "leg_raise",
     description: `
 
     `,
@@ -326,6 +340,7 @@ const exercises = {
     advanced: 15
   },
   pull_ups: {
+    id: "pull_ups",
     description: `
     
     `,
@@ -350,6 +365,7 @@ const exercises = {
     advanced: 15
   },
   chest_press: {
+    id: "chest_press",
     description: `
     
     `,
@@ -373,6 +389,7 @@ const exercises = {
     advanced: 15
   },
   jumping_jacks: {
+    id: "jumping_jacks",
     description: `
 
     `,
@@ -396,6 +413,7 @@ const exercises = {
     advanced: 15
   },
   push_ups: {
+    id: "push_ups",
     description: `
     
     `,
@@ -419,6 +437,7 @@ const exercises = {
     advanced: 15
   },
   tricep_dips: {
+    id: "tricep_dips",
     description: `
 
     `,
@@ -441,6 +460,7 @@ const exercises = {
     advanced: 15
   },
   shoulder_press: {
+    id: "shoulder_press",
     description: `
 
     `,
@@ -463,6 +483,7 @@ const exercises = {
     advanced: 15
   },
   squats: {
+    id: "squats",
     description: `
 
     `,
@@ -486,6 +507,7 @@ const exercises = {
     advanced: 15
   },
   backward_lunges: {
+    id: "backward_lunges",
     description: `
 
     `,
@@ -509,6 +531,7 @@ const exercises = {
     advanced: 15
   },
   forward_lunges: {
+    id: "forward_lunges",
     description: `
 
     `,
@@ -532,6 +555,7 @@ const exercises = {
     advanced: 15
   },
   butt_kicks: {
+    id: "butt_kicks",
     description: `
       Butt kicks are beneficial for runners, athletes, and anyone looking to improve lower body conditioning, leg power, and overall agility.
     `,
@@ -554,6 +578,7 @@ const exercises = {
     advanced: 15
   },
   high_knees: {
+    id: "high_knees",
     description: `
 
     `,
@@ -577,6 +602,7 @@ const exercises = {
     advanced: 15
   },
   jumping_squats: {
+    id: "jumping_squats",
     description: `
     
     `,
@@ -599,6 +625,7 @@ const exercises = {
     advanced: 15
   },
   stretch_with_ball: {
+    id: "stretch_with_ball",
     description: `
     
     `,
@@ -620,6 +647,7 @@ const exercises = {
     advanced: 15
   },
   shoulder_stretch: {
+    id: "shoulder_stretch",
     description: `
     
     `,
@@ -641,6 +669,7 @@ const exercises = {
     advanced: 15
   },
   triceps_stretch: {
+    id: "triceps_stretch",
     description: `
     
     `,
@@ -661,6 +690,7 @@ const exercises = {
     advanced: 15
   },
   knee_to_chest_stretch: {
+    id: "knee_to_chest_stretch",
     description: `
     
     `,
@@ -684,6 +714,7 @@ const exercises = {
     advanced: 15
   },
   butterfly_stretch: {
+    id: "butterfly_stretch",
     description: `
     
     `,
@@ -703,6 +734,7 @@ const exercises = {
     ],
   },
   crunches: {
+    id: "crunches",
     description: `
     
     `,
@@ -725,69 +757,69 @@ const exercises = {
   }
 };
 
-// const beginner = [
-//   exercises.jumping_jacks,
-//   exercises.arm_swings,
-//   exercises.leg_swings,
-//   exercises.skipping,
-//   exercises.flutter_kicks,
-//   exercises.crunches,
-//   exercises.planks,
-//   exercises.pull_ups,
-//   exercises.knee_push_ups,
-//   exercises.push_ups,
-//   exercises.squats,
-//   exercises.forward_lunges,
-//   exercises.leg_raise,
-//   exercises.knee_to_chest_stretch,
-//   exercises.shoulder_stretch,
-// ]
+const beginner = [
+  exercises.jumping_jacks,
+  exercises.arm_swings,
+  exercises.leg_swings,
+  exercises.skipping,
+  exercises.flutter_kicks,
+  exercises.crunches,
+  exercises.planks,
+  exercises.pull_ups,
+  exercises.knee_push_ups,
+  exercises.push_ups,
+  exercises.squats,
+  exercises.forward_lunges,
+  exercises.leg_raise,
+  exercises.knee_to_chest_stretch,
+  exercises.shoulder_stretch,
+]
 
-// const intermediate = [
-//   exercises.jumping_jacks,
-//   exercises.burpees,
-//   exercises.skipping,
-//   exercises.mountain_climbers,
-//   exercises.bicycle_crunches,
-//   exercises.planks,
-//   exercises.leg_raise,
-//   exercises.pull_ups,
-//   exercises.chest_press,
-//   exercises.incline_push_ups,
-//   exercises.push_ups,
-//   exercises.squats,
-//   exercises.backward_lunges,
-//   exercises.forward_lunges,
-//   exercises.knee_to_chest_stretch,
-//   exercises.shoulder_stretch,
-//   exercises.stretch_with_ball
-// ]
+const intermediate = [
+  exercises.jumping_jacks,
+  exercises.burpees,
+  exercises.skipping,
+  exercises.mountain_climbers,
+  exercises.bicycle_crunches,
+  exercises.planks,
+  exercises.leg_raise,
+  exercises.pull_ups,
+  exercises.chest_press,
+  exercises.incline_push_ups,
+  exercises.push_ups,
+  exercises.squats,
+  exercises.backward_lunges,
+  exercises.forward_lunges,
+  exercises.knee_to_chest_stretch,
+  exercises.shoulder_stretch,
+  exercises.stretch_with_ball
+]
 
-// const advanced = [
-//   exercises.burpees,
-//   exercises.leg_swings,
-//   exercises.arm_swings,
-//   exercises.skipping,
-//   exercises.mountain_climbers,
-//   exercises.russian_twist,
-//   exercises.planks,
-//   exercises.side_planks,
-//   exercises.chest_press,
-//   exercises.tricep_dips,
-//   exercises.shoulder_press,
-//   exercises.push_ups,
-//   exercises.squats,
-//   exercises.forward_lunges,
-//   exercises.backward_lunges,
-//   exercises.high_knees,
-//   exercises.butt_kicks,
-//   exercises.jumping_squats,
-//   exercises.stretch_with_ball,
-// 	exercises.shoulder_stretch,
-// 	exercises.triceps_stretch,
-// 	exercises.knee_to_chest_stretch,
-// 	exercises.butterfly_stretch,
-// ]
+const advanced = [
+  exercises.burpees,
+  exercises.leg_swings,
+  exercises.arm_swings,
+  exercises.skipping,
+  exercises.mountain_climbers,
+  exercises.russian_twist,
+  exercises.planks,
+  exercises.side_planks,
+  exercises.chest_press,
+  exercises.tricep_dips,
+  exercises.shoulder_press,
+  exercises.push_ups,
+  exercises.squats,
+  exercises.forward_lunges,
+  exercises.backward_lunges,
+  exercises.high_knees,
+  exercises.butt_kicks,
+  exercises.jumping_squats,
+  exercises.stretch_with_ball,
+	exercises.shoulder_stretch,
+	exercises.triceps_stretch,
+	exercises.knee_to_chest_stretch,
+	exercises.butterfly_stretch,
+]
 
 const warmup = [
 	exercises.jumping_jacks,
@@ -843,13 +875,49 @@ const workoutByType = {
 			id: "full_body_7x4",
 			name: "Full Body",
 			subtitle: "7x4 Challenge",
-      icon: require('../assets/workouts/full_body_male-min.jpg')
+      icon: require('../assets/workouts/full_body_male-min.jpg'),
+      exercise: [
+        exercises.jumping_jacks,
+        exercises.arm_swings,
+        exercises.skipping,
+        exercises.incline_push_ups,
+        exercises.push_ups,
+        exercises.pull_ups,
+        exercises.squats,
+        exercises.forward_lunges,
+        exercises.tricep_dips,
+        exercises.shoulder_stretch,
+        exercises.knee_to_chest_stretch,
+        exercises.stretch_with_ball,
+      ],
 		},
 		{
 			id: "lower_body_7x4",
 			name: "Lower Body",
 			subtitle: "7x4 Challenge",
-      icon: require('../assets/workouts/lower_body_female.jpg')
+      icon: require('../assets/workouts/lower_body_female.jpg'),
+      exercise: [
+        exercises.jumping_jacks,
+        exercises.skipping,
+        exercises.leg_swings,
+        ...lowerBodyWorkouts,
+        exercises.knee_to_chest_stretch,
+        exercises.butterfly_stretch,
+      ],
+		},
+    {
+			id: "upper_body_7x4",
+			name: "Upper Body",
+			subtitle: "7x4 Challenge",
+      icon: require('../assets/workouts/lower_body_female.jpg'),
+      exercise: [
+        exercises.jumping_jacks,
+        exercises.arm_swings,
+        exercises.skipping,
+        ...upperBodyWorkouts,
+        exercises.shoulder_stretch,
+        exercises.stretch_with_ball,
+      ],
 		},
 	],
 	beginner: [
@@ -858,32 +926,87 @@ const workoutByType = {
 			name: "Abs Beginners",
 			subtitle: "",
       difficultyLevel: 1,
-      icon: require('../assets/workouts/abs_male-min.jpg')
+      icon: require('../assets/workouts/abs_male-min.jpg'),
+      exercise: [
+        exercises.jumping_jacks,
+        exercises.burpees,
+        exercises.arm_swings,
+        exercises.bicycle_crunches,
+        exercises.crunches,
+        exercises.planks,
+        exercises.leg_raise,
+        exercises.stretch_with_ball,
+	      exercises.shoulder_stretch,
+      ],
 		},
     {
 			id: "chest_beginner",
 			name: "Chest Beginners",
 			subtitle: "",
       difficultyLevel: 1,
-      icon: require('../assets/workouts/chest_male-min.jpg')
+      icon: require('../assets/workouts/chest_male-min.jpg'),
+      exercise: [
+        exercises.burpees,
+        exercises.arm_swings,
+        exercises.leg_swings,
+        exercises.incline_push_ups,
+	      exercises.knee_push_ups,
+        exercises.shoulder_stretch,
+        exercises.triceps_stretch,
+        exercises.knee_to_chest_stretch,
+      ],
 		},
     {
 			id: "arm_beginner",
 			name: "Arm Beginners",
 			subtitle: "",
       difficultyLevel: 1,
+      icon: require('../assets/workouts/arms_male.jpg'),
+      exercise : [
+        exercises.jumping_jacks,
+        exercises.arm_swings,
+        exercises.leg_swings,
+        exercises.tricep_dips,
+        exercises.pull_ups,
+        exercises.push_ups,
+        exercises.shoulder_stretch,
+	      exercises.triceps_stretch,
+      ],
 		},
     {
 			id: "leg_beginner",
 			name: "Leg Beginners",
 			subtitle: "",
       difficultyLevel: 1,
+      icon: require('../assets/workouts/leg_male_beg.jpg'),
+      exercise: [
+        exercises.jumping_jacks,
+	      exercises.burpees,
+        exercises.leg_swings,
+        exercises.skipping,
+        exercises.squats,
+        exercises.forward_lunges,
+	      exercises.leg_raise,
+        exercises.knee_to_chest_stretch,
+        exercises.butterfly_stretch,
+      ],
 		},
     {
 			id: "shoulder_back_beginner",
 			name: "Shoulder & Back Beginners",
 			subtitle: "",
       difficultyLevel: 1,
+      icon: require('../assets/workouts/back_male_beg.jpg'),
+      exercise: [
+        exercises.jumping_jacks,
+        exercises.arm_swings,
+        exercises.pull_ups,
+        exercises.shoulder_press,
+        exercises.stretch_with_ball,
+	      exercises.shoulder_stretch,
+	      exercises.triceps_stretch,
+        exercises.stretch_with_ball
+      ],
 		},
 	],
   intermediate: [
@@ -892,30 +1015,92 @@ const workoutByType = {
 			name: "Abs Intermediate",
 			subtitle: "",
       difficultyLevel: 2,
+      icon: require('../assets/workouts/abs_male_int.jpg'),
+      exercise: [
+        exercises.jumping_jacks,
+        exercises.burpees,
+        exercises.arm_swings,
+        exercises.bicycle_crunches,
+        exercises.crunches,
+        exercises.planks,
+        exercises.mountain_climbers,
+        exercises.flutter_kicks,
+        exercises.leg_raise,
+        exercises.stretch_with_ball,
+	      exercises.shoulder_stretch,
+      ],
 		},
     {
 			id: "chest_intermediate",
 			name: "Chest Intermediate",
 			subtitle: "",
       difficultyLevel: 2,
+      icon: require('../assets/workouts/chest_male_int.jpg'),
+      exercise: [
+        exercises.burpees,
+        exercises.arm_swings,
+        exercises.leg_swings,
+        exercises.incline_push_ups,
+	      exercises.knee_push_ups,
+        exercises.push_ups,
+        exercises.shoulder_stretch,
+        exercises.triceps_stretch,
+        exercises.knee_to_chest_stretch,
+      ],
 		},
     {
 			id: "arm_intermediate",
 			name: "Arm Intermediate",
 			subtitle: "",
       difficultyLevel: 2,
+      icon: require('../assets/workouts/arms_male_int.jpg'),
+      exercise: [
+        exercises.jumping_jacks,
+        exercises.arm_swings,
+        exercises.leg_swings,
+        exercises.tricep_dips,
+        exercises.pull_ups,
+        exercises.push_ups,
+        exercises.shoulder_stretch,
+	      exercises.triceps_stretch, 
+      ],
 		},
     {
 			id: "leg_intermediate",
 			name: "Leg Intermediate",
 			subtitle: "",
       difficultyLevel: 2,
+      icon: require('../assets/workouts/legs_male_int.jpg'),
+      exercise: [
+        exercises.jumping_jacks,
+	      exercises.burpees,
+        exercises.leg_swings,
+        exercises.skipping,
+        exercises.squats,
+        exercises.forward_lunges,
+        exercises.butt_kicks,
+        exercises.high_knees,
+	      exercises.leg_raise,
+        exercises.knee_to_chest_stretch,
+        exercises.butterfly_stretch,
+      ],
 		},
     {
 			id: "shoulder_back_intermediate",
 			name: "Shoulder & Back Intermediate",
 			subtitle: "",
       difficultyLevel: 2,
+      icon: require('../assets/workouts/back_male_int.jpg'),
+      exercise: [
+        exercises.jumping_jacks,
+        exercises.arm_swings,
+        exercises.pull_ups,
+        exercises.shoulder_press,
+        exercises.stretch_with_ball,
+	      exercises.shoulder_stretch,
+	      exercises.triceps_stretch,
+        exercises.stretch_with_ball
+      ],
 		},
 	],
   advanced: [
@@ -924,30 +1109,84 @@ const workoutByType = {
 			name: "Abs Advanced",
 			subtitle: "",
       difficultyLevel: 3,
+      icon: require('../assets/workouts/abs_male_adv.jpg'),
+      exercise: [
+        exercises.jumping_jacks,
+        exercises.burpees,
+        exercises.arm_swings,
+        ...core,
+	      exercises.shoulder_stretch,
+      ],
 		},
     {
 			id: "chest_advanced",
 			name: "Chest Advanced",
 			subtitle: "",
       difficultyLevel: 3,
+      icon: require('../assets/workouts/chest_male_adv.jpg'),
+      exercise: [
+        exercises.burpees,
+        exercises.arm_swings,
+        exercises.leg_swings,
+        exercises.incline_push_ups,
+	      exercises.knee_push_ups,
+        exercises.chest_press,
+        exercises.push_ups,
+        exercises.shoulder_stretch,
+        exercises.triceps_stretch,
+        exercises.knee_to_chest_stretch,
+      ],
 		},
     {
 			id: "arm_advanced",
 			name: "Arm Advanced",
 			subtitle: "",
       difficultyLevel: 3,
+      icon: require('../assets/workouts/arms_male_adv.jpg'),
+      exercise: [
+        exercises.jumping_jacks,
+        exercises.arm_swings,
+        exercises.leg_swings,
+        exercises.tricep_dips,
+        exercises.pull_ups,
+        exercises.push_ups,
+        exercises.knee_push_ups,
+        exercises.shoulder_stretch,
+	      exercises.triceps_stretch, 
+      ],
 		},
     {
 			id: "leg_advanced",
 			name: "Leg Advanced",
 			subtitle: "",
       difficultyLevel: 3,
+      icon: require('../assets/workouts/legs_male_adv.jpg'),
+      exercise: [
+        exercises.jumping_jacks,
+	      exercises.burpees,
+        exercises.leg_swings,
+        exercises.skipping,
+        ...lowerBodyWorkouts,
+        exercises.knee_to_chest_stretch,
+        exercises.butterfly_stretch,
+      ]
 		},
     {
 			id: "shoulder_back_advanced",
 			name: "Shoulder & Back Advanced",
 			subtitle: "",
       difficultyLevel: 3,
+      icon: require('../assets/workouts/back_male_adv.jpg'),
+      exercise: [
+        exercises.jumping_jacks,
+        exercises.arm_swings,
+        exercises.pull_ups,
+        exercises.shoulder_press,
+        exercises.stretch_with_ball,
+	      exercises.shoulder_stretch,
+	      exercises.triceps_stretch,
+        exercises.stretch_with_ball
+      ],
 		},
 	],
 };

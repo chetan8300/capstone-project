@@ -1,18 +1,35 @@
-import { View } from 'react-native'
-import { TextInput, Button, Surface, Text, Divider } from 'react-native-paper'
 import * as React from 'react'
-import styles from './styles'
-import { useTheme } from 'react-native-paper';
+
+import { View, SafeAreaView } from 'react-native'
+import { TextInput, Button, Surface, Text, useTheme, Appbar } from 'react-native-paper'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Common Components
 import hoc from '../../components/HOC'
 
+import styles from './styles'
 
 const CalculateBMIScreen = () => {
+
   const [height, setHeight] = React.useState('');
   const [weight, setWeight] = React.useState('');
   const [bmi, setBMI] = React.useState(null);
   var bmiResult = ""
+
+  // const [workoutPreference, setWorkoutPreference] = React.useState({});
+  // console.log('workoutPreference, ', workoutPreference)
+
+  // React.useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const data = await AsyncStorage.getItem('workoutPreference');
+  //       setWorkoutPreference(data ? JSON.parse(data) : {})
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   })()
+  // }, [])
+
 
   const calculateBMI = () => {
     if (height && weight) {
@@ -63,65 +80,69 @@ const CalculateBMIScreen = () => {
   }
 
   return (
-    <View style={{ flex: 1, width: '100%', paddingLeft: 20, paddingRight: 20 }}>
-      <Text style={styles.title}>
-        Calculate BMI
-      </Text>
-      <Text style={styles.subTitle}>
+    <>
+    <Surface style={styles.appBar}>
+    <Text style={styles.title}>
+          Calculate BMI
+        </Text>
+    </Surface>
+      <View style={{ flex: 1, width: '100%', paddingLeft: 20, paddingRight: 20 }}>
+        {/* <Text style={styles.subTitle}>
         Previously recorded BMI: 0
-      </Text>
-      <View style={styles.inputContainer}>
-        <Text variant="bodyLarge" style={{ fontWeight: 'bold', marginBottom: 5 }}>
-          Height
-        </Text>
-        <TextInput style={styles.textInput}
-          mode='outlined'
-          value={height}
-          onChangeText={setHeight}
-          keyboardType="numeric"
-          placeholder='180 cm'
-        />
+      </Text> */}
+        <View style={styles.inputContainer}>
+          <Text variant="bodyLarge" style={{ fontWeight: 'bold', marginBottom: 5 }}>
+            Height
+          </Text>
+          <TextInput style={styles.textInput}
+            mode='outlined'
+            value={height}
+            onChangeText={setHeight}
+            keyboardType="numeric"
+            placeholder='180 cm'
+          />
 
-        <Text variant="bodyLarge" style={{ fontWeight: 'bold', marginBottom: 5 }}>
-          Weight
-        </Text>
-        <TextInput style={styles.textInput}
-          value={weight}
-          onChangeText={setWeight}
-          keyboardType="numeric"
-          mode="outlined"
-          placeholder='70 kg'
-        />
-        <Button mode="contained" style={styles.button} onPress={calculateBMI}>
-          Calculate
-        </Button>
-        {bmi && (
-          <Surface style={styles.resultSurface}>
-            <View style={styles.resultContainer}>
-              <Text style={styles.result}>
-                Your BMI is {bmiResultRender()}
-              </Text>
-              <Text style={styles.resultBmi}>
-                {bmi}
-              </Text>
-              <Text style={styles.bmiInfo}>
-                Body Mass Index (BMI) is a person's weight in kilograms divided by the square of height in meters.
-              </Text>
-              <View style={{ marginTop: 40, marginBottom: 20 }}>
-                <View style={{ flexDirection: 'row', gap: 2 }}>
-                  {renderLine('lightgrey', { borderTopLeftRadius: 4, borderBottomLeftRadius: 4 }, 18.5)}
-                  {renderLine('green', {}, 6.3, 18.6)}
-                  {renderLine('yellow', {}, 4.9, 24.9)}
-                  {renderLine('red', { borderTopRightRadius: 4, borderBottomRightRadius: 4 }, 100, 30)}
+          <Text variant="bodyLarge" style={{ fontWeight: 'bold', marginBottom: 5 }}>
+            Weight
+          </Text>
+          <TextInput style={styles.textInput}
+            value={weight}
+            onChangeText={setWeight}
+            keyboardType="numeric"
+            mode="outlined"
+            placeholder='70 kg'
+          />
+          <Button mode="contained" style={styles.button} onPress={calculateBMI}>
+            Calculate
+          </Button>
+          {bmi && (
+            <Surface style={styles.resultSurface}>
+              <View style={styles.resultContainer}>
+                <Text style={styles.result}>
+                  Your BMI is <Text style={{ color: "#4e32bc", fontWeight: "bold", fontSize: 18 }}>{bmiResultRender()}</Text>
+                </Text>
+                <Text style={styles.resultBmi}>
+                  {bmi}
+                </Text>
+                <Text style={styles.bmiInfo}>
+                  Body Mass Index (BMI) is a person's weight in kilograms divided by the square of height in meters.
+                </Text>
+                <View style={{ marginTop: 40, marginBottom: 20 }}>
+                  <View style={{ flexDirection: 'row', gap: 2 }}>
+                    {renderLine('lightgrey', { borderTopLeftRadius: 4, borderBottomLeftRadius: 4 }, 18.5)}
+                    {renderLine('green', {}, 6.3, 18.6)}
+                    {renderLine('yellow', {}, 4.9, 24.9)}
+                    {renderLine('red', { borderTopRightRadius: 4, borderBottomRightRadius: 4 }, 100, 30)}
+                  </View>
                 </View>
               </View>
-            </View>
-          </Surface>
-        )}
-      </View>
-
-    </View>
+            </Surface>
+          )}
+        </View>
+      </View>  
+      </>
   )
 }
+
 
 export default hoc(CalculateBMIScreen)
