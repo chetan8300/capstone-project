@@ -8,6 +8,14 @@ const styles = StyleSheet.create({
         // backgroundColor: "rgb(240, 219, 255)",
         alignItems: "center",
         // fontFamily: 'Anton', sans-serif;
+        marginLeft: 100,
+        },
+    headerMain:{
+        flexDirection: 'row',
+        // justifyContent: 'space-around',
+        alignItems: 'center',
+        // marginLeft: 16,
+        // marginRight: 55,
     },
     name: {
         color: "#4e32bc",

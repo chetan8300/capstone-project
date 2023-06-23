@@ -1,39 +1,37 @@
 const exercises = {
-	jumping_jacks: {
+  jumping_jacks: {
     id: "jumping_jacks",
-		description: `
-      Start with your feet together and your arms by your sides, then jump up with your feet apart and your hands overhead.
+    description: `Start with your feet together and your arms by your sides, then jump up with your feet apart and your hands overhead.
 
-      Return to the start position then do the next rep. This exercise provides a full-body workout and works all your large muscle groups.
+Return to the start position then do the next rep. This exercise provides a full-body workout and works all your large muscle groups.
         `,
     steps: [
-      "Stand upright with your feet together and your arms relaxed by your sides.", 
+      "Stand upright with your feet together and your arms relaxed by your sides.",
       "Jump up explosively, spreading your feet out wider than shoulder-width apart at the same time.",
       "As you jump, swing your arms out to the sides and overhead, forming a 'Y' shape with your body.",
       "Quickly reverse the motion by jumping again, bringing your feet back together and your arms back down to your sides.",
       "Repeat the jumping motion, continuously moving in a rhythmic fashion."
     ],
-		focusArea: [
-			"shoulders",
-			"quadriceps",
-			"adductors",
-			"chest",
-			"glutes",
-			"calves",
-		],
+    focusArea: [
+      "shoulders",
+      "quadriceps",
+      "adductors",
+      "chest",
+      "glutes",
+      "calves",
+    ],
     count: "seconds",
     beginner: 20,
     intermediate: 30,
     advanced: 40
-	},
-	incline_push_ups: {
+  },
+  incline_push_ups: {
     id: "incline_push_ups",
-    description: `
-      Start in the regular push-up position but with your hands elevated on a chair or a bench.
+    description: `Start in the regular push-up position but with your hands elevated on a chair or a bench.
     
-      Then push your body up down using your arm strength.
+Then push your body up down using your arm strength.
 
-      Remember to keep your body straight.
+Remember to keep your body straight.
     `,
     steps: [
       "Find a sturdy inclined surface, such as a bench or step, and position yourself facing it.",
@@ -52,10 +50,9 @@ const exercises = {
     intermediate: 12,
     advanced: 15
   },
-	knee_push_ups: {
+  knee_push_ups: {
     id: "knee_push_ups",
-    description: `
-      Start in the regular push-up position. then let your knees touch the floor and raise your feet up off the floor.
+    description: `Start in the regular push-up position. then let your knees touch the floor and raise your feet up off the floor.
 
       Next push your body up and down
     `,
@@ -78,8 +75,7 @@ const exercises = {
   },
   burpees: {
     id: "burpees",
-    description: `
-      Burpees are a full-body exercise that targets multiple muscle groups and provides a cardiovascular challenge. 
+    description: `Burpees are a full-body exercise that targets multiple muscle groups and provides a cardiovascular challenge. 
 
       Additionally, burpees help improve overall strength, endurance, and explosiveness.
     `,
@@ -107,10 +103,9 @@ const exercises = {
   },
   arm_swings: {
     id: "arm_swings",
-    description: `
-      Arm swings are a simple exercise that can be done to warm up the shoulder joints and improve mobility. 
+    description: `Arm swings are a simple exercise that can be done to warm up the shoulder joints and improve mobility. 
 
-      It is a beneficial warm-up exercise before engaging in sports, weightlifting, or any upper body-focused workout.
+It is a beneficial warm-up exercise before engaging in sports, weightlifting, or any upper body-focused workout.
     `,
     steps: [
       "Stand with your feet shoulder-width apart and your arms relaxed by your sides.",
@@ -129,10 +124,9 @@ const exercises = {
   },
   leg_swings: {
     id: "leg_swings",
-    description: `
-      Leg swings are a dynamic stretching exercise that helps improve flexibility and mobility in the hip joints and leg muscles. 
+    description: `Leg swings are a dynamic stretching exercise that helps improve flexibility and mobility in the hip joints and leg muscles. 
 
-      They are particularly beneficial as a warm-up exercise before activities that involve running, jumping, or any lower body movements.
+They are particularly beneficial as a warm-up exercise before activities that involve running, jumping, or any lower body movements.
     `,
     steps: [
       "Find a sturdy support, such as a wall or a pole, and stand beside it for balance.",
@@ -156,9 +150,7 @@ const exercises = {
   },
   skipping: {
     id: "skipping",
-    description: `
-      Skipping is a great cardiovascular exercise that improves coordination, agility, and endurance. It can also help burn calories and enhance overall body conditioning.
-    `,
+    description: `Skipping is a great cardiovascular exercise that improves coordination, agility, and endurance. It can also help burn calories and enhance overall body conditioning.`,
     steps: [
       "Begin by holding the jump rope handles, one in each hand, with your arms extended in front of you and your hands at about hip height.",
       "Stand with your feet together and your knees slightly bent.",
@@ -180,10 +172,9 @@ const exercises = {
   },
   flutter_kicks: {
     id: "flutter_kicks",
-    description: `
-      Flutter kicks help improve core strength, stability, and endurance. 
+    description: `Flutter kicks help improve core strength, stability, and endurance. 
 
-      They are often incorporated into abdominal and core workouts to strengthen and tone the lower abdominal muscles.
+They are often incorporated into abdominal and core workouts to strengthen and tone the lower abdominal muscles.
     `,
     steps: [
       "Lie flat on your back on a mat or the floor with your arms resting by your sides.",
@@ -204,10 +195,9 @@ const exercises = {
   },
   mountain_climbers: {
     id: "mountain_climbers",
-    description: `
-      Start in the push-up position. Bend your right knee towards your chest and keep your left leg straight, then quickly switch from one leg to other.
+    description: `Start in the push-up position. Bend your right knee towards your chest and keep your left leg straight, then quickly switch from one leg to other.
 
-      This exercise strengthens multiple muscle groups.
+This exercise strengthens multiple muscle groups.
     `,
     steps: [
       "Start in a plank position with your hands directly under your shoulders and your body forming a straight line from head to heels.",
@@ -231,10 +221,9 @@ const exercises = {
   },
   russian_twist: {
     id: "russian_twist",
-    description: `
-      Sit on the floor with your knees bent, feet lifted a little bit and back tilted backwards.
+    description: `Sit on the floor with your knees bent, feet lifted a little bit and back tilted backwards.
 
-      Then hold your hands together and twist from side to side.
+Then hold your hands together and twist from side to side.
     `,
     steps: [
       "Sit on the floor with your knees bent and your feet flat on the ground. Lean back slightly, creating a V-shape with your torso and thighs.",
@@ -256,10 +245,9 @@ const exercises = {
   },
   bicycle_crunches: {
     id: "bicycle_crunches",
-    description: `
-      Lie on the floor with your hands behind your ears. Raise your knees and close your right elbow toward your left knee, then close your left elbow toward your right knee.
+    description: `Lie on the floor with your hands behind your ears. Raise your knees and close your right elbow toward your left knee, then close your left elbow toward your right knee.
 
-      Repeat the exercise.
+Repeat the exercise.
     `,
     steps: [
       "Lie flat on your back on a mat or the floor, with your lower back pressed against the ground. Bend your knees and place your hands lightly behind your head, elbows pointing out to the sides.",
@@ -279,10 +267,9 @@ const exercises = {
   },
   planks: {
     id: "planks",
-    description: `
-      Lie on the floor with your toes and forearms on the ground. Keep your body straight and hold this position as long as you can.
+    description: `Lie on the floor with your toes and forearms on the ground. Keep your body straight and hold this position as long as you can.
 
-      This exercise strengthens the abdomen, back and shoulders.
+This exercise strengthens the abdomen, back and shoulders.
     `,
     steps: [
       "Start by positioning yourself face down on a mat or the floor. Place your forearms on the ground, with your elbows directly under your shoulders.",
@@ -304,10 +291,9 @@ const exercises = {
   },
   side_planks: {
     id: "side_planks",
-    description: `
-      Lie on one side with your forearm supporting your body. Hold your body in a straight line.
+    description: `Lie on one side with your forearm supporting your body. Hold your body in a straight line.
 
-      This exercise targets the abdominal muscles and obliques.
+This exercise targets the abdominal muscles and obliques.
     `,
     steps: [
       "Start by lying on your side, with your legs extended and stacked on top of each other. Place your elbow directly under your shoulder, forearm flat on the ground.",
@@ -329,12 +315,11 @@ const exercises = {
   },
   leg_raise: {
     id: "leg_raise",
-    description: `
-      Lie down on your back and put your hands beneath your hips for support.
+    description: `Lie down on your back and put your hands beneath your hips for support.
 
-      Then lift your legs up until they form a right angle with the floor.
+Then lift your legs up until they form a right angle with the floor.
 
-      Slowly bring your legs back down and repeat the exercise.
+Slowly bring your legs back down and repeat the exercise.
     `,
     steps: [
       "Lie flat on your back on a mat or the floor, with your legs fully extended and your arms resting by your sides.",
@@ -355,9 +340,7 @@ const exercises = {
   },
   pull_ups: {
     id: "pull_ups",
-    description: `
-      Pull-ups are an upper-body exercise where you hang from a bar and pull your body upward. They target the back muscles and improve upper-body strength.
-    `,
+    description: `Pull-ups are an upper-body exercise where you hang from a bar and pull your body upward. They target the back muscles and improve upper-body strength.`,
     steps: [
       "Find a pull-up bar that is secure and can support your body weight. Grab the bar with an overhand grip, slightly wider than shoulder-width apart.",
       "Hang from the bar with your arms fully extended, and your palms facing away from you. Your body should be relaxed and straight.",
@@ -380,9 +363,7 @@ const exercises = {
   },
   chest_press: {
     id: "chest_press",
-    description: `
-      The chest press is an exercise that targets the chest muscles by pushing weights away from your body, strengthening your upper body.
-    `,
+    description: `The chest press is an exercise that targets the chest muscles by pushing weights away from your body, strengthening your upper body.`,
     steps: [
       "Begin by lying flat on a bench or mat with your feet firmly planted on the ground. Hold a dumbbell in each hand, palms facing forward, and position your hands at chest level, just outside your shoulders.",
       "Engage your core muscles, and ensure your back is flat against the bench or mat.",
@@ -404,10 +385,9 @@ const exercises = {
   },
   push_ups: {
     id: "push_ups",
-    description: `
-      Push-ups are a classic bodyweight exercise that targets multiple muscles, including the chest, shoulders, triceps, and core. 
+    description: `Push-ups are a classic bodyweight exercise that targets multiple muscles, including the chest, shoulders, triceps, and core. 
 
-      Push-ups are a versatile and effective exercise for building upper-body strength, enhancing muscular endurance, and improving overall fitness.
+Push-ups are a versatile and effective exercise for building upper-body strength, enhancing muscular endurance, and improving overall fitness.
     `,
     steps: [
       "Start in a plank position with your hands placed slightly wider than shoulder-width apart, directly under your shoulders. Your feet should be together, and your body should form a straight line from head to heels.",
@@ -430,10 +410,9 @@ const exercises = {
   },
   tricep_dips: {
     id: "tricep_dips",
-    description: `
-      Tricep dips are an effective exercise that targets the triceps, the muscles on the back of your upper arms.
+    description: `Tricep dips are an effective exercise that targets the triceps, the muscles on the back of your upper arms.
 
-      Incorporating tricep dips into your workout routine can improve upper-body strength and enhance the overall aesthetics of your arms.
+Incorporating tricep dips into your workout routine can improve upper-body strength and enhance the overall aesthetics of your arms.
     `,
     steps: [
       "Find a stable surface, such as parallel bars, a bench, or a step. Position yourself facing away from the surface and place your hands shoulder-width apart on the edge of the surface, fingers pointing forward.",
@@ -455,12 +434,11 @@ const exercises = {
   },
   shoulder_press: {
     id: "shoulder_press",
-    description: `
-      Tricep dips target the triceps, the muscles on the back of your upper arms.
+    description: `Tricep dips target the triceps, the muscles on the back of your upper arms.
 
-      By placing your hands on a stable surface behind you, bending your elbows, and lowering your body, you engage and strengthen the triceps.
+By placing your hands on a stable surface behind you, bending your elbows, and lowering your body, you engage and strengthen the triceps.
 
-      Tricep dips are an effective exercise for toning and building upper-arm strength.
+Tricep dips are an effective exercise for toning and building upper-arm strength.
     `,
     steps: [
       "Start by standing with your feet shoulder-width apart and hold a dumbbell in each hand. Alternatively, you can use a barbell or a resistance band.",
@@ -482,12 +460,11 @@ const exercises = {
   },
   squats: {
     id: "squats",
-    description: `
-      Squats are a fundamental lower-body exercise that targets the muscles of the legs, primarily the quadriceps, hamstrings, and glutes.
+    description: `Squats are a fundamental lower-body exercise that targets the muscles of the legs, primarily the quadriceps, hamstrings, and glutes.
 
-      They can be performed with bodyweight or added resistance, such as barbells or dumbbells, making them a versatile exercise for individuals at various fitness levels.
+They can be performed with bodyweight or added resistance, such as barbells or dumbbells, making them a versatile exercise for individuals at various fitness levels.
 
-      Regularly incorporating squats into your workout routine can contribute to improved strength, functional mobility, and lower-body aesthetics.
+Regularly incorporating squats into your workout routine can contribute to improved strength, functional mobility, and lower-body aesthetics.
     `,
     steps: [
       "Stand with your feet slightly wider than shoulder-width apart, with your toes pointed slightly outward. You can choose to hold a dumbbell or a barbell across your shoulders or keep your hands clasped in front of you.",
@@ -510,12 +487,11 @@ const exercises = {
   },
   backward_lunges: {
     id: "backward_lunges",
-    description: `
-      Backward lunges are a lower-body exercise that targets the legs, particularly the quadriceps, hamstrings, and glutes.
+    description: `Backward lunges are a lower-body exercise that targets the legs, particularly the quadriceps, hamstrings, and glutes.
 
-      By stepping backward and bending both knees, you strengthen your lower body and improve balance.
+By stepping backward and bending both knees, you strengthen your lower body and improve balance.
 
-      Backward lunges are effective for leg development and functional movement.
+Backward lunges are effective for leg development and functional movement.
     `,
     steps: [
       "Stand tall with your feet hip-width apart and your hands on your hips or relaxed at your sides.",
@@ -538,12 +514,11 @@ const exercises = {
   },
   forward_lunges: {
     id: "forward_lunges",
-    description: `
-      Forward lunges target the legs, particularly the quadriceps, hamstrings, and glutes.
+    description: `Forward lunges target the legs, particularly the quadriceps, hamstrings, and glutes.
 
-      By stepping forward and bending both knees, you strengthen your lower body and improve balance.
+By stepping forward and bending both knees, you strengthen your lower body and improve balance.
 
-      Forward lunges are effective for leg development and functional movement.
+Forward lunges are effective for leg development and functional movement.
     `,
     steps: [
       "Stand tall with your feet hip-width apart and your hands on your hips or relaxed at your sides.",
@@ -566,9 +541,7 @@ const exercises = {
   },
   butt_kicks: {
     id: "butt_kicks",
-    description: `
-      Butt kicks are beneficial for runners, athletes, and anyone looking to improve lower body conditioning, leg power, and overall agility.
-    `,
+    description: `Butt kicks are beneficial for runners, athletes, and anyone looking to improve lower body conditioning, leg power, and overall agility.`,
     steps: [
       "Stand tall with your feet hip-width apart and your arms relaxed at your sides.",
       "Begin by jogging in place, lifting your feet off the ground and driving your knees up towards your chest.",
@@ -589,10 +562,9 @@ const exercises = {
   },
   high_knees: {
     id: "high_knees",
-    description: `
-      High knees are a dynamic cardio exercise that involves lifting your knees as high as possible while running or marching in place.
+    description: `High knees are a dynamic cardio exercise that involves lifting your knees as high as possible while running or marching in place.
 
-      It targets the lower body, improves coordination, and boosts cardiovascular fitness.
+It targets the lower body, improves coordination, and boosts cardiovascular fitness.
     `,
     steps: [
       "Stand tall with your feet hip-width apart and your arms relaxed at your sides.",
@@ -615,10 +587,9 @@ const exercises = {
   },
   jumping_squats: {
     id: "jumping_squats",
-    description: `
-      Jumping squats are explosive exercises that combine squats with jumping.
+    description: `Jumping squats are explosive exercises that combine squats with jumping.
 
-      They target the lower body, build strength, and improve power.
+They target the lower body, build strength, and improve power.
     `,
     steps: [
       "Stand with your feet shoulder-width apart, toes pointed slightly outward. Keep your arms by your sides or in front of your chest for balance.",
@@ -640,12 +611,11 @@ const exercises = {
   },
   stretch_with_ball: {
     id: "stretch_with_ball",
-    description: `
-      Stretching with a ball involves using a ball, such as a foam roller or tennis ball, to enhance stretching exercises.
+    description: `Stretching with a ball involves using a ball, such as a foam roller or tennis ball, to enhance stretching exercises.
 
-      It can be particularly effective for targeting areas like the back, glutes, hamstrings, and calves.
+It can be particularly effective for targeting areas like the back, glutes, hamstrings, and calves.
       
-      Incorporating stretching with a ball into your routine can help promote muscle relaxation, reduce stiffness, and improve overall flexibility and mobility.
+Incorporating stretching with a ball into your routine can help promote muscle relaxation, reduce stiffness, and improve overall flexibility and mobility.
     `,
     steps: [
       "Start by selecting a stability ball that is appropriate for your height. Sit on the ball and walk your feet forward, allowing the ball to roll underneath your body until your lower back is resting on the ball. Your feet should be shoulder-width apart, with your knees bent at a 90-degree angle.",
@@ -666,9 +636,7 @@ const exercises = {
   },
   shoulder_stretch: {
     id: "shoulder_stretch",
-    description: `
-      Shoulder stretches improve flexibility and relieve tension in the shoulder muscles. They enhance mobility, reduce stiffness, and promote better posture.
-    `,
+    description: `Shoulder stretches improve flexibility and relieve tension in the shoulder muscles. They enhance mobility, reduce stiffness, and promote better posture.`,
     steps: [
       "Stand or sit up straight with good posture.",
       "Extend your right arm straight out in front of you at shoulder height.",
@@ -688,13 +656,12 @@ const exercises = {
   },
   triceps_stretch: {
     id: "triceps_stretch",
-    description: `
-      Tricep stretches target the triceps muscles located on the back of the upper arms.
+    description: `Tricep stretches target the triceps muscles located on the back of the upper arms.
 
-      Tricep stretches help increase flexibility, alleviate tightness, and improve range of motion in the arms.
+Tricep stretches help increase flexibility, alleviate tightness, and improve range of motion in the arms.
       
-      Incorporating tricep stretches into your routine can enhance upper body mobility and relieve muscle tension.
-    `,  
+Incorporating tricep stretches into your routine can enhance upper body mobility and relieve muscle tension.
+    `,
     steps: [
       "Stand up straight or sit on a chair with good posture.",
       "Raise your right arm overhead and bend it at the elbow, bringing your right hand to touch the upper middle part of your back, between your shoulder blades. Your right forearm should be pointing straight down behind your head.",
@@ -713,12 +680,11 @@ const exercises = {
   },
   knee_to_chest_stretch: {
     id: "knee_to_chest_stretch",
-    description: `
-      The knee to chest stretch targets the lower back, glutes, and hips.
+    description: `The knee to chest stretch targets the lower back, glutes, and hips.
       
-      By pulling one knee towards the chest, you can increase flexibility and relieve tension in those areas.
+By pulling one knee towards the chest, you can increase flexibility and relieve tension in those areas.
       
-      It improves lower body mobility and helps alleviate lower back tightness.
+It improves lower body mobility and helps alleviate lower back tightness.
     `,
     steps: [
       "Lie on your back on a comfortable surface, such as a mat or carpeted floor.",
@@ -741,12 +707,11 @@ const exercises = {
   },
   butterfly_stretch: {
     id: "butterfly_stretch",
-    description: `
-      The butterfly stretch targets the inner thighs and groin muscles. 
+    description: `The butterfly stretch targets the inner thighs and groin muscles. 
       
-      By bringing the soles of your feet together and allowing your knees to fall out to the sides, you can improve hip mobility and flexibility in that area.
+By bringing the soles of your feet together and allowing your knees to fall out to the sides, you can improve hip mobility and flexibility in that area.
     `,
-    steps:[
+    steps: [
       "Sit on the floor or a mat with a straight back and bring the soles of your feet together, allowing your knees to naturally fall out to the sides. This position should resemble the shape of butterfly wings.",
       "Use your hands to hold onto your ankles or feet, depending on your comfort level. You can gently grasp the toes or the outer edges of your feet.",
       "Sit up tall and engage your core muscles to maintain an upright posture.",
@@ -763,12 +728,11 @@ const exercises = {
   },
   crunches: {
     id: "crunches",
-    description: `
-      Crunches are abdominal exercises that target the core muscles. 
+    description: `Crunches are abdominal exercises that target the core muscles. 
       
-      By lifting your upper body off the ground, you strengthen and tone the abs. 
+By lifting your upper body off the ground, you strengthen and tone the abs. 
       
-      They help improve core strength and enhance abdominal definition.
+They help improve core strength and enhance abdominal definition.
     `,
     steps: [
       "Lie flat on your back on a mat or carpeted surface, with your knees bent and feet flat on the floor. Keep your feet about hip-width apart and place your hands lightly behind your head, supporting the weight of your head with your fingertips (avoid pulling on your head or neck).",
@@ -847,66 +811,66 @@ const advanced = [
   exercises.butt_kicks,
   exercises.jumping_squats,
   exercises.stretch_with_ball,
-	exercises.shoulder_stretch,
-	exercises.triceps_stretch,
-	exercises.knee_to_chest_stretch,
-	exercises.butterfly_stretch,
+  exercises.shoulder_stretch,
+  exercises.triceps_stretch,
+  exercises.knee_to_chest_stretch,
+  exercises.butterfly_stretch,
 ]
 
 const warmup = [
-	exercises.jumping_jacks,
-	exercises.burpees,
-	exercises.arm_swings,
-	exercises.leg_swings,
-	exercises.skipping,
+  exercises.jumping_jacks,
+  exercises.burpees,
+  exercises.arm_swings,
+  exercises.leg_swings,
+  exercises.skipping,
 ];
 
 const core = [
-	exercises.flutter_kicks,
-	exercises.mountain_climbers,
-	exercises.russian_twist,
-	exercises.bicycle_crunches,
-	exercises.crunches,
-	exercises.planks,
-	exercises.side_planks,
-	exercises.leg_raise,
+  exercises.flutter_kicks,
+  exercises.mountain_climbers,
+  exercises.russian_twist,
+  exercises.bicycle_crunches,
+  exercises.crunches,
+  exercises.planks,
+  exercises.side_planks,
+  exercises.leg_raise,
 ];
 
 const upperBodyWorkouts = [
-	exercises.pull_ups,
-	exercises.chest_press,
-	exercises.jumping_jacks,
-	exercises.incline_push_ups,
-	exercises.knee_push_ups,
-	exercises.push_ups,
-	exercises.tricep_dips,
-	exercises.shoulder_press,
+  exercises.pull_ups,
+  exercises.chest_press,
+  exercises.jumping_jacks,
+  exercises.incline_push_ups,
+  exercises.knee_push_ups,
+  exercises.push_ups,
+  exercises.tricep_dips,
+  exercises.shoulder_press,
 ];
 
 const lowerBodyWorkouts = [
-	exercises.squats,
-	exercises.backward_lunges,
-	exercises.forward_lunges,
-	exercises.leg_raise,
-	exercises.butt_kicks,
-	exercises.high_knees,
-	exercises.jumping_squats,
+  exercises.squats,
+  exercises.backward_lunges,
+  exercises.forward_lunges,
+  exercises.leg_raise,
+  exercises.butt_kicks,
+  exercises.high_knees,
+  exercises.jumping_squats,
 ];
 
-const stretching = [
-	exercises.stretch_with_ball,
-	exercises.shoulder_stretch,
-	exercises.triceps_stretch,
-	exercises.knee_to_chest_stretch,
-	exercises.butterfly_stretch,
-];
+// const stretching = [
+//   exercises.stretch_with_ball,
+//   exercises.shoulder_stretch,
+//   exercises.triceps_stretch,
+//   exercises.knee_to_chest_stretch,
+//   exercises.butterfly_stretch,
+// ];
 
 const workoutByType = {
-	"7x4": [
-		{
-			id: "full_body_7x4",
-			name: "Full Body",
-			subtitle: "7x4 Challenge",
+  "7x4": [
+    {
+      id: "full_body_7x4",
+      name: "Full Body",
+      subtitle: "7x4 Challenge",
       icon: require('../assets/workouts/full_body_male-min.jpg'),
       exercise: [
         exercises.jumping_jacks,
@@ -936,12 +900,12 @@ const workoutByType = {
         exercises.knee_to_chest_stretch,
         exercises.butterfly_stretch,
       ],
-		},
+    },
     {
 			id: "upper_body_7x4",
 			name: "Upper Body",
 			subtitle: "7x4 Challenge",
-      icon: require('../assets/workouts/upper_body_male.jpg'),
+      icon: require('../assets/workouts/lower_body_female.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.arm_swings,
@@ -950,13 +914,13 @@ const workoutByType = {
         exercises.shoulder_stretch,
         exercises.stretch_with_ball,
       ],
-		},
-	],
-	beginner: [
-		{
-			id: "abs_beginner",
-			name: "Abs Beginners",
-			subtitle: "",
+    },
+  ],
+  beginner: [
+    {
+      id: "abs_beginner",
+      name: "Abs Beginners",
+      subtitle: "",
       difficultyLevel: 1,
       icon: require('../assets/workouts/abs_male-min.jpg'),
       exercise: [
@@ -968,13 +932,13 @@ const workoutByType = {
         exercises.planks,
         exercises.leg_raise,
         exercises.stretch_with_ball,
-	      exercises.shoulder_stretch,
+        exercises.shoulder_stretch,
       ],
-		},
+    },
     {
-			id: "chest_beginner",
-			name: "Chest Beginners",
-			subtitle: "",
+      id: "chest_beginner",
+      name: "Chest Beginners",
+      subtitle: "",
       difficultyLevel: 1,
       icon: require('../assets/workouts/chest_male-min.jpg'),
       exercise: [
@@ -982,19 +946,19 @@ const workoutByType = {
         exercises.arm_swings,
         exercises.leg_swings,
         exercises.incline_push_ups,
-	      exercises.knee_push_ups,
+        exercises.knee_push_ups,
         exercises.shoulder_stretch,
         exercises.triceps_stretch,
         exercises.knee_to_chest_stretch,
       ],
-		},
+    },
     {
-			id: "arm_beginner",
-			name: "Arm Beginners",
-			subtitle: "",
+      id: "arm_beginner",
+      name: "Arm Beginners",
+      subtitle: "",
       difficultyLevel: 1,
       icon: require('../assets/workouts/arms_male.jpg'),
-      exercise : [
+      exercise: [
         exercises.jumping_jacks,
         exercises.arm_swings,
         exercises.leg_swings,
@@ -1002,31 +966,31 @@ const workoutByType = {
         exercises.pull_ups,
         exercises.push_ups,
         exercises.shoulder_stretch,
-	      exercises.triceps_stretch,
+        exercises.triceps_stretch,
       ],
-		},
+    },
     {
-			id: "leg_beginner",
-			name: "Leg Beginners",
-			subtitle: "",
+      id: "leg_beginner",
+      name: "Leg Beginners",
+      subtitle: "",
       difficultyLevel: 1,
       icon: require('../assets/workouts/leg_male_beg.jpg'),
       exercise: [
         exercises.jumping_jacks,
-	      exercises.burpees,
+        exercises.burpees,
         exercises.leg_swings,
         exercises.skipping,
         exercises.squats,
         exercises.forward_lunges,
-	      exercises.leg_raise,
+        exercises.leg_raise,
         exercises.knee_to_chest_stretch,
         exercises.butterfly_stretch,
       ],
-		},
+    },
     {
-			id: "shoulder_back_beginner",
-			name: "Shoulder & Back Beginners",
-			subtitle: "",
+      id: "shoulder_back_beginner",
+      name: "Shoulder & Back Beginners",
+      subtitle: "",
       difficultyLevel: 1,
       icon: require('../assets/workouts/back_male_beg.jpg'),
       exercise: [
@@ -1035,17 +999,17 @@ const workoutByType = {
         exercises.pull_ups,
         exercises.shoulder_press,
         exercises.stretch_with_ball,
-	      exercises.shoulder_stretch,
-	      exercises.triceps_stretch,
+        exercises.shoulder_stretch,
+        exercises.triceps_stretch,
         exercises.stretch_with_ball
       ],
-		},
-	],
+    },
+  ],
   intermediate: [
-		{
-			id: "abs_intermediate",
-			name: "Abs Intermediate",
-			subtitle: "",
+    {
+      id: "abs_intermediate",
+      name: "Abs Intermediate",
+      subtitle: "",
       difficultyLevel: 2,
       icon: require('../assets/workouts/abs_male_int.jpg'),
       exercise: [
@@ -1059,13 +1023,13 @@ const workoutByType = {
         exercises.flutter_kicks,
         exercises.leg_raise,
         exercises.stretch_with_ball,
-	      exercises.shoulder_stretch,
+        exercises.shoulder_stretch,
       ],
-		},
+    },
     {
-			id: "chest_intermediate",
-			name: "Chest Intermediate",
-			subtitle: "",
+      id: "chest_intermediate",
+      name: "Chest Intermediate",
+      subtitle: "",
       difficultyLevel: 2,
       icon: require('../assets/workouts/chest_male_int.jpg'),
       exercise: [
@@ -1073,17 +1037,17 @@ const workoutByType = {
         exercises.arm_swings,
         exercises.leg_swings,
         exercises.incline_push_ups,
-	      exercises.knee_push_ups,
+        exercises.knee_push_ups,
         exercises.push_ups,
         exercises.shoulder_stretch,
         exercises.triceps_stretch,
         exercises.knee_to_chest_stretch,
       ],
-		},
+    },
     {
-			id: "arm_intermediate",
-			name: "Arm Intermediate",
-			subtitle: "",
+      id: "arm_intermediate",
+      name: "Arm Intermediate",
+      subtitle: "",
       difficultyLevel: 2,
       icon: require('../assets/workouts/arms_male_int.jpg'),
       exercise: [
@@ -1094,33 +1058,33 @@ const workoutByType = {
         exercises.pull_ups,
         exercises.push_ups,
         exercises.shoulder_stretch,
-	      exercises.triceps_stretch, 
+        exercises.triceps_stretch,
       ],
-		},
+    },
     {
-			id: "leg_intermediate",
-			name: "Leg Intermediate",
-			subtitle: "",
+      id: "leg_intermediate",
+      name: "Leg Intermediate",
+      subtitle: "",
       difficultyLevel: 2,
       icon: require('../assets/workouts/legs_male_int.jpg'),
       exercise: [
         exercises.jumping_jacks,
-	      exercises.burpees,
+        exercises.burpees,
         exercises.leg_swings,
         exercises.skipping,
         exercises.squats,
         exercises.forward_lunges,
         exercises.butt_kicks,
         exercises.high_knees,
-	      exercises.leg_raise,
+        exercises.leg_raise,
         exercises.knee_to_chest_stretch,
         exercises.butterfly_stretch,
       ],
-		},
+    },
     {
-			id: "shoulder_back_intermediate",
-			name: "Shoulder & Back Intermediate",
-			subtitle: "",
+      id: "shoulder_back_intermediate",
+      name: "Shoulder & Back Intermediate",
+      subtitle: "",
       difficultyLevel: 2,
       icon: require('../assets/workouts/back_male_int.jpg'),
       exercise: [
@@ -1129,17 +1093,17 @@ const workoutByType = {
         exercises.pull_ups,
         exercises.shoulder_press,
         exercises.stretch_with_ball,
-	      exercises.shoulder_stretch,
-	      exercises.triceps_stretch,
+        exercises.shoulder_stretch,
+        exercises.triceps_stretch,
         exercises.stretch_with_ball
       ],
-		},
-	],
+    },
+  ],
   advanced: [
-		{
-			id: "abs_advanced",
-			name: "Abs Advanced",
-			subtitle: "",
+    {
+      id: "abs_advanced",
+      name: "Abs Advanced",
+      subtitle: "",
       difficultyLevel: 3,
       icon: require('../assets/workouts/abs_male_adv.jpg'),
       exercise: [
@@ -1147,13 +1111,13 @@ const workoutByType = {
         exercises.burpees,
         exercises.arm_swings,
         ...core,
-	      exercises.shoulder_stretch,
+        exercises.shoulder_stretch,
       ],
-		},
+    },
     {
-			id: "chest_advanced",
-			name: "Chest Advanced",
-			subtitle: "",
+      id: "chest_advanced",
+      name: "Chest Advanced",
+      subtitle: "",
       difficultyLevel: 3,
       icon: require('../assets/workouts/chest_male_adv.jpg'),
       exercise: [
@@ -1161,18 +1125,18 @@ const workoutByType = {
         exercises.arm_swings,
         exercises.leg_swings,
         exercises.incline_push_ups,
-	      exercises.knee_push_ups,
+        exercises.knee_push_ups,
         exercises.chest_press,
         exercises.push_ups,
         exercises.shoulder_stretch,
         exercises.triceps_stretch,
         exercises.knee_to_chest_stretch,
       ],
-		},
+    },
     {
-			id: "arm_advanced",
-			name: "Arm Advanced",
-			subtitle: "",
+      id: "arm_advanced",
+      name: "Arm Advanced",
+      subtitle: "",
       difficultyLevel: 3,
       icon: require('../assets/workouts/arms_male_adv.jpg'),
       exercise: [
@@ -1184,29 +1148,29 @@ const workoutByType = {
         exercises.push_ups,
         exercises.knee_push_ups,
         exercises.shoulder_stretch,
-	      exercises.triceps_stretch, 
+        exercises.triceps_stretch,
       ],
-		},
+    },
     {
-			id: "leg_advanced",
-			name: "Leg Advanced",
-			subtitle: "",
+      id: "leg_advanced",
+      name: "Leg Advanced",
+      subtitle: "",
       difficultyLevel: 3,
       icon: require('../assets/workouts/legs_male_adv.jpg'),
       exercise: [
         exercises.jumping_jacks,
-	      exercises.burpees,
+        exercises.burpees,
         exercises.leg_swings,
         exercises.skipping,
         ...lowerBodyWorkouts,
         exercises.knee_to_chest_stretch,
         exercises.butterfly_stretch,
       ]
-		},
+    },
     {
-			id: "shoulder_back_advanced",
-			name: "Shoulder & Back Advanced",
-			subtitle: "",
+      id: "shoulder_back_advanced",
+      name: "Shoulder & Back Advanced",
+      subtitle: "",
       difficultyLevel: 3,
       icon: require('../assets/workouts/back_male_adv.jpg'),
       exercise: [
@@ -1215,12 +1179,12 @@ const workoutByType = {
         exercises.pull_ups,
         exercises.shoulder_press,
         exercises.stretch_with_ball,
-	      exercises.shoulder_stretch,
-	      exercises.triceps_stretch,
+        exercises.shoulder_stretch,
+        exercises.triceps_stretch,
         exercises.stretch_with_ball
       ],
-		},
-	],
+    },
+  ],
 };
 
 export {

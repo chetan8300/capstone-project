@@ -88,9 +88,9 @@ const MainAppDrawerScreen = () => {
       drawerContent={props => <MainAppDrawer {...props} />}
       screenOptions={{
         headerShown: false,
-        drawerActiveBackgroundColor: '#d2d2d2',
+        drawerActiveBackgroundColor: '#4e32bc',
         drawerActiveTintColor: 'white',
-        drawerInactiveTintColor: '#d2d2d2',
+        drawerInactiveTintColor: 'black',
         drawerStyle: {
           backgroundColor: '#fff'
         }
