@@ -927,7 +927,7 @@ const workoutByType = {
 			id: "lower_body_7x4",
 			name: "Lower Body",
 			subtitle: "7x4 Challenge",
-      icon: require('../assets/workouts/lower_body_female.jpg'),
+      icon: require('../assets/workouts/lower_body_male.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.skipping,
@@ -941,7 +941,7 @@ const workoutByType = {
 			id: "upper_body_7x4",
 			name: "Upper Body",
 			subtitle: "7x4 Challenge",
-      icon: require('../assets/workouts/lower_body_female.jpg'),
+      icon: require('../assets/workouts/upper_body_male.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.arm_swings,

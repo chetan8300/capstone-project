@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 25,
         fontWeight: 'bold',
-        textAlign: 'left',
+        textAlign: 'center',
         color: '#fff',
     },
     subTitle: {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     inputContainer: {
-        marginTop: 25,
+        marginTop: 40,
         flex: 1,
         alignItems: 'center',
     },

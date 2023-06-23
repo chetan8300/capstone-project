@@ -73,7 +73,7 @@ const CalculateBMIScreen = () => {
     return (
       <View style={{ flex: 1, height: 10, backgroundColor: color, position: 'relative', ...style }}>
         {show && (
-          <View style={{ position: 'absolute', left: `${percentage}%`, top: -1, marginLeft: -6, width: 12, height: 12, borderRadius: '50%', borderColor: '#fff', borderWidth: 2, backgroundColor: 'black' }} />
+          <View style={{ position: 'absolute', left: `${percentage}%`, top: -1, marginLeft: -6, width: 12, height: 12, borderRadius: 50, borderColor: '#fff', borderWidth: 2, backgroundColor: 'black' }} />
         )}
       </View>
     )

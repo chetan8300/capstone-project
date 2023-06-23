@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
       title: {
         fontSize: 25,
         fontWeight: 'bold',
-        textAlign: 'left',
+        textAlign: 'center',
         color: '#fff',
       },
       label: {
@@ -69,6 +69,9 @@ const styles = StyleSheet.create({
       entryIntake: {
         fontWeight: 'bold',
       },
+      container: {
+        marginTop: 45
+      }
     });
 
     export default styles;
