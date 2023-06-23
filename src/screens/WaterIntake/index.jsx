@@ -20,7 +20,7 @@ const WaterTrackerScreen = ({ hideOption = false }) => {
 
   useEffect(() => {
     saveHistory();
-  }, history);
+  }, [history]);
 
   const saveHistory = async () => {
     try {

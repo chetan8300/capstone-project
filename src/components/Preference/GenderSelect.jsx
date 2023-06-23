@@ -14,7 +14,10 @@ const GenderSelect = ({ preferenceValues, setPreferenceValues }) => {
             onPress={() => setPreferenceValues(prev => ({ ...prev, gender: 'male' }))}
             rippleColor="rgba(0, 0, 0, .32)"
           >
-            <Card.Cover style={{ height: 400 }} source={require("./../../assets/preference/male1.jpg")} />
+            <Card.Cover
+              style={{ height: 300 }}
+              source={require("./../../assets/preference/male1.jpg")}
+            />
           </TouchableRipple>
         </Card>
         <Text style={{ paddingTop: 10, fontWeight: 'bold', textAlign: 'center', color: colors.primary }} variant="headlineSmall">Male</Text>
@@ -25,7 +28,7 @@ const GenderSelect = ({ preferenceValues, setPreferenceValues }) => {
             onPress={() => setPreferenceValues(prev => ({ ...prev, gender: 'female' }))}
             rippleColor="rgba(0, 0, 0, .32)"
           >
-            <Card.Cover style={{ height: 400 }} source={require("./../../assets/preference/female1.jpg")} />
+            <Card.Cover style={{ height: 300 }} source={require("./../../assets/preference/female1.jpg")} />
           </TouchableRipple>
         </Card>
         <Text style={{ paddingTop: 10, fontWeight: 'bold', textAlign: 'center', color: colors.primary }} variant="headlineSmall">Female</Text>
