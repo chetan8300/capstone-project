@@ -6,13 +6,14 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles'
 
+
 // Common Components
 import hoc from "../../components/HOC";
 
 // Utils
 import { workoutByType, beginner, exercises } from "../../utils/workouts";
 
-const TrainingScreen = () => {
+const TrainingScreen = ({ hideOption = false }) => {
   const navigation = useNavigation();
   const { colors } = useTheme()
 
@@ -22,10 +23,19 @@ const TrainingScreen = () => {
 
   return (
     <View style={{ flex: 1, paddingLeft: 16, paddingRight: 16, width: "100%" }}>
-      <View style={styles.header}>
-      <Text variant="displaySmall" style={styles.name}>Fitter</Text>
+      <View style={styles.headerMain}>
+        <View>
+            {!hideOption &&
+              <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+                <MaterialCommunityIcons name="menu" size={28} color="black" />
+              </TouchableOpacity>
+            }
+        </View>
+        <View style={styles.header}>
+          <Text variant="displaySmall" style={styles.name}>Fitter</Text>
+        </View>
       </View>
-
+      
       <Searchbar placeholder="Search" onChangeText={onChangeSearch} value={searchQuery} style={styles.searchBar} />
 
       <ScrollView>
