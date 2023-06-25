@@ -25,14 +25,14 @@ const PreferenceTopBar = ({ preference, setCurrentPreference, navigation, progre
       <View style={{ paddingLeft: 30, paddingRight: 30, flex: 1 }}>
         <ProgressBar progress={progress} color={colors.primary} />
       </View>
-      <Button mode="text" onPress={() => navigation.navigate('MainApp')} labelStyle={{ fontSize: 20 }}>
+      {/* <Button mode="text" onPress={() => navigation.navigate('MainApp')} labelStyle={{ fontSize: 20 }}>
         Skip
-      </Button>
-      {/* <IconButton
+      </Button> */}
+      <IconButton
         icon="keyboard-backspace"
         size={30}
         style={{ opacity: 0 }}
-      /> */}
+      />
     </View>
   )
 }
