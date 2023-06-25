@@ -5,7 +5,6 @@ import { View, StatusBar, FlatList, TouchableHighlight } from 'react-native'
 import { Text, IconButton, Card, Button, Surface, useTheme } from 'react-native-paper'
 
 // Third Party Helpers
-import Toast from 'react-native-root-toast';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Common Components
@@ -17,9 +16,21 @@ const DayExercisesList = ({ route, navigation }) => {
   const { workoutType, workout: workoutId, day: workoutDay, week: workoutWeek } = route.params
   const { colors } = useTheme()
   const [showRoutine, setShowRoutine] = React.useState(null);
+  const [workoutPreference, setWorkoutPreference] = React.useState({});
 
   const workout = workoutByType[workoutType].find((workout) => workout.id === workoutId)
   const routineForTheDay = workout.exercise
+
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const data = await AsyncStorage.getItem('workoutPreference');
+        setWorkoutPreference(data ? JSON.parse(data) : {})
+      } catch (error) {
+        console.log(error)
+      }
+    })()
+  }, [])
 
   const handlePressRouting = (index) => {
     setShowRoutine(index)
@@ -27,6 +38,27 @@ const DayExercisesList = ({ route, navigation }) => {
 
   const title = workoutType === "7x4" ? `Day ${workoutDay}` : workout.name
   const subtitle = workoutType === "7x4" ? workout.name : null
+
+  const gender = workoutPreference?.gender || "male"
+
+  let difficulty = workoutType !== "7x4" ? workoutType : "beginner"
+
+  if (workoutType === "7x4" && workoutPreference.pushUpAtOneTime && workoutPreference.activityLevel) {
+    // const activity_level = ['sedentary', 'lightly_active', 'moderately_active', 'very_active']
+    // const pushup = ['beginner', 'intermediate', 'advanced']
+
+    if (workoutPreference.pushUpAtOneTime === "beginner" || workoutPreference.activityLevel.includes(["sedentary", "lightly_active"])) {
+      difficulty = "beginner"
+    }
+
+    if (workoutPreference.pushUpAtOneTime === "intermediate" || workoutPreference.activityLevel.includes(["moderately_active"])) {
+      difficulty = "intermediate"
+    }
+
+    if (workoutPreference.pushUpAtOneTime === "advanced" || workoutPreference.activityLevel.includes(["very_active"])) {
+      difficulty = "advanced"
+    }
+  }
 
   return (
     <View style={{ flex: 1, width: '100%', backgroundColor: '#f2f2f2' }}>
@@ -50,7 +82,7 @@ const DayExercisesList = ({ route, navigation }) => {
       <Card style={{ position: "relative", marginLeft: 8, marginRight: 8 }}>
         <Card.Cover
           blurRadius={10}
-          source={workout.icon}
+          source={gender === "male" ? workout.male_icon : workout.female_icon}
           style={{ borderRadius: 0 }}
         />
         <Card.Title
@@ -86,7 +118,7 @@ const DayExercisesList = ({ route, navigation }) => {
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
                   <Text variant="bodyMedium" style={{ fontWeight: 'bold', color: "#999" }}>{item.count === "reps" ? "Reps" : "Time"}: </Text>
-                  <Text variant="bodyMedium" style={{ color: "#999" }}>{item.count === "reps" ? `x${item.beginner}` : `${item.beginner} Seconds`}</Text>
+                  <Text variant="bodyMedium" style={{ color: "#999" }}>{item.count === "reps" ? `x${item[difficulty]}` : `${item[difficulty]} Seconds`}</Text>
                 </View>
               </Surface>
             </TouchableHighlight>

@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { View, SafeAreaView } from 'react-native'
-import { TextInput, Button, Surface, Text, useTheme, Appbar } from 'react-native-paper'
+import { View } from 'react-native'
+import { TextInput, Button, Surface, Text } from 'react-native-paper'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Common Components
@@ -10,26 +10,22 @@ import hoc from '../../components/HOC'
 import styles from './styles'
 
 const CalculateBMIScreen = () => {
-
   const [height, setHeight] = React.useState('');
   const [weight, setWeight] = React.useState('');
   const [bmi, setBMI] = React.useState(null);
-  var bmiResult = ""
 
-  // const [workoutPreference, setWorkoutPreference] = React.useState({});
-  // console.log('workoutPreference, ', workoutPreference)
+  const [workoutPreference, setWorkoutPreference] = React.useState({});
 
-  // React.useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const data = await AsyncStorage.getItem('workoutPreference');
-  //       setWorkoutPreference(data ? JSON.parse(data) : {})
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   })()
-  // }, [])
-
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const data = await AsyncStorage.getItem('workoutPreference');
+        setWorkoutPreference(data ? JSON.parse(data) : {})
+      } catch (error) {
+        console.log(error)
+      }
+    })()
+  }, [])
 
   const calculateBMI = () => {
     if (height && weight) {
@@ -39,23 +35,16 @@ const CalculateBMIScreen = () => {
     }
   };
 
-  const bmiResultRender = () => {
+  const getBMIResult = () => {
     let bmiResult = ""
     if (bmi < 18.5) {
       bmiResult = 'Underweight'
-
-    }
-    if (bmi >= 18.5 && bmi <= 24.9) {
+    } else if (bmi >= 18.5 && bmi <= 24.9) {
       bmiResult = 'Normal'
-
-    }
-    if (bmi >= 25 && bmi <= 29.9) {
+    } else if (bmi >= 25 && bmi <= 29.9) {
       bmiResult = 'Overweight'
-
-    }
-    if (bmi >= 30) {
+    } else if (bmi >= 30) {
       bmiResult = 'Obese'
-
     }
 
     return bmiResult
@@ -81,15 +70,12 @@ const CalculateBMIScreen = () => {
 
   return (
     <>
-    <Surface style={styles.appBar}>
-    <Text style={styles.title}>
+      <Surface style={styles.appBar}>
+        <Text style={styles.title}>
           Calculate BMI
         </Text>
-    </Surface>
+      </Surface>
       <View style={{ flex: 1, width: '100%', paddingLeft: 20, paddingRight: 20 }}>
-        {/* <Text style={styles.subTitle}>
-        Previously recorded BMI: 0
-      </Text> */}
         <View style={styles.inputContainer}>
           <Text variant="bodyLarge" style={{ fontWeight: 'bold', marginBottom: 5 }}>
             Height
@@ -119,7 +105,7 @@ const CalculateBMIScreen = () => {
             <Surface style={styles.resultSurface}>
               <View style={styles.resultContainer}>
                 <Text style={styles.result}>
-                  Your BMI is <Text style={{ color: "#4e32bc", fontWeight: "bold", fontSize: 18 }}>{bmiResultRender()}</Text>
+                  Your BMI is <Text style={{ color: "#4e32bc", fontWeight: "bold", fontSize: 18 }}>{getBMIResult()}</Text>
                 </Text>
                 <Text style={styles.resultBmi}>
                   {bmi}
@@ -139,8 +125,8 @@ const CalculateBMIScreen = () => {
             </Surface>
           )}
         </View>
-      </View>  
-      </>
+      </View>
+    </>
   )
 }
 

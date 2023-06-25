@@ -28,6 +28,11 @@ const PreferenceTopBar = ({ preference, setCurrentPreference, navigation, progre
       <Button mode="text" onPress={() => navigation.navigate('MainApp')} labelStyle={{ fontSize: 20 }}>
         Skip
       </Button>
+      {/* <IconButton
+        icon="keyboard-backspace"
+        size={30}
+        style={{ opacity: 0 }}
+      /> */}
     </View>
   )
 }

@@ -45,6 +45,7 @@ const WorkoutWeeksList = ({ route, navigation }) => {
   const { workoutType, workout: workoutId } = route.params
   const { colors } = useTheme()
   const [progress, setProgress] = React.useState(defaultData);
+  const [workoutPreference, setWorkoutPreference] = React.useState({});
 
   const workout = workoutByType[workoutType].find((workout) => workout.id === workoutId)
 
@@ -64,6 +65,17 @@ const WorkoutWeeksList = ({ route, navigation }) => {
 
     loadHistory()
   }, []))
+
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const data = await AsyncStorage.getItem('workoutPreference');
+        setWorkoutPreference(data ? JSON.parse(data) : {})
+      } catch (error) {
+        console.log(error)
+      }
+    })()
+  }, [])
 
   const handlePressWeekDay = (currentDayOfMonth, currentWeekOfMonth) => {
     if (currentDayOfMonth <= progress?.current?.daysCompleted + 1) {
@@ -101,6 +113,8 @@ const WorkoutWeeksList = ({ route, navigation }) => {
     }
   }
 
+  const gender = workoutPreference?.gender || "male"
+
   return (
     <View style={{ flex: 1, width: '100%', backgroundColor: '#f2f2f2' }}>
       <StatusBar
@@ -122,7 +136,7 @@ const WorkoutWeeksList = ({ route, navigation }) => {
       </View>
       <Card style={{ position: "relative", marginLeft: 8, marginRight: 8 }}>
         <Card.Cover
-          source={workout.icon}
+          source={gender === "male" ? workout.male_icon : workout.female_icon}
           style={{ borderRadius: 0 }}
         />
         <Card.Title

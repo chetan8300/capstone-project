@@ -49,6 +49,7 @@ const StartWorkout = ({ navigation, route }) => {
   const lastCompletedExercise = React.useRef(null)
   const [exerciseCompleted, setExerciseCompleted] = React.useState(false)
   const [timerPaused, setTimerPaused] = React.useState(false)
+  const [workoutPreference, setWorkoutPreference] = React.useState({})
 
   // Value could be "showTimer" or a Number - showTimer is a 10 second time before the first exercise starts
   const [currentExercise, setCurrentExercise] = React.useState("showTimer")
@@ -67,6 +68,7 @@ const StartWorkout = ({ navigation, route }) => {
         const data = await AsyncStorage.getItem('workoutPreference');
         const parsedData = data ? JSON.parse(data) : {}
         if (parsedData.restTime) {
+          setWorkoutPreference(parsedData)
           setRestTimeBetweenWorkouts(Number(parsedData.restTime) || 15)
         }
       } catch (error) {
@@ -155,6 +157,26 @@ const StartWorkout = ({ navigation, route }) => {
   }, []);
 
   const routineForTheDay = workout.exercise
+
+  let difficulty = workoutType !== "7x4" ? workoutType : "beginner"
+
+  if (workoutType === "7x4" && workoutPreference.pushUpAtOneTime && workoutPreference.activityLevel) {
+    console.log('workoutPreference inside ', workoutPreference)
+    // const activity_level = ['sedentary', 'lightly_active', 'moderately_active', 'very_active']
+    // const pushup = ['beginner', 'intermediate', 'advanced']
+
+    if (workoutPreference.pushUpAtOneTime === "beginner" || workoutPreference.activityLevel.includes(["sedentary", "lightly_active"])) {
+      difficulty = "beginner"
+    }
+
+    if (workoutPreference.pushUpAtOneTime === "intermediate" || workoutPreference.activityLevel.includes(["moderately_active"])) {
+      difficulty = "intermediate"
+    }
+
+    if (workoutPreference.pushUpAtOneTime === "advanced" || workoutPreference.activityLevel.includes(["very_active"])) {
+      difficulty = "advanced"
+    }
+  }
 
   return (
     <View style={{ flex: 1, width: '100%', backgroundColor: '#f2f2f2' }}>

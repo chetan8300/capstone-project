@@ -37,7 +37,7 @@ const HomeScreen = () => {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Discover"
         component={DiscoverScreen}
         options={{
@@ -56,7 +56,7 @@ const HomeScreen = () => {
             <MaterialIcons name="bar-chart" color={color} size={23} />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="CalculateBMI"
         component={CalculateBMIScreen}
@@ -68,7 +68,7 @@ const HomeScreen = () => {
           tabBarVisible:false
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Settings"
         component={SettingsScreen}
         options={{
@@ -77,7 +77,7 @@ const HomeScreen = () => {
             <MaterialCommunityIcons name="account-settings" color={color} size={23} />
           ),
         }}
-      />
+      /> */}
     </Tab.Navigator>
   )
 }

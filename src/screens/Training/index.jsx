@@ -19,6 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const TrainingScreen = ({ navigation, route, hideOption = false }) => {
   const { colors } = useTheme()
   const [workoutHistory, setWorkoutHistory] = React.useState(null);
+  const [workoutPreference, setWorkoutPreference] = React.useState({});
 
   //Search bar accessories
   const [searchQuery, setSearchQuery] = useState('');
@@ -38,6 +39,19 @@ const TrainingScreen = ({ navigation, route, hideOption = false }) => {
 
     loadHistory()
   }, []))
+
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const data = await AsyncStorage.getItem('workoutPreference');
+        setWorkoutPreference(data ? JSON.parse(data) : {})
+      } catch (error) {
+        console.log(error)
+      }
+    })()
+  }, [])
+
+  const gender = workoutPreference?.gender || "male"
 
   return (
     <View style={{ flex: 1, paddingLeft: 16, paddingRight: 16, width: "100%" }}>
@@ -85,7 +99,7 @@ const TrainingScreen = ({ navigation, route, hideOption = false }) => {
                       }}
                     >
                       <Card style={{ position: "relative" }}>
-                        <Card.Cover source={workout.icon} />
+                        <Card.Cover source={gender === "male" ? workout.male_icon : workout.female_icon} />
                         <Card.Title
                           title={workout.name}
                           subtitle={workout.subtitle}

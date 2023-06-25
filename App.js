@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 
-import React, { useCallback } from 'react';
+import React from 'react';
 
 // React Native & Expo Components
 import { StatusBar as StatusBarExpo } from 'expo-status-bar';
@@ -8,16 +8,7 @@ import { View, Platform, StatusBar } from 'react-native';
 import { MD3LightTheme as DefaultTheme, PaperProvider, configureFonts } from 'react-native-paper';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
-import {
-  useFonts,
-  Montserrat_400Regular,
-  Montserrat_500Medium,
-  Montserrat_600SemiBold,
-  Montserrat_700Bold,
-  Montserrat_800ExtraBold,
-  Montserrat_900Black,
-  Montserrat_400Regular_Italic,
-} from '@expo-google-fonts/montserrat';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Navigation
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -34,30 +25,30 @@ SplashScreen.preventAutoHideAsync();
 
 const Stack = createNativeStackNavigator();
 
-const fontConfig = {
-  default: {
-    regular: {
-      fontFamily: 'Montserrat',
-      fontWeight: 'normal',
-    },
-    medium: {
-      fontFamily: 'Montserrat',
-      fontWeight: 'bold',
-    },
-    light: {
-      fontFamily: 'Montserrat',
-      fontWeight: 'light',
-    },
-    thin: {
-      fontFamily: 'Montserrat',
-      fontWeight: 'normal',
-    },
-  },
-};
+// const fontConfig = {
+//   default: {
+//     regular: {
+//       fontFamily: 'Montserrat',
+//       fontWeight: 'normal',
+//     },
+//     medium: {
+//       fontFamily: 'Montserrat',
+//       fontWeight: 'bold',
+//     },
+//     light: {
+//       fontFamily: 'Montserrat',
+//       fontWeight: 'light',
+//     },
+//     thin: {
+//       fontFamily: 'Montserrat',
+//       fontWeight: 'normal',
+//     },
+//   },
+// };
 
 const theme = {
   ...DefaultTheme,
-  fonts: configureFonts(fontConfig),
+  // fonts: configureFonts(fontConfig),
   colors: {
     ...DefaultTheme.colors,
     primary: '#4e32bc',
@@ -66,28 +57,31 @@ const theme = {
 };
 
 const App = () => {
-  const [fontsLoaded] = useFonts({
-    Montserrat_400Regular,
-    Montserrat_500Medium,
-    Montserrat_600SemiBold,
-    Montserrat_700Bold,
-    Montserrat_800ExtraBold,
-    Montserrat_900Black,
-    Montserrat_400Regular_Italic,
-  });
+  const [firstRoute, setFirstRoute] = React.useState("WorkoutPreference")
+  const [preferenceLoaded, setPreferenceLoaded] = React.useState(false);
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const data = await AsyncStorage.getItem('workoutPreference');
+        if (data) {
+          setFirstRoute("MainApp")
+        }
+      } catch (error) {
+        console.log("Error while loading workout preference", error)
+      } finally {
+        setPreferenceLoaded(true);
+        await SplashScreen.hideAsync();
+      }
+    })()
+  }, []);
 
-  if (!fontsLoaded) {
+  if (!preferenceLoaded) {
     return null;
   }
 
   return (
-    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+    <View style={{ flex: 1 }}>
       <PaperProvider theme={theme}>
         <RootSiblingParent>
           {Platform.OS === 'android' ? (
@@ -96,7 +90,7 @@ const App = () => {
             />
           ) : null}
           <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator initialRouteName={firstRoute}>
               <Stack.Screen
                 name="WorkoutPreference"
                 component={WorkoutPreferenceScreen}
