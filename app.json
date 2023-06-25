@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "fitter-workout-tracker",
+    "name": "Fitter",
     "slug": "fitter-workout-tracker",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.chetangodhani.fitterworkouttracker"
