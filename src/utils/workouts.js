@@ -871,7 +871,8 @@ const workoutByType = {
       id: "full_body_7x4",
       name: "Full Body",
       subtitle: "7x4 Challenge",
-      icon: require('../assets/workouts/full_body_male-min.jpg'),
+      male_icon: require('../assets/workouts/full_body_male-min.jpg'),
+      female_icon: require('../assets/workouts/full_body_workout_female.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.arm_swings,
@@ -891,7 +892,8 @@ const workoutByType = {
 			id: "lower_body_7x4",
 			name: "Lower Body",
 			subtitle: "7x4 Challenge",
-      icon: require('../assets/workouts/lower_body_male.jpg'),
+      male_icon: require('../assets/workouts/lower_body_male.jpg'),
+      female_icon: require('../assets/workouts/lower_body_female.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.skipping,
@@ -905,7 +907,8 @@ const workoutByType = {
 			id: "upper_body_7x4",
 			name: "Upper Body",
 			subtitle: "7x4 Challenge",
-      icon: require('../assets/workouts/lower_body_female.jpg'),
+      male_icon: require('../assets/workouts/upper_body_male.jpg'),
+      female_icon: require('../assets/workouts/upper_body_female.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.arm_swings,
@@ -922,7 +925,8 @@ const workoutByType = {
       name: "Abs Beginners",
       subtitle: "",
       difficultyLevel: 1,
-      icon: require('../assets/workouts/abs_male-min.jpg'),
+      male_icon: require('../assets/workouts/abs_male-min.jpg'),
+      female_icon: require('../assets/workouts/abs_female.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.burpees,
@@ -940,7 +944,8 @@ const workoutByType = {
       name: "Chest Beginners",
       subtitle: "",
       difficultyLevel: 1,
-      icon: require('../assets/workouts/chest_male-min.jpg'),
+      male_icon: require('../assets/workouts/chest_male-min.jpg'),
+      female_icon: require('../assets/workouts/chest_female_beg.jpg'),
       exercise: [
         exercises.burpees,
         exercises.arm_swings,
@@ -957,7 +962,8 @@ const workoutByType = {
       name: "Arm Beginners",
       subtitle: "",
       difficultyLevel: 1,
-      icon: require('../assets/workouts/arms_male.jpg'),
+      male_icon: require('../assets/workouts/arms_male.jpg'),
+      female_icon: require('../assets/workouts/arms_female_beg.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.arm_swings,
@@ -974,7 +980,8 @@ const workoutByType = {
       name: "Leg Beginners",
       subtitle: "",
       difficultyLevel: 1,
-      icon: require('../assets/workouts/leg_male_beg.jpg'),
+      male_icon: require('../assets/workouts/leg_male_beg.jpg'),
+      female_icon: require('../assets/workouts/legs_female_beg.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.burpees,
@@ -992,7 +999,8 @@ const workoutByType = {
       name: "Shoulder & Back Beginners",
       subtitle: "",
       difficultyLevel: 1,
-      icon: require('../assets/workouts/back_male_beg.jpg'),
+      male_icon: require('../assets/workouts/back_male_beg.jpg'),
+      female_icon: require('../assets/workouts/back_female_beg.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.arm_swings,
@@ -1011,7 +1019,8 @@ const workoutByType = {
       name: "Abs Intermediate",
       subtitle: "",
       difficultyLevel: 2,
-      icon: require('../assets/workouts/abs_male_int.jpg'),
+      male_icon: require('../assets/workouts/abs_male_int.jpg'),
+      female_icon: require('../assets/workouts/abs_female_int.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.burpees,
@@ -1031,7 +1040,8 @@ const workoutByType = {
       name: "Chest Intermediate",
       subtitle: "",
       difficultyLevel: 2,
-      icon: require('../assets/workouts/chest_male_int.jpg'),
+      male_icon: require('../assets/workouts/chest_male_int.jpg'),
+      female_icon: require('../assets/workouts/chest_female_int.jpg'),
       exercise: [
         exercises.burpees,
         exercises.arm_swings,
@@ -1049,7 +1059,8 @@ const workoutByType = {
       name: "Arm Intermediate",
       subtitle: "",
       difficultyLevel: 2,
-      icon: require('../assets/workouts/arms_male_int.jpg'),
+      male_icon: require('../assets/workouts/arms_male_int.jpg'),
+      female_icon: require('../assets/workouts/arms_female_int.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.arm_swings,
@@ -1066,7 +1077,8 @@ const workoutByType = {
       name: "Leg Intermediate",
       subtitle: "",
       difficultyLevel: 2,
-      icon: require('../assets/workouts/legs_male_int.jpg'),
+      male_icon: require('../assets/workouts/legs_male_int.jpg'),
+      female_icon: require('../assets/workouts/legs_female_int.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.burpees,
@@ -1086,7 +1098,8 @@ const workoutByType = {
       name: "Shoulder & Back Intermediate",
       subtitle: "",
       difficultyLevel: 2,
-      icon: require('../assets/workouts/back_male_int.jpg'),
+      male_icon: require('../assets/workouts/back_male_int.jpg'),
+      female_icon: require('../assets/workouts/back_female_int.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.arm_swings,
@@ -1105,7 +1118,8 @@ const workoutByType = {
       name: "Abs Advanced",
       subtitle: "",
       difficultyLevel: 3,
-      icon: require('../assets/workouts/abs_male_adv.jpg'),
+      male_icon: require('../assets/workouts/abs_male_adv.jpg'),
+      female_icon: require('../assets/workouts/abs_female_adv.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.burpees,
@@ -1119,7 +1133,8 @@ const workoutByType = {
       name: "Chest Advanced",
       subtitle: "",
       difficultyLevel: 3,
-      icon: require('../assets/workouts/chest_male_adv.jpg'),
+      male_icon: require('../assets/workouts/chest_male_adv.jpg'),
+      female_icon: require('../assets/workouts/chest_female_adv.jpg'),
       exercise: [
         exercises.burpees,
         exercises.arm_swings,
@@ -1138,7 +1153,8 @@ const workoutByType = {
       name: "Arm Advanced",
       subtitle: "",
       difficultyLevel: 3,
-      icon: require('../assets/workouts/arms_male_adv.jpg'),
+      male_icon: require('../assets/workouts/arms_male_adv.jpg'),
+      female_icon: require('../assets/workouts/arms_female_adv.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.arm_swings,
@@ -1156,7 +1172,8 @@ const workoutByType = {
       name: "Leg Advanced",
       subtitle: "",
       difficultyLevel: 3,
-      icon: require('../assets/workouts/legs_male_adv.jpg'),
+      male_icon: require('../assets/workouts/legs_male_adv.jpg'),
+      female_icon: require('../assets/workouts/legs_female_adv.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.burpees,
@@ -1172,7 +1189,8 @@ const workoutByType = {
       name: "Shoulder & Back Advanced",
       subtitle: "",
       difficultyLevel: 3,
-      icon: require('../assets/workouts/back_male_adv.jpg'),
+      male_icon: require('../assets/workouts/back_male_adv.jpg'),
+      female_icon: require('../assets/workouts/back_female_adv.jpg'),
       exercise: [
         exercises.jumping_jacks,
         exercises.arm_swings,
