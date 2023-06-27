@@ -107,7 +107,8 @@ const TrainingScreen = ({ navigation, route, hideOption = false }) => {
                             color: "#fff",
                             fontSize: 26,
                             fontWeight: "bold",
-                            textTransform: 'uppercase'
+                            textTransform: 'uppercase',
+                            paddingTop: 1
                           }}
                           subtitleStyle={{
                             color: "#fff",
@@ -138,7 +139,7 @@ const TrainingScreen = ({ navigation, route, hideOption = false }) => {
                             {[...Array(3)].map((icon, index) => {
                               return (
                                 index + 1 <= workout.difficultyLevel ?
-                                  <MaterialCommunityIcons key={`bolt-${workout.id}-${index}`} name="lightning-bolt" size={24} color={colors.primary} />
+                                  <MaterialCommunityIcons key={`bolt-${workout.id}-${index}`} name="lightning-bolt" size={24} color="#F0DBFF" />
                                   :
                                   <MaterialCommunityIcons key={`bolt-${workout.id}-${index}`} name="lightning-bolt-outline" size={24} color="#9BABB8" />
                               )

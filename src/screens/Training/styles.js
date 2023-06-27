@@ -24,7 +24,11 @@ const styles = StyleSheet.create({
     },
     searchBar: {
         marginBottom: 20
-    }
+    },
+    bolt: {
+        borderColor: "#fff",
+        borderWidth: 1
+    },
 })
 
 export default styles;
