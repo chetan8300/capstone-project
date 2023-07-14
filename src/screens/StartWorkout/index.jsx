@@ -2,6 +2,7 @@ import React from 'react'
 
 import { View, BackHandler, StatusBar, Alert } from 'react-native'
 import { Text, IconButton, Button, Surface, useTheme } from 'react-native-paper'
+import Toast from 'react-native-root-toast';
 
 // Common components
 import hoc from '../../components/HOC'
@@ -196,6 +197,26 @@ const StartWorkout = ({ navigation, route }) => {
             {workout.name} - {workoutType}
           </Text>
         </View>
+        <IconButton
+          icon={timerPaused ? "play" : "pause"}
+          size={30}
+          iconColor={colors.primary}
+          onPress={() => {
+            setTimerPaused(!timerPaused)
+            Toast.show(timerPaused ? "Workout Resumed" : "Workout Paused", {
+              animation: true,
+              hideOnPress: true,
+              position: Toast.positions.BOTTOM,
+              duration: Toast.durations.SHORT,
+            });
+          }}
+        />
+        <IconButton
+          icon="close"
+          size={30}
+          iconColor={colors.primary}
+          onPress={backAction}
+        />
       </View>
       {!exerciseCompleted ? (
         <View style={{ flex: 1, marginLeft: 16, marginRight: 16 }}>
