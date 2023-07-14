@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     button: {
-        marginTop: 20,
+        marginTop: 10,
         width: 160,
     },
     result:{

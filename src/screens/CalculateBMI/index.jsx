@@ -28,6 +28,11 @@ const CalculateBMIScreen = () => {
   }, [])
 
   const calculateBMI = () => {
+    if (isNaN(height) || isNaN(weight) || height < 0 || weight < 0) {
+      alert('Please enter valid height and weight')
+      return
+    }
+
     if (height && weight) {
       const heightInMeters = height / 100;
       const bmiValue = weight / (heightInMeters * heightInMeters);
@@ -83,9 +88,18 @@ const CalculateBMIScreen = () => {
           <TextInput style={styles.textInput}
             mode='outlined'
             value={height}
-            onChangeText={setHeight}
+            onChangeText={text => {
+              if (isNaN(text) || text < 0) {
+                return
+              }
+              setHeight(text.trim())
+            }}
+            selectionColor='#4e32bc40'
+            numeric
             keyboardType="numeric"
             placeholder='180 cm'
+            placeholderTextColor={"#a8a8a8"}
+            right={<TextInput.Affix textStyle={{ paddingTop: 5 }} text="cm" />}
           />
 
           <Text variant="bodyLarge" style={{ fontWeight: 'bold', marginBottom: 5 }}>
@@ -93,10 +107,18 @@ const CalculateBMIScreen = () => {
           </Text>
           <TextInput style={styles.textInput}
             value={weight}
-            onChangeText={setWeight}
+            onChangeText={text => {
+              if (isNaN(text) || text < 0) {
+                return
+              }
+              setWeight(text.trim())
+            }}
             keyboardType="numeric"
+            selectionColor='#4e32bc40'
             mode="outlined"
             placeholder='70 kg'
+            placeholderTextColor={"#a8a8a8"}
+            right={<TextInput.Affix textStyle={{ paddingTop: 5 }} text="kg" />}
           />
           <Button mode="contained" style={styles.button} onPress={calculateBMI}>
             Calculate

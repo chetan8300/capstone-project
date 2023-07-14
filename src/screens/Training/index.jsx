@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useFocusEffect } from "@react-navigation/native";
-import { TouchableHighlight, TouchableOpacity, View, ScrollView } from "react-native";
+import { TouchableHighlight, TouchableOpacity, View, ScrollView, BackHandler, Alert } from "react-native";
 import { Text, Card, useTheme, Searchbar } from "react-native-paper";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -40,7 +40,7 @@ const TrainingScreen = ({ navigation, route, hideOption = false }) => {
     loadHistory()
   }, []))
 
-  React.useEffect(() => {
+  useFocusEffect(React.useCallback(() => {
     (async () => {
       try {
         const data = await AsyncStorage.getItem('workoutPreference');
@@ -49,7 +49,26 @@ const TrainingScreen = ({ navigation, route, hideOption = false }) => {
         console.log(error)
       }
     })()
-  }, [])
+  }, []))
+
+  React.useEffect(
+    () =>
+      navigation.addListener('beforeRemove', (e) => {
+        // Prevent default behavior of leaving the screen
+        e.preventDefault();
+
+        // Prompt the user before leaving the screen
+        Alert.alert('Hold on!', `Are you sure you want to exit app?`, [
+          {
+            text: 'Cancel',
+            onPress: () => { },
+            style: 'cancel',
+          },
+          { text: 'YES', onPress: () => BackHandler.exitApp() },
+        ]);
+      }),
+    [navigation]
+  );
 
   const gender = workoutPreference?.gender || "male"
 
@@ -57,17 +76,17 @@ const TrainingScreen = ({ navigation, route, hideOption = false }) => {
     <View style={{ flex: 1, paddingLeft: 16, paddingRight: 16, width: "100%" }}>
       <View style={styles.headerMain}>
         <View>
-            {!hideOption &&
-              <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-                <MaterialCommunityIcons name="menu" size={28} color="black" />
-              </TouchableOpacity>
-            }
+          {!hideOption &&
+            <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+              <MaterialCommunityIcons name="menu" size={28} color="black" />
+            </TouchableOpacity>
+          }
         </View>
         <View style={styles.header}>
           <Text variant="displaySmall" style={styles.name}>Fitter</Text>
         </View>
       </View>
-      
+
       <Searchbar placeholder="Search" onChangeText={onChangeSearch} value={searchQuery} style={styles.searchBar} />
 
       <ScrollView>
@@ -99,19 +118,24 @@ const TrainingScreen = ({ navigation, route, hideOption = false }) => {
                       }}
                     >
                       <Card style={{ position: "relative" }}>
-                        <Card.Cover source={gender === "male" ? workout.male_icon : workout.female_icon} />
+                        <Card.Cover
+                          source={gender === "male" ? workout.male_icon : workout.female_icon}
+                          blurRadius={4}
+                        />
                         <Card.Title
                           title={workout.name}
                           subtitle={workout.subtitle}
                           titleStyle={{
                             color: "#fff",
                             fontSize: 26,
+                            lineHeight: 26,
                             fontWeight: "bold",
                             textTransform: 'uppercase'
                           }}
                           subtitleStyle={{
                             color: "#fff",
                             fontSize: 20,
+                            lineHeight: 20,
                             fontWeight: "bold",
                             textTransform: 'uppercase'
                           }}
@@ -138,9 +162,9 @@ const TrainingScreen = ({ navigation, route, hideOption = false }) => {
                             {[...Array(3)].map((icon, index) => {
                               return (
                                 index + 1 <= workout.difficultyLevel ?
-                                  <MaterialCommunityIcons key={`bolt-${workout.id}-${index}`} name="lightning-bolt" size={24} color={colors.primary} />
+                                  <MaterialCommunityIcons key={`bolt-${workout.id}-${index}`} name="lightning-bolt" size={24} color={colors.secondary} />
                                   :
-                                  <MaterialCommunityIcons key={`bolt-${workout.id}-${index}`} name="lightning-bolt-outline" size={24} color="#9BABB8" />
+                                  <MaterialCommunityIcons key={`bolt-${workout.id}-${index}`} name="lightning-bolt-outline" size={24} color="#fff" />
                               )
                             })}
                           </View>
@@ -155,24 +179,6 @@ const TrainingScreen = ({ navigation, route, hideOption = false }) => {
         })}
       </ScrollView>
     </View>
-
-    //   <View style={{ flex: 1 }}>
-    //   {Object.keys(exercises).map((key) => {
-    //     const exercise = exercises[key]
-    //     return (
-    //       <View key={key}>
-    //         {/* <Text>{key} {exercises.length}</Text> */}
-    //         <Text>{exercise.focusArea.map(x => x)}</Text>
-    //         {/* <Text>{exercises.map()}</Text> */}
-    //         {/* {exercises.map(exercise => {
-    //           return (
-    //             <Text key={`${key}-${exercise.id}`}>{exercise}</Text>
-    //           )
-    //         })} */}
-    //       </View>
-    //     );
-    //   })}
-    // </View>
   );
 };
 

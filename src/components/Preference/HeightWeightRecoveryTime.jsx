@@ -4,6 +4,13 @@ import { View } from 'react-native'
 import { Divider, Text, HelperText, TextInput, SegmentedButtons } from 'react-native-paper'
 
 const HeightWeightRecoveryTime = ({ preferenceValues, setPreferenceValues }) => {
+  const handleChange = (text, type) => {
+    if (isNaN(text) || text < 0) {
+      return
+    }
+    setPreferenceValues(prev => ({ ...prev, [type]: text.trim() }))
+  }
+
   return (
     <View>
       <View style={{ flexDirection: 'row', gap: 10, marginBottom: 20, marginTop: 20, width: '100%', alignItems: 'flex-end' }}>
@@ -13,7 +20,7 @@ const HeightWeightRecoveryTime = ({ preferenceValues, setPreferenceValues }) => 
           </Text>
           <TextInput
             value={preferenceValues.weight}
-            onChangeText={text => setPreferenceValues(prev => ({ ...prev, weight: text }))}
+            onChangeText={text => handleChange(text, 'weight')}
             keyboardType="numeric"
             mode="flat"
             placeholder={preferenceValues.weightUnit === 'kg' ? 'KG' : 'LB'}
@@ -48,7 +55,7 @@ const HeightWeightRecoveryTime = ({ preferenceValues, setPreferenceValues }) => 
           </Text>
           <TextInput
             value={preferenceValues.height}
-            onChangeText={text => setPreferenceValues(prev => ({ ...prev, height: text }))}
+            onChangeText={text => handleChange(text, 'height')}
             keyboardType="numeric"
             mode="flat"
             placeholder={preferenceValues.heightUnit === 'cm' ? 'CM' : 'IN'}
@@ -82,7 +89,7 @@ const HeightWeightRecoveryTime = ({ preferenceValues, setPreferenceValues }) => 
         </Text>
         <TextInput
           value={preferenceValues.restTime}
-          onChangeText={text => setPreferenceValues(prev => ({ ...prev, restTime: text }))}
+          onChangeText={text => handleChange(text, 'restTime')}
           keyboardType="numeric"
           mode="outlined"
           returnKeyType="done"
