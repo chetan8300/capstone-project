@@ -46,7 +46,7 @@ const HomeScreen = () => {
             <MaterialCommunityIcons name="compass" color={color} size={23} />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Reports"
         component={ReportsScreen}
@@ -56,7 +56,7 @@ const HomeScreen = () => {
             <MaterialIcons name="bar-chart" color={color} size={23} />
           ),
         }}
-      /> */}
+      /> 
       <Tab.Screen
         name="CalculateBMI"
         component={CalculateBMIScreen}
