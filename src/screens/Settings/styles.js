@@ -78,6 +78,25 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: 20,
+        marginTop: 15,
+      },
+      optionContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginBottom: 16,
+      },
+      optionLabel: {
+        fontSize: 16,
+        flex: 1,
+      },
+      timeText: {
+        fontSize: 16,
+        color: '#333',
+      },
+      placeholderText: {
+        fontSize: 16,
+        color: '#999',
       },
 });
 

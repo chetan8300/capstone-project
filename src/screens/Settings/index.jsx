@@ -2,10 +2,10 @@ import { View, TouchableOpacity, Switch, Modal } from 'react-native'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Button, Surface, Text, useTheme, Appbar, TextInput} from 'react-native-paper'
+import { Button, Surface, Text, useTheme, Appbar, TextInput, Divider} from 'react-native-paper'
 import React, { useState, useEffect } from 'react';
 import * as Notifications from 'expo-notifications';
-
+import { TimePickerModal } from 'react-native-paper-dates';
 
 // Common Components
 import hoc from '../../components/HOC'
@@ -16,8 +16,8 @@ const SettingsScreen = ({ hideOption = false }) => {
  
   const [waterNotificationEnabled, setWaterNotificationEnabled] = useState(false);
   const [workoutNotificationEnabled, setWorkoutNotificationEnabled] = useState(false);
-  const [waterTime, setWaterTime] = useState('');
   const [workoutTime, setWorkoutTime] = useState('');
+  const [isTimePickerVisible, setTimePickerVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
 useEffect(() => {
@@ -33,7 +33,7 @@ useEffect(() => {
     } else {
       disableWorkoutNotifications();
     }
-  }, [waterNotificationEnabled, workoutNotificationEnabled, workoutTime]
+  }, [waterNotificationEnabled, workoutNotificationEnabled]
 );
 
 const registerForPushNotificationsAsync = async () => {
@@ -77,7 +77,7 @@ const enableWaterNotifications = async () => {
     await Notifications.scheduleNotificationAsync({
       content: {
         title: 'Water Intake Reminder',
-        body: 'Remember to drink water!',
+        body: 'Time to drink water!',
       },
       trigger: {
         seconds: 10,
@@ -100,21 +100,34 @@ const disableWaterNotifications = async () => {
   }
 };
 
+
 // Enable workout notifications
 const enableWorkoutNotifications = async (selectedTime) => {
   try {
-    await Notifications.cancelAllScheduledNotificationsAsync();
+    selectedTime = workoutTime;
+    const triggerTime = new Date();
+    triggerTime.setHours(selectedTime.hours);
+    triggerTime.setMinutes(selectedTime.minutes);
+    triggerTime.setSeconds(0);
 
+    const triggerInSeconds = triggerTime.getTime() / 1000;
+
+    await Notifications.cancelAllScheduledNotificationsAsync();
     await Notifications.scheduleNotificationAsync({
       content: {
         title: 'Workout Reminder',
         body: 'Time for a workout!',
       },
       trigger: {
-        seconds: selectedTime * 60,
-        repeats: true,
+        seconds: triggerInSeconds - Date.now() / 1000,
+        repeats: false,
       },
     });
+    console.log('Workout notifications enabled');
+    // console.log('Trigger in hours:', selectedTime.hours);
+    // console.log('Trigger in minutes:', selectedTime.minutes);
+    // console.log('Trigger in seconds:', triggerInSeconds);
+    // console.log("workoutTime", workoutTime)
   } catch (error) {
     console.log('Error in workout notifications:', error);
   }
@@ -124,6 +137,7 @@ const enableWorkoutNotifications = async (selectedTime) => {
 const disableWorkoutNotifications = async () => {
   try {
     await Notifications.cancelAllScheduledNotificationsAsync();
+    console.log('Workout notifications disabled');
   } catch (error) {
     console.log('Error disabling workout notifications:', error);
   }
@@ -135,6 +149,20 @@ const disableWorkoutNotifications = async () => {
 
   const handleCloseModal = () => {
     setModalVisible(false);
+  };
+
+  const handleTimePickerConfirm = (time) => {
+    setWorkoutTime(time);
+    setTimePickerVisible(false);
+    enableWorkoutNotifications();
+  };
+
+  const formatTime = (time) => {
+    if (time) {
+      const { hours, minutes } = time;
+      return `${hours}:${minutes}`;
+    }
+    return '';
   };
 
   return (
@@ -155,6 +183,7 @@ const disableWorkoutNotifications = async () => {
         <MaterialCommunityIcons name="bell-outline" size={24} color="#4e32bc" />
         <Text style={styles.settingsTitle}>Notifications</Text>
       </TouchableOpacity>
+      <Divider />
       <Modal
         transparent={true}
         visible={modalVisible}
@@ -162,12 +191,13 @@ const disableWorkoutNotifications = async () => {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-          <View style={styles.modalHeader}>
+            <View style={styles.modalHeader}>
               <Text style={styles.modalTitle}>Notification Settings</Text>
               <TouchableOpacity style={styles.modalCloseButton} onPress={handleCloseModal}>
                 <Text style={styles.modalCloseButtonText}>Close</Text>
               </TouchableOpacity>
             </View>
+            <Divider />
             <View style={styles.notificationSettingRow}>
               <Text style={styles.settingLabel}>Water Intake Notifications:</Text>
               <Switch
@@ -177,15 +207,36 @@ const disableWorkoutNotifications = async () => {
                 value={waterNotificationEnabled}
               />
             </View>
+            <Divider />
             <View style={styles.notificationSettingRow}>
               <Text style={styles.settingLabel}>Workout Notifications:</Text>
               <Switch
-                thumbColor={workoutNotificationEnabled ? '#4e32bc' : '#f0f0f0'}
                 trackColor={{ false: '#f0f0f0', true: '#f0f0f0' }}
+                thumbColor={workoutNotificationEnabled ? '#4e32bc' : '#f0f0f0'}
                 onValueChange={(value) => setWorkoutNotificationEnabled(value)}
                 value={workoutNotificationEnabled}
               />
             </View>
+
+            {workoutNotificationEnabled && (
+              <TouchableOpacity onPress={() => setTimePickerVisible(true)}>
+                <View style={styles.optionContainer}>
+                  <Text style={styles.optionLabel}>Workout Time</Text>
+                  {workoutTime ? (
+                    <Text style={styles.timeText}>{formatTime(workoutTime)}</Text>
+                  ) : (
+                    <Text style={styles.placeholderText}>Select Time</Text>
+                  )}
+                </View>
+              </TouchableOpacity>
+           )}
+            <TimePickerModal 
+                visible={isTimePickerVisible}
+                onDismiss={() => setTimePickerVisible(false)}
+                onConfirm={handleTimePickerConfirm}
+                label="Select Time"
+                 mode="time"
+            />
           </View>
         </View>
       </Modal>
