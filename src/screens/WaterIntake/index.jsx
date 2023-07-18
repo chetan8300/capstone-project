@@ -33,6 +33,7 @@ const WaterTrackerScreen = ({ hideOption = false }) => {
 
   const loadHistory = async () => {
     try {
+      // await AsyncStorage.removeItem('@waterTracker:history');
       const jsonValue = await AsyncStorage.getItem('@waterTracker:history');
       if (jsonValue !== null) {
         const parsedValue = JSON.parse(jsonValue);
