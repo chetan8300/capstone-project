@@ -68,7 +68,7 @@ const HomeScreen = () => {
           tabBarVisible:false
         }}
       />
-      {/* <Tab.Screen
+      <Tab.Screen
         name="Settings"
         component={SettingsScreen}
         options={{
@@ -77,7 +77,7 @@ const HomeScreen = () => {
             <MaterialCommunityIcons name="account-settings" color={color} size={23} />
           ),
         }}
-      /> */}
+      />
     </Tab.Navigator>
   )
 }
