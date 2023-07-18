@@ -179,6 +179,8 @@ const StartWorkout = ({ navigation, route }) => {
     }
   }
 
+  console.log('workoutTypeworkoutType', workoutType)
+
   return (
     <View style={{ flex: 1, width: '100%', backgroundColor: '#f2f2f2' }}>
       <StatusBar

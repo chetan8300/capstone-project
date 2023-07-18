@@ -1006,7 +1006,6 @@ const workoutByType = {
         exercises.arm_swings,
         exercises.pull_ups,
         exercises.shoulder_press,
-        exercises.stretch_with_ball,
         exercises.shoulder_stretch,
         exercises.triceps_stretch,
         exercises.stretch_with_ball
@@ -1108,7 +1107,6 @@ const workoutByType = {
         exercises.stretch_with_ball,
         exercises.shoulder_stretch,
         exercises.triceps_stretch,
-        exercises.stretch_with_ball
       ],
     },
   ],
@@ -1199,7 +1197,6 @@ const workoutByType = {
         exercises.stretch_with_ball,
         exercises.shoulder_stretch,
         exercises.triceps_stretch,
-        exercises.stretch_with_ball
       ],
     },
   ],
