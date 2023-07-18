@@ -219,7 +219,7 @@ const disableWeightInputNotification = async () => {
             }
           </View>
           <View style={styles.header}>
-            <Text variant="headlineSmall" style={styles.name}>Settings</Text>
+            <Text variant="headlineLarge" style={styles.name}>Settings</Text>
           </View>
       </View>
       <TouchableOpacity style={styles.settingRow} onPress={handleOpenModal}>

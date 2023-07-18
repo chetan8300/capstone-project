@@ -61,7 +61,7 @@ const ReportsScreen = ({ navigation, route, hideOption = false }) => {
 					if (jsonValue !== null) {
 						const parsedValue = JSON.parse(jsonValue);
 						setWaterHistory(parsedValue);
-						console.log("Water History:", parsedValue);
+						// console.log("Water History:", parsedValue);
 					}
 				} catch (error) {
 					console.log("Error loading history: ", error);
@@ -79,8 +79,8 @@ const ReportsScreen = ({ navigation, route, hideOption = false }) => {
 					const jsonValue = await AsyncStorage.getItem("@workout:history");
 					const parsedValue = jsonValue ? JSON.parse(jsonValue) : {};
 					setWorkoutHistory(parsedValue);
-					console.log("Workout History:");
-					console.log(JSON.stringify(parsedValue, null, 2));
+					// console.log("Workout History:");
+					// console.log(JSON.stringify(parsedValue, null, 2));
 					// console.log("State:", workoutHistory)
 				} catch (error) {
 					console.log("Error loading history training: ", error);
@@ -101,7 +101,7 @@ const ReportsScreen = ({ navigation, route, hideOption = false }) => {
 	// ];
 
 	const renderHistoryItem = ({ item, index }) => {
-		console.log("ITEM: ", item, index);
+		// console.log("ITEM: ", item, index);
 		const dateOffset = 6 - index;
 		const currentDate = moment();
 		const date = currentDate.subtract(dateOffset, "days");
@@ -203,11 +203,15 @@ const ReportsScreen = ({ navigation, route, hideOption = false }) => {
 					<Text style={styles.cardText}>
 						{waterData && waterData.date ? (
 							<>
-								<Text style={styles.contentHeading}>Water Intake:{'\n'}</Text>
-								<Text style={styles.contentStatement}>{waterData.intake} Glasses</Text>
+								<Text style={styles.contentHeading}>Water Intake:{"\n"}</Text>
+								<Text style={styles.contentStatement}>
+									{waterData.intake} Glasses
+								</Text>
 							</>
 						) : (
-							<Text style={styles.contentStatement}>No record for water consumption.</Text>
+							<Text style={styles.contentStatement}>
+								No record for water consumption.
+							</Text>
 						)}
 					</Text>
 					{/* <Text>Workout:</Text> */}
@@ -222,19 +226,22 @@ const ReportsScreen = ({ navigation, route, hideOption = false }) => {
 
 								return (
 									<>
-									<Text style={[styles.contentHeading]} key={key}>
-										{keyToNameMap[key]}: 
-									</Text>
-									<Text style={[styles.cardText, styles.contentStatement]}>
-										{workoutHistoryData[key]}x
-										Completed
-									</Text>
+										<Text style={[styles.contentHeading]} key={key}>
+											{keyToNameMap[key]}:
+										</Text>
+										<Text style={[styles.cardText, styles.contentStatement]}>
+											{workoutHistoryData[key]}x Completed
+										</Text>
 									</>
 								);
 							})}
 						</View>
 					) : (
-						<Text>No workouts to display.</Text>
+						<View style={styles.contentStatementContainer}>
+							<Text style={styles.contentStatement}>
+								No workouts to display.
+							</Text>
+						</View>
 					)}
 				</Card.Content>
 			</Card>
@@ -253,7 +260,7 @@ const ReportsScreen = ({ navigation, route, hideOption = false }) => {
 				</View>
 
 				<View style={styles.header}>
-					<Text variant="displaySmall" style={styles.name}>
+					<Text variant="headlineLarge" style={styles.name}>
 						Reports
 					</Text>
 				</View>

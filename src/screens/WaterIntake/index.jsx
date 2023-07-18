@@ -84,7 +84,7 @@ const WaterTrackerScreen = ({ hideOption = false }) => {
           }
         </View>
         <View style={styles.header}>
-          <Text variant="headlineSmall" style={styles.name}>Track Water Intake</Text>
+          <Text variant="headlineLarge" style={styles.name}>Track Water Intake</Text>
         </View>
       </View>
       {/* </Surface> */}

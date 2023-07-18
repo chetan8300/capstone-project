@@ -95,7 +95,7 @@ const TrainingScreen = ({ navigation, route, hideOption = false }) => {
 					)}
 				</View>
 				<View style={styles.header}>
-					<Text variant="displaySmall" style={styles.name}>
+					<Text variant="headlineLarge" style={styles.name}>
 						Fitter
 					</Text>
 				</View>

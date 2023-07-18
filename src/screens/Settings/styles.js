@@ -9,20 +9,23 @@ const styles = StyleSheet.create({
         width: '100%',
         // marginBottom: 20
     },
-      header: {
-        paddingTop: 20,
-        paddingBottom: 20,
-        alignItems: "center",
-        marginLeft: 100,
-      },
-      headerMain:{
-        flexDirection: 'row',
-        alignItems: 'center',
-      },
-      name: {
-        color: "#4e32bc",
-        fontWeight: "900",
-        letterSpacing: 0.3,
+    header: {
+      paddingTop: 20,
+      paddingBottom: 20,
+      alignItems: "center",
+      // fontFamily: 'Anton', sans-serif;
+      flex: 1
+    },
+    headerMain: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    name: {
+      color: "#4e32bc",
+      fontWeight: "900",
+      paddingRight: 20,
+      textAlign: "center"
     },
     settingRow: {
         flexDirection: 'row',

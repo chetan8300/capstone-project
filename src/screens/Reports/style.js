@@ -8,20 +8,18 @@ const styles = StyleSheet.create({
 		// backgroundColor: "rgb(240, 219, 255)",
 		alignItems: "center",
 		// fontFamily: 'Anton', sans-serif;
-		// marginLeft: 100,
+		flex: 1,
 	},
 	headerMain: {
 		flexDirection: "row",
 		justifyContent: "space-between",
 		alignItems: "center",
-		// marginLeft: 16,
-		// marginRight: 55,
 	},
 	name: {
 		color: "#4e32bc",
 		fontWeight: "900",
-		letterSpacing: 0.3,
-		paddingRight: 100,
+		paddingRight: 20,
+		textAlign: "center",
 	},
 	tableBody: {
 		flexGrow: 1,
@@ -31,7 +29,7 @@ const styles = StyleSheet.create({
 		marginRight: "auto",
 		marginBottom: 15,
 		marginTop: 5,
-		width: "99%"
+		width: "99%",
 	},
 	cardText: {
 		marginBottom: 10,
@@ -46,19 +44,23 @@ const styles = StyleSheet.create({
 		textAlign: "left",
 		marginLeft: 5,
 		marginBottom: 10,
-		fontWeight: 600
+		fontWeight: 600,
 	},
 	hr: {
-		marginTop: 10
+		marginTop: 10,
 	},
 	contentHeading: {
 		fontWeight: "500",
-		fontSize: 18
+		fontSize: 18,
+	},
+	contentStatementContainer: {
+		marginTop: 2,
+		flexGrow: 1,
 	},
 	contentStatement: {
 		fontSize: 14,
-		color: "#525252"
-	}
+		color: "#525252",
+	},
 });
 
 export default styles;

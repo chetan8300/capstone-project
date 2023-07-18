@@ -5,22 +5,20 @@ const styles = StyleSheet.create({
 	header: {
 		paddingTop: 20,
 		paddingBottom: 20,
-		// backgroundColor: "rgb(240, 219, 255)",
 		alignItems: "center",
 		// fontFamily: 'Anton', sans-serif;
-		marginLeft: 105,
+		flex: 1
 	},
 	headerMain: {
 		flexDirection: "row",
-		// justifyContent: 'space-around',
+		justifyContent: "space-between",
 		alignItems: "center",
-		// marginLeft: 16,
-		// marginRight: 55,
 	},
 	name: {
 		color: "#4e32bc",
 		fontWeight: "900",
-		letterSpacing: 0.3,
+		paddingRight: 20,
+		textAlign: "center"
 	},
 	searchBar: {
 		marginBottom: 20,

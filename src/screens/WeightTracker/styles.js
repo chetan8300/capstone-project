@@ -13,17 +13,20 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         paddingBottom: 20,
         alignItems: "center",
-        marginLeft: 50,
-    },
-    headerMain: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    name: {
+        // fontFamily: 'Anton', sans-serif;
+        flex: 1
+      },
+      headerMain: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+      },
+      name: {
         color: "#4e32bc",
         fontWeight: "900",
-        letterSpacing: 0.3,
-    },
+        paddingRight: 20,
+        textAlign: "center"
+      },
     label: {
         marginTop: 16,
         fontSize: 18,

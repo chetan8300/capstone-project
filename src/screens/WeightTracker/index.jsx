@@ -86,7 +86,7 @@ const WeightTrackerScreen = ({ hideOption = false }) => {
                     }
                 </View>
                 <View style={styles.header}>
-                    <Text variant="headlineSmall" style={styles.name}>Weight Tracker</Text>
+                    <Text variant="headlineLarge" style={styles.name}>Weight Tracker</Text>
                 </View>
             </View>
             <View style={styles.container}>
