@@ -61,6 +61,9 @@ const WorkoutPreferenceScreen = ({ navigation }) => {
     setIsGeneratingPlan(true)
     try {
       await AsyncStorage.setItem('workoutPreference', JSON.stringify(preferenceValues))
+
+      // add notification aj thi laine 7th day ma for weight
+
     } catch (error) {
       console.log("Error saving workout preference: ", error)
     }

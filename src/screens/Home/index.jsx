@@ -16,6 +16,7 @@ import CalculateBMIScreen from '../CalculateBMI';
 // Components
 import MainAppDrawer from '../../components/MainAppDrawer';
 import WaterTrackerScreen from '../WaterIntake';
+import WeightTrackerScreen from '../WeightTracker';
 const Tab = createMaterialBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -105,6 +106,11 @@ const MainAppDrawerScreen = () => {
         name="Water Intake Tracker"
         component={WaterTrackerScreen}
         options={{ title: 'Water Intake Tracker' }}
+        />
+        <Drawer.Screen
+        name="Weight Tracker"
+        component={WeightTrackerScreen}
+        options={{ title: 'Weight Tracker' }}
         />
     </Drawer.Navigator>
   )

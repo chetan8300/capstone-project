@@ -16,6 +16,7 @@ const SettingsScreen = ({ hideOption = false }) => {
  
   const [waterNotificationEnabled, setWaterNotificationEnabled] = useState(false);
   const [workoutNotificationEnabled, setWorkoutNotificationEnabled] = useState(false);
+  const [weightInputNotificationEnabled, setWeightInputNotificationEnabled] = useState(false);
   const [workoutTime, setWorkoutTime] = useState('');
   const [isTimePickerVisible, setTimePickerVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -33,7 +34,13 @@ useEffect(() => {
     } else {
       disableWorkoutNotifications();
     }
-  }, [waterNotificationEnabled, workoutNotificationEnabled]
+    if (weightInputNotificationEnabled) {
+      enableWeightInputNotification();
+    }
+    else {
+      disableWeightInputNotification();
+    }
+  }, [waterNotificationEnabled, workoutNotificationEnabled, weightInputNotificationEnabled]
 );
 
 const registerForPushNotificationsAsync = async () => {
@@ -100,11 +107,10 @@ const disableWaterNotifications = async () => {
   }
 };
 
-
 // Enable workout notifications
 const enableWorkoutNotifications = async (selectedTime) => {
   try {
-    selectedTime = workoutTime;
+    console.log('selectedTime', selectedTime)
     const triggerTime = new Date();
     triggerTime.setHours(selectedTime.hours);
     triggerTime.setMinutes(selectedTime.minutes);
@@ -127,7 +133,6 @@ const enableWorkoutNotifications = async (selectedTime) => {
     // console.log('Trigger in hours:', selectedTime.hours);
     // console.log('Trigger in minutes:', selectedTime.minutes);
     // console.log('Trigger in seconds:', triggerInSeconds);
-    // console.log("workoutTime", workoutTime)
   } catch (error) {
     console.log('Error in workout notifications:', error);
   }
@@ -143,6 +148,44 @@ const disableWorkoutNotifications = async () => {
   }
 };
 
+// Enable Weekly Weight Input Notifications 
+
+const enableWeightInputNotification = async () => {
+  try {
+    await Notifications.cancelAllScheduledNotificationsAsync();
+    const triggerTime = new Date(); 
+    triggerTime.setSeconds(0); 
+    triggerTime.setDate(triggerTime.getDate() + (7 - triggerTime.getDay())); 
+
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: 'Weight Input Reminder',
+        body: 'Remember to input your weight for this week!',
+      },
+      trigger: {
+        seconds: triggerTime.getTime() - Date.now(),
+        repeats: true,
+      },
+    });
+
+    console.log('Weight input notification enabled');
+  }
+  catch (error) {
+    console.log('Error enabling weight input notification:', error);
+  }
+};
+
+// Disable Weekly Weight Input Notifications
+
+const disableWeightInputNotification = async () => {
+  try {
+    await Notifications.cancelAllScheduledNotificationsAsync();
+    console.log('Weight input notification disabled');
+  } catch (error) {
+    console.log('Error disabling weight input notification:', error);
+  }
+};
+
   const handleOpenModal = () => {
     setModalVisible(true);
   };
@@ -154,7 +197,7 @@ const disableWorkoutNotifications = async () => {
   const handleTimePickerConfirm = (time) => {
     setWorkoutTime(time);
     setTimePickerVisible(false);
-    enableWorkoutNotifications();
+    enableWorkoutNotifications(time);
   };
 
   const formatTime = (time) => {
@@ -205,6 +248,16 @@ const disableWorkoutNotifications = async () => {
                 thumbColor={waterNotificationEnabled ? '#4e32bc' : '#f0f0f0'}
                 onValueChange={(value) => setWaterNotificationEnabled(value)}
                 value={waterNotificationEnabled}
+              />
+            </View>
+            <Divider />
+            <View style={styles.notificationSettingRow}>
+              <Text style={styles.settingLabel}>Weekly Weight Notifications:</Text>
+              <Switch
+                trackColor={{ false: '#f0f0f0', true: '#f0f0f0' }}
+                thumbColor={weightInputNotificationEnabled ? '#4e32bc' : '#f0f0f0'}
+                onValueChange={(value) => setWeightInputNotificationEnabled(value)}
+                value={weightInputNotificationEnabled}
               />
             </View>
             <Divider />
