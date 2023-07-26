@@ -1,6 +1,6 @@
 import {ScrollView, View, FlatList, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react';
-import { Button, Surface, Text, useTheme, Appbar } from 'react-native-paper'
+import { IconButton, Button, Surface, Text, useTheme, Appbar } from 'react-native-paper'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './styles';
 import moment from 'moment';
@@ -9,7 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import hoc from '../../components/HOC'
 
 const WaterTrackerScreen = ({ hideOption = false }) => {
-
+  const { colors } = useTheme();
   const navigation = useNavigation();
   const [waterIntake, setWaterIntake] = useState(0);
   const [history, setHistory] = useState([]);
@@ -90,16 +90,31 @@ const WaterTrackerScreen = ({ hideOption = false }) => {
       {/* </Surface> */}
       <View style={styles.container}>
         <Surface style={styles.intakeContainer}>
-          <Text style={styles.label}>Today's Intake:</Text>
-          <Text style={styles.intakeText}>{waterIntake} {getGlassText()}</Text>
+          <View style={styles.labelContainer}>
+            <Text style={styles.label}>Today's Intake</Text>
+            <Text style={styles.labelLight}>(in glasses)</Text>
+          </View>
           <View style={styles.buttonsContainer}>
-            <Button
-              mode="contained"
-              style={styles.button}
-              onPress={() => setWaterIntake(waterIntake + 1)}
-            >
-              <Text style={styles.buttonText}>+1 glass</Text>
-            </Button>
+            <View style={{ flexDirection: 'row', gap: 1, justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+              <IconButton
+                icon="minus-thick"
+                mode='contained-tonal'
+                size={20}
+                // iconColor='white'
+                // containerColor={colors.primary}
+                onPress={() => setWaterIntake(waterIntake - 1)}
+                disabled={waterIntake === 0}
+              />
+              <Text style={styles.intakeText}>{waterIntake}</Text>
+              <IconButton
+                icon="plus-thick"
+                mode='contained-tonal'
+                size={20}
+                // iconColor='white'
+                // containerColor={colors.primary}
+                onPress={() => setWaterIntake(waterIntake + 1)}
+              />
+            </View>
             <Button style={[styles.addButton, waterIntake === 0 && styles.disabledButton]} onPress={addWaterIntake} mode="contained" disabled={waterIntake === 0}>
             <Text style={styles.addButtonText}>Add Intake</Text>
           </Button>

@@ -109,7 +109,7 @@ const CalculateBMIScreen = ({ navigation, route, hideOption = false }) => {
 	return (
 		<>
 			<View
-				style={{ flex: 1, width: "100%", paddingLeft: 20, paddingRight: 20 }}
+				style={{ flex: 1, width: "100%", paddingLeft: 16, paddingRight: 16 }}
 			>
 				<View style={styles.headerMain}>
 					<View>

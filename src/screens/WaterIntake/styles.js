@@ -27,25 +27,38 @@ const styles = StyleSheet.create({
       paddingRight: 20,
       textAlign: "center"
     },
-      label: {
+      labelContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
         marginTop: 16,
-        fontSize: 18,
         marginBottom: 8,
+      },
+      label: {
+        fontSize: 18,
         textAlign: 'center',
         fontWeight: 'bold',
+        marginRight: 4
+      },
+      labelLight: {
+        fontSize: 14,
+        color: '#666',
       },
       intakeText: {
-        fontSize: 48,
+        fontSize: 52,
         fontWeight: 'bold',
-        marginBottom: 16,
         textAlign: 'center',
+        paddingLeft: 20,
+        paddingRight: 20,
       },
       buttonsContainer: {
         alignItems: "center",
         marginBottom: 16,
       },
       button: {
-        width: "50%"
+        width: 40,
+        height: 40,
       },
       buttonText: {
         fontSize: 16,
