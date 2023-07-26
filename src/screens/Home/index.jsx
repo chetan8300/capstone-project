@@ -11,6 +11,7 @@ import SettingsScreen from '../Settings'
 import TrainingScreen from '../Training'
 import DiscoverScreen from '../Discover'
 import ReportsScreen from '../Reports'
+import AchievementsScreen from '../Achievements'
 import CalculateBMIScreen from '../CalculateBMI';
 
 // Components
@@ -38,16 +39,6 @@ const HomeScreen = () => {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="Discover"
-        component={DiscoverScreen}
-        options={{
-          tabBarLabel: 'Discover',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="compass" color={color} size={23} />
-          ),
-        }}
-      /> */}
       <Tab.Screen
         name="Reports"
         component={ReportsScreen}
@@ -112,6 +103,11 @@ const MainAppDrawerScreen = () => {
         component={WeightTrackerScreen}
         options={{ title: 'Weight Tracker' }}
         />
+      <Drawer.Screen
+        name="Achievements"
+        component={AchievementsScreen}
+        options={{ title: 'Achievements' }}
+      />
     </Drawer.Navigator>
   )
 }
