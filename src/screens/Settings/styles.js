@@ -29,9 +29,9 @@ const styles = StyleSheet.create({
     },
     settingRow: {
         flexDirection: 'row',
-        // justifyContent: 'left',
         alignItems: 'center',
-        marginBottom: 20,
+        marginBottom: 10,
+        marginTop: 10,
       },
       settingsTitle: {
         fontSize: 20,
@@ -100,6 +100,19 @@ const styles = StyleSheet.create({
       placeholderText: {
         fontSize: 16,
         color: '#999',
+      },
+      themeContainer: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        width: "100%",
+      },
+      themeSwitch: {
+        // position:"relative",
+        // right: -110
+        justifyContent: "flex-end",
+        marginRight: 25,
       },
 });
 
