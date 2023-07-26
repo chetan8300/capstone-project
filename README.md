@@ -6,9 +6,10 @@ Fitter is a fitness app which helps users track their physical activity, monitor
 
 
 # Members
+- Chetankumar Godhani
 - Jash Morekar
 - Milit Bhatt
-- Chetankumar Godhani
+
 
 # Feature List
 * Users can switch between Dark and Light Mode.
