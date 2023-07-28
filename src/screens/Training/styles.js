@@ -1,7 +1,8 @@
 import { StyleSheet } from "react-native";
 import { useTheme } from "react-native-paper";
 
-const styles = StyleSheet.create({
+
+const styles = (colors) => StyleSheet.create({
 	header: {
 		paddingTop: 20,
 		paddingBottom: 20,
@@ -15,10 +16,17 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	name: {
-		color: "#4e32bc",
 		fontWeight: "900",
 		paddingRight: 20,
-		textAlign: "center"
+		textAlign: "center",
+		// color: "#4e32bc",
+	},
+	nameLight:{
+		color: "#4e32bc",
+	},
+	nameDark:{
+		color: "#F0DBFF",
+		
 	},
 	searchBar: {
 		marginBottom: 20,
@@ -27,6 +35,19 @@ const styles = StyleSheet.create({
 		borderColor: "#fff",
 		borderWidth: 1,
 	},
+
+	trainingProgessOngoingBackground: {
+		position: "absolute",
+		height: 10,
+		borderRadius: 8,
+		backgroundColor: colors.primary,
+	},
+	// trainingProgessOngoingBackgroundLight : {
+	// 	backgroundColor: colors.primary,
+	// },
+	// trainingProgessOngoingBackgroundDark : {
+	// 	backgroundColor: "#F0DBFF",
+	// }
 });
 
 export default styles;

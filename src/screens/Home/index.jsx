@@ -18,16 +18,21 @@ import CalculateBMIScreen from '../CalculateBMI';
 import MainAppDrawer from '../../components/MainAppDrawer';
 import WaterTrackerScreen from '../WaterIntake';
 import WeightTrackerScreen from '../WeightTracker';
+import { useContext } from 'react';
+import DarkModeContext from '../../utils/DarkModeContext';
 const Tab = createMaterialBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 const HomeScreen = () => {
+  const { isDarkMode } = useContext(DarkModeContext);
+
   return (
     <Tab.Navigator
       initialRouteName="Training"
-      activeColor="#000080"
+      activeColor= {isDarkMode ? "#fff" : "#000"}
       inactiveColor="#555"
-      barStyle={{ backgroundColor: '#fff' }}
+      barStyle={{ backgroundColor: isDarkMode ? "#000" : '#fff' }}
+            // barStyle={{ backgroundColor: '#fff' }}
     >
       <Tab.Screen
         name="Training"
@@ -75,16 +80,18 @@ const HomeScreen = () => {
 }
 
 const MainAppDrawerScreen = () => {
+  const { isDarkMode } = useContext(DarkModeContext);
+
   return (
     <Drawer.Navigator
       drawerContent={props => <MainAppDrawer {...props} />}
       screenOptions={{
         headerShown: false,
-        drawerActiveBackgroundColor: '#4e32bc',
-        drawerActiveTintColor: 'white',
-        drawerInactiveTintColor: 'black',
+        drawerActiveBackgroundColor: isDarkMode ? '#fff' : '#4e32bc',
+        drawerActiveTintColor: isDarkMode ? "#000" : 'white',
+        drawerInactiveTintColor: isDarkMode ? "#fff" : 'black',
         drawerStyle: {
-          backgroundColor: '#fff'
+          backgroundColor: isDarkMode ? "#000" : '#fff'
         }
       }}
     >

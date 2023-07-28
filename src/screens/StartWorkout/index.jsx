@@ -42,7 +42,7 @@ const defaultData = {
   history: [],
 }
 
-const StartWorkout = ({ navigation, route }) => {
+const StartWorkout = ({ navigation, route, isDarkMode }) => {
   const { colors } = useTheme()
   const { workoutType, workout: workoutId, day: workoutDay, week: workoutWeek } = route.params
   const workout = workoutByType[workoutType].find((workout) => workout.id === workoutId)
@@ -62,6 +62,21 @@ const StartWorkout = ({ navigation, route }) => {
   // 15 seconds is the default rest time between workouts
   // if found from workoutPreference, then we will use that value
   const [restTimeBetweenWorkouts, setRestTimeBetweenWorkouts] = React.useState(15)
+
+
+  let mainViewStyle = [{}]
+	let textStyle = [{ color: "#4e32bc" }];
+	let textBodyStyle = [{ color: "#000" }];
+	let whiteColor = [{}]
+	let secondaryColor = [{}]
+
+	if (isDarkMode) {
+    mainViewStyle = [{backgroundColor: '#231F20'}]
+		textStyle = [{ color: "#F0DBFF" }];
+		textBodyStyle = [{ color: "#fff" }];
+		whiteColor = [{ color: "#fff" }];
+		secondaryColor = [{color: "#F0DBFF"}]
+	}
 
   React.useEffect(() => {
     (async () => {

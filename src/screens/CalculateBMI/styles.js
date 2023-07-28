@@ -2,6 +2,12 @@ import { StyleSheet } from "react-native";
 import { useTheme } from "react-native-paper";
 
 const styles = StyleSheet.create({
+    lightBackground: {
+        backgroundColor: "#fff"
+      },
+      darkBackground: {
+        backgroundColor: "#231F20"
+      },
     header: {
 		paddingTop: 20,
 		paddingBottom: 20,
@@ -54,9 +60,20 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         textAlign: 'center',
     },
+    textInputDark: {
+        backgroundColor: "#F0DBFF"
+    },
     button: {
         marginTop: 10,
         width: 160,
+        // padding: 10,
+        // borderRadius: 50,
+        // textAlign: 'center'
+    },
+    btnText: {
+        textAlign: 'center',
+        fontWeight: '600',
+        color: "#fff"
     },
     result:{
         fontSize: 18,
@@ -70,9 +87,15 @@ const styles = StyleSheet.create({
         color: '#4e32bc',
         fontWeight: 'bold',
     },
-    resultContainer:{
+    resultContainerLight:{
         backgroundColor: '#fff',
-        padding: 20
+        paddingHorizontal: 20,
+        paddingVertical: 40
+    },
+    resultContainerDark:{
+        backgroundColor: '#9EA2E5',
+        paddingHorizontal: 20,
+        paddingVertical: 40,
     },
     resultSurface:{
         marginTop: 16, 

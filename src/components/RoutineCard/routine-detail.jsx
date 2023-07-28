@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect, useLayoutEffect, useCallback, useContext } from "react";
 
 import { ScrollView, View } from 'react-native'
 import { Button, IconButton, Modal, Text, Chip, Portal } from 'react-native-paper'
+import DarkModeContext from "../../utils/DarkModeContext";
 
 const RoutineDetail = ({ visible, setVisible, routine: exercise }) => {
+
+  const { isDarkMode, setIsDarkMode } = useContext(DarkModeContext);
+  console.log("RoutineDetail isDarkMode", isDarkMode)
+  let mainViewStyle = [{}]
+	let secondaryTextColor = [{}];
+	let textBodyStyle = [{ color: "#000" }];
+	let whiteColor = [{}]
+	let secondaryColor = [{}]
+  let secondaryBackgroundColor = [{}]
+
+	if (isDarkMode) {
+    mainViewStyle = [{backgroundColor: '#231F20'}]
+		secondaryTextColor = [{ color: "#AAAAAA" }];
+		textBodyStyle = [{ color: "#fff" }];
+		whiteColor = [{ color: "#fff" }];
+		secondaryColor = [{color: "#F0DBFF"}]
+    secondaryBackgroundColor = [{backgroundColor: "#F0DBFF"}]
+	}
+  
   return (
     <Portal>
       <Modal
@@ -15,7 +35,7 @@ const RoutineDetail = ({ visible, setVisible, routine: exercise }) => {
         <View style={{ flex: 1 }}>
           {exercise && (
             <>
-              <View style={{ flex: 1 }}>
+              <View style={[{ flex: 1, backgroundColor: !isDarkMode ? "#fff" : "#000"}]}>
                 <View style={{ borderBottomWidth: 1, borderColor: "#d6d6d6", paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8 }}>
                   <Text variant="titleLarge" style={{ fontWeight: 'bold', textTransform: 'uppercase' }}>{exercise.id.split("_").join(" ")}</Text>
                   <Text variant="titleMedium" style={{ color: "#999" }}>{exercise.count === "reps" ? `x${exercise.beginner}` : `${exercise.beginner} Seconds`}</Text>

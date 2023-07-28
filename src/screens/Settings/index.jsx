@@ -1,6 +1,6 @@
 import { View, TouchableOpacity, Switch, Modal } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
 	Button,
@@ -11,16 +11,18 @@ import {
 	TextInput,
 	Divider,
 } from "react-native-paper";
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, useCallback, useContext } from "react";
 import * as Notifications from "expo-notifications";
 import { TimePickerModal } from "react-native-paper-dates";
 
 // Common Components
 import hoc from "../../components/HOC";
 import styles from "./styles";
+import DarkModeContext from "../../utils/DarkModeContext";
 
 const SettingsScreen = ({ hideOption = false }) => {
 	const navigation = useNavigation();
+	const { isDarkMode, setIsDarkMode } = useContext(DarkModeContext);
 
 	const [waterNotificationEnabled, setWaterNotificationEnabled] =
 		useState(false);
@@ -32,7 +34,18 @@ const SettingsScreen = ({ hideOption = false }) => {
 	const [isTimePickerVisible, setTimePickerVisible] = useState(false);
 	const [modalVisible, setModalVisible] = useState(false);
 
-  const [themeHistory, setThemeHistory] = React.useState(false);
+	let mainViewStyle = [styles.lightBackground];
+	let textStyle = [{ color: "#4e32bc" }];
+	let textBodyStyle = [{ color: "#000" }];
+
+	if (isDarkMode) {
+		mainViewStyle = [styles.darkBackground];
+		textStyle = [{ color: "#F0DBFF" }];
+		textBodyStyle = [{ color: "#fff" }];
+		textheadingStyle = [{ color: "#FBF6FF" }];
+		buttonStyle = [{ backgroundColor: "#4e32bc", borderColor: "#4e32bc" }];
+		cardBackground = [{backgroundColor: "#555"}]
+	}
 
 	useEffect(() => {
 		registerForPushNotificationsAsync();
@@ -223,62 +236,71 @@ const SettingsScreen = ({ hideOption = false }) => {
 		return "";
 	};
 
-  const saveThemeValue = async () => {
-    try {
-      const jsonValue = JSON.stringify(themeHistory);
-      await AsyncStorage.setItem('@themeValue:themeHistory', jsonValue);
-      console.log("Theme History:", jsonValue)
-    } catch (error) {
-      console.log('Error saving history: ', error);
-    }
-  };
+	const saveThemeValue = async (newValue) => {
+		try {
+			const jsonValue = JSON.stringify(newValue);
+			await AsyncStorage.setItem("@themeValue:isDarkMode", jsonValue);
+			// console.log("Theme History:", jsonValue);
+		} catch (error) {
+			console.log("Error saving history: ", error);
+		}
+	};
 
-  const getThemeValue = async () => {
-    try {
-      // await AsyncStorage.removeItem('@waterTracker:history');
-      const jsonValue = await AsyncStorage.getItem('@themeValue:themeHistory');
-      if (jsonValue !== null) {
-        const parsedValue = JSON.parse(jsonValue);
-        setThemeHistory(parsedValue);
-      }
-    } catch (error) {
-      console.log('Error loading history: ', error);
-    }
-  }
+	const getThemeValue = async () => {
+		try {
+			// await AsyncStorage.removeItem('@waterTracker:history');
+			const jsonValue = await AsyncStorage.getItem("@themeValue:isDarkMode");
+			console.log('settings theme', jsonValue)
+			if (jsonValue !== null) {
+				const parsedValue = JSON.parse(jsonValue);
+				setIsDarkMode(parsedValue);
+			}
+		} catch (error) {
+			console.log("Error loading history: ", error);
+		}
+	};
 
-  const onToggleSwitch = () => {
-    setThemeHistory(!themeHistory)
-    saveThemeValue()
-  };
+	const onToggleSwitch = () => {
+		saveThemeValue(!isDarkMode);
+		setIsDarkMode(!isDarkMode);
+	};
 
 	return (
-		<View style={{ flex: 1, paddingLeft: 16, paddingRight: 16, width: "100%" }}>
+		<View style={[{ flex: 1, paddingLeft: 16, paddingRight: 16, width: "100%" }, mainViewStyle]}>
 			<View style={styles.headerMain}>
 				<View>
 					{!hideOption && (
-						<TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-							<MaterialCommunityIcons name="menu" size={28} color="black" />
+						<TouchableOpacity onPress={() => navigation.toggleDrawer()} >
+							<MaterialCommunityIcons name="menu" size={28} style={[textStyle]}/>
 						</TouchableOpacity>
 					)}
 				</View>
 				<View style={styles.header}>
-					<Text variant="headlineLarge" style={styles.name}>
+					<Text variant="headlineLarge" style={[styles.name, textStyle, ]}>
 						Settings
 					</Text>
 				</View>
 			</View>
 			<TouchableOpacity style={styles.settingRow} onPress={handleOpenModal}>
-				<MaterialCommunityIcons name="bell-outline" size={24} color="#4e32bc" />
-				<Text style={styles.settingsTitle}>Notifications</Text>
+				<MaterialCommunityIcons name="bell-outline" size={24}  style={[textBodyStyle]} />
+				<Text style={[styles.settingsTitle, textBodyStyle]}>Notifications</Text>
 			</TouchableOpacity>
-      <Divider />
+			<Divider />
 			<View style={styles.settingRow}>
 				<View>
-        <MaterialCommunityIcons name="swap-horizontal" size={24} color="#4e32bc" />
-        </View>
+					<MaterialCommunityIcons
+						name="swap-horizontal"
+						size={24}
+						style={[textBodyStyle]}
+					/>
+				</View>
 				<View style={styles.themeContainer}>
-					<Text style={styles.settingsTitle}>Change Theme</Text>
-					<Switch style={styles.themeSwitch} value={themeHistory} onValueChange={onToggleSwitch}></Switch>
+					<Text style={[styles.settingsTitle, textBodyStyle]}>Change Theme</Text>
+					<Switch
+						style={styles.themeSwitch}
+						value={isDarkMode}
+						onValueChange={onToggleSwitch}
+					></Switch>
 				</View>
 			</View>
 			<Divider />
@@ -287,10 +309,10 @@ const SettingsScreen = ({ hideOption = false }) => {
 				visible={modalVisible}
 				onRequestClose={handleCloseModal}
 			>
-				<View style={styles.modalContainer}>
-					<View style={styles.modalContent}>
+				<View style={[styles.modalContainer]}>
+					<View style={[styles.modalContent, !isDarkMode ? styles.modalContentLight : styles.modalContentDark]}>
 						<View style={styles.modalHeader}>
-							<Text style={styles.modalTitle}>Notification Settings</Text>
+							<Text style={[styles.modalTitle, textBodyStyle]}>Notification Settings</Text>
 							<TouchableOpacity
 								style={styles.modalCloseButton}
 								onPress={handleCloseModal}
@@ -300,7 +322,7 @@ const SettingsScreen = ({ hideOption = false }) => {
 						</View>
 						<Divider />
 						<View style={styles.notificationSettingRow}>
-							<Text style={styles.settingLabel}>
+							<Text style={[styles.settingLabel, textBodyStyle]}>
 								Water Intake Notifications:
 							</Text>
 							<Switch
@@ -312,7 +334,7 @@ const SettingsScreen = ({ hideOption = false }) => {
 						</View>
 						<Divider />
 						<View style={styles.notificationSettingRow}>
-							<Text style={styles.settingLabel}>
+							<Text style={[styles.settingLabel, textBodyStyle]}>
 								Weekly Weight Notifications:
 							</Text>
 							<Switch
@@ -328,7 +350,7 @@ const SettingsScreen = ({ hideOption = false }) => {
 						</View>
 						<Divider />
 						<View style={styles.notificationSettingRow}>
-							<Text style={styles.settingLabel}>Workout Notifications:</Text>
+							<Text style={[styles.settingLabel, textBodyStyle]}>Workout Notifications:</Text>
 							<Switch
 								trackColor={{ false: "#f0f0f0", true: "#f0f0f0" }}
 								thumbColor={workoutNotificationEnabled ? "#4e32bc" : "#f0f0f0"}
@@ -340,13 +362,13 @@ const SettingsScreen = ({ hideOption = false }) => {
 						{workoutNotificationEnabled && (
 							<TouchableOpacity onPress={() => setTimePickerVisible(true)}>
 								<View style={styles.optionContainer}>
-									<Text style={styles.optionLabel}>Workout Time</Text>
+									<Text style={[styles.optionLabel, textBodyStyle]}>Workout Time</Text>
 									{workoutTime ? (
 										<Text style={styles.timeText}>
 											{formatTime(workoutTime)}
 										</Text>
 									) : (
-										<Text style={styles.placeholderText}>Select Time</Text>
+										<Text style={[styles.placeholderText, !isDarkMode ? styles.placeholderTextLight : styles.placeholderTextDark]}>Select Time</Text>
 									)}
 								</View>
 							</TouchableOpacity>

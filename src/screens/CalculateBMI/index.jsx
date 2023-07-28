@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import {
 	TouchableHighlight,
 	TouchableOpacity,
@@ -11,18 +9,44 @@ import {
 import { TextInput, Button, Surface, Text } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import React, {
+	useState,
+	useCallback,
+	useEffect,
+	useLayoutEffect,
+} from "react";
 
 // Common Components
 import hoc from "../../components/HOC";
 
 import styles from "./styles";
+import { useFocusEffect } from "@react-navigation/native";
 
-const CalculateBMIScreen = ({ navigation, route, hideOption = false }) => {
+const CalculateBMIScreen = ({
+	navigation,
+	route,
+	hideOption = false,
+	isDarkMode,
+}) => {
 	const [height, setHeight] = React.useState("");
 	const [weight, setWeight] = React.useState("");
 	const [bmi, setBMI] = React.useState(null);
 
+	console.log("isDarkMode", isDarkMode);
+
 	const [workoutPreference, setWorkoutPreference] = React.useState({});
+
+	let mainViewStyle = [styles.lightBackground];
+	let textStyle = [{ color: "#4e32bc" }];
+	let textBodyStyle = [{ color: "#000" }];
+	let buttonStyle = [{ backgroundColor: "#4e32bc" }];
+
+	if (isDarkMode) {
+		mainViewStyle = [styles.darkBackground];
+		textStyle = [{ color: "#F0DBFF" }];
+		textBodyStyle = [{ color: "#fff" }];
+		buttonStyle = [{ backgroundColor: "#4e32bc", borderColor: "#4e32bc" }];
+	}
 
 	React.useEffect(() => {
 		(async () => {
@@ -109,18 +133,25 @@ const CalculateBMIScreen = ({ navigation, route, hideOption = false }) => {
 	return (
 		<>
 			<View
-				style={{ flex: 1, width: "100%", paddingLeft: 16, paddingRight: 16 }}
+				style={[
+					{ flex: 1, paddingLeft: 16, paddingRight: 16, width: "100%" },
+					mainViewStyle,
+				]}
 			>
 				<View style={styles.headerMain}>
 					<View>
 						{!hideOption && (
 							<TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-								<MaterialCommunityIcons name="menu" size={28} color="black" />
+								<MaterialCommunityIcons
+									name="menu"
+									size={28}
+									style={[textStyle]}
+								/>
 							</TouchableOpacity>
 						)}
 					</View>
 					<View style={styles.header}>
-						<Text variant="headlineLarge" style={styles.name}>
+						<Text variant="headlineLarge" style={[styles.name, textStyle]}>
 							Calculate BMI
 						</Text>
 					</View>
@@ -129,12 +160,12 @@ const CalculateBMIScreen = ({ navigation, route, hideOption = false }) => {
 				<View style={styles.inputContainer}>
 					<Text
 						variant="bodyLarge"
-						style={{ fontWeight: "bold", marginBottom: 5 }}
+						style={[{ fontWeight: "bold", marginBottom: 5 }, textBodyStyle]}
 					>
 						Height
 					</Text>
 					<TextInput
-						style={styles.textInput}
+						style={[styles.textInput, !isDarkMode ? styles.textInput : styles.textInputDark]}
 						mode="outlined"
 						value={height}
 						onChangeText={(text) => {
@@ -146,19 +177,19 @@ const CalculateBMIScreen = ({ navigation, route, hideOption = false }) => {
 						selectionColor="#4e32bc40"
 						numeric
 						keyboardType="numeric"
-						placeholder="180 cm"
+						placeholder="180"
 						placeholderTextColor={"#a8a8a8"}
 						right={<TextInput.Affix textStyle={{ paddingTop: 5 }} text="cm" />}
 					/>
 
 					<Text
 						variant="bodyLarge"
-						style={{ fontWeight: "bold", marginBottom: 5 }}
+						style={[{ fontWeight: "bold", marginBottom: 5 }, textBodyStyle]}
 					>
 						Weight
 					</Text>
 					<TextInput
-						style={styles.textInput}
+						style={[styles.textInput, !isDarkMode ? styles.textInput : styles.textInputDark]}
 						value={weight}
 						onChangeText={(text) => {
 							if (isNaN(text) || text < 0) {
@@ -169,30 +200,30 @@ const CalculateBMIScreen = ({ navigation, route, hideOption = false }) => {
 						keyboardType="numeric"
 						selectionColor="#4e32bc40"
 						mode="outlined"
-						placeholder="70 kg"
+						placeholder="70"
 						placeholderTextColor={"#a8a8a8"}
 						right={<TextInput.Affix textStyle={{ paddingTop: 5 }} text="kg" />}
 					/>
-					<Button mode="contained" style={styles.button} onPress={calculateBMI}>
+					<Button mode="contained" style={[styles.button, buttonStyle]} onPress={calculateBMI}>
 						Calculate
 					</Button>
 					{bmi && (
 						<Surface style={styles.resultSurface}>
-							<View style={styles.resultContainer}>
-								<Text style={styles.result}>
+							<View style={!isDarkMode ? styles.resultContainerLight : styles.resultContainerDark}>
+								<Text style={[styles.result, textBodyStyle]}>
 									Your BMI is{" "}
 									<Text
-										style={{
+										style={[{
 											color: "#4e32bc",
 											fontWeight: "bold",
 											fontSize: 18,
-										}}
+										}, ]}
 									>
 										{getBMIResult()}
 									</Text>
 								</Text>
 								<Text style={styles.resultBmi}>{bmi}</Text>
-								<Text style={styles.bmiInfo}>
+								<Text style={[styles.bmiInfo, textBodyStyle]}>
 									Body Mass Index (BMI) is a person's weight in kilograms
 									divided by the square of height in meters.
 								</Text>

@@ -41,13 +41,27 @@ const defaultData = {
   history: [],
 }
 
-const WorkoutWeeksList = ({ route, navigation }) => {
+const WorkoutWeeksList = ({ route, navigation, isDarkMode }) => {
   const { workoutType, workout: workoutId } = route.params
   const { colors } = useTheme()
   const [progress, setProgress] = React.useState(defaultData);
   const [workoutPreference, setWorkoutPreference] = React.useState({});
 
   const workout = workoutByType[workoutType].find((workout) => workout.id === workoutId)
+
+  let mainViewStyle = [{}]
+	let textStyle = [{ color: "#4e32bc" }];
+	let textBodyStyle = [{ color: "#000" }];
+	let whiteColor = [{}]
+	let secondaryColor = [{}]
+
+	if (isDarkMode) {
+    mainViewStyle = [{backgroundColor: '#231F20'}]
+		textStyle = [{ color: "#F0DBFF" }];
+		textBodyStyle = [{ color: "#fff" }];
+		whiteColor = [{ color: "#fff" }];
+		secondaryColor = [{color: "#F0DBFF"}]
+	}
 
   useFocusEffect(React.useCallback(() => {
     const loadHistory = async () => {
@@ -116,12 +130,12 @@ const WorkoutWeeksList = ({ route, navigation }) => {
   const gender = workoutPreference?.gender || "male"
 
   return (
-    <View style={{ flex: 1, width: '100%', backgroundColor: '#f2f2f2' }}>
+    <View style={[{ flex: 1, width: '100%', backgroundColor: '#f2f2f2' }, mainViewStyle]}>
       <StatusBar
         backgroundColor="#f2f2f2"
         barStyle="dark-content"
       />
-      <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%' }}>
+      <View style={[{ flexDirection: 'row', alignItems: 'center', width: '100%' }]}>
         <IconButton
           icon="keyboard-backspace"
           size={30}
@@ -129,15 +143,15 @@ const WorkoutWeeksList = ({ route, navigation }) => {
           onPress={() => navigation.goBack()}
         />
         <View style={{ flex: 1 }}>
-          <Text variant="titleLarge" style={{ textTransform: 'uppercase' }}>
+          <Text variant="titleLarge" style={[{ textTransform: 'uppercase' }, secondaryColor]}>
             {workout.subtitle}
           </Text>
         </View>
       </View>
-      <Card style={{ position: "relative", marginLeft: 8, marginRight: 8 }}>
+      <Card style={[{ position: "relative", marginLeft: 8, marginRight: 8 }, mainViewStyle]}>
         <Card.Cover
           source={gender === "male" ? workout.male_icon : workout.female_icon}
-          style={{ borderRadius: 0 }}
+          style={[{ borderRadius: 0, borderColor:"#fff" }, mainViewStyle]}
         />
         <Card.Title
           title={workout.name}
@@ -190,23 +204,23 @@ const WorkoutWeeksList = ({ route, navigation }) => {
               <View key={`week-${index}`} style={{ flexDirection: 'row', gap: 6, marginLeft: 12, marginRight: 12 }}>
                 <View style={{ width: 35, alignItems: 'center' }}>
                   {(isWeekCompleted || isWeekInProgress) ? (
-                    <Octicons name="check-circle-fill" size={30} color={colors.primary} />
+                    <Octicons name="check-circle-fill" size={30} style={[{ color: colors.primary }, secondaryColor]} />
                   ) : (
-                    <MaterialCommunityIcons name="lightning-bolt-circle" size={30} color={"#999"} />
+                    <MaterialCommunityIcons name="lightning-bolt-circle" size={30} style={[{ color: colors.primary }, secondaryColor]} />
                   )}
                 </View>
                 <View style={{ flex: 1 }}>
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: 30, alignItems: 'center' }}>
-                    <Text variant="bodyLarge" style={{ color: (isWeekCompleted || isWeekInProgress) ? colors.primary : "#999", fontWeight: "bold" }}>Week {week.week}</Text>
+                    <Text variant="bodyLarge" style={[{ color: (isWeekCompleted || isWeekInProgress) ? colors.primary : "#999", fontWeight: "bold" }, secondaryColor]}>Week {week.week}</Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                      <Text variant="bodyLarge" style={{ color: (isWeekCompleted || isWeekInProgress) ? colors.primary : "#999", fontWeight: "bold" }}>
+                      <Text variant="bodyLarge" style={[{ color: (isWeekCompleted || isWeekInProgress) ? colors.primary : "#999", fontWeight: "bold" }, secondaryColor]}>
                         {week.daysCompleted}
                       </Text>
                       <Text variant="bodySmall" style={{ color: "#999", fontWeight: "bold" }}> / 7</Text>
                     </View>
                   </View>
 
-                  <Surface elevation={1} style={{ marginTop: 6, padding: 16, borderRadius: 8, backgroundColor: '#fff', gap: 10 }}>
+                  <Surface elevation={1} style={[{ marginTop: 6, padding: 16, borderRadius: 8, backgroundColor: !isDarkMode ? '#fff' : "#000", gap: 10 }]}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                       {[...Array(4)].map((_, index) => {
                         const currentDayOfWeek = index + 1
@@ -223,20 +237,20 @@ const WorkoutWeeksList = ({ route, navigation }) => {
                                 :
                                 (isCurrentDay && (isWeekCompleted || isWeekInProgress)) ?
                                   <View style={{ borderRadius: 50, borderWidth: 1, width: 40, height: 40, alignItems: 'center', justifyContent: 'center', borderColor: colors.primary, borderStyle: 'dashed' }}>
-                                    <Text variant="titleLarge" style={{ color: colors.primary }}>{currentDayOfWeek}</Text>
+                                    <Text variant="titleLarge" style={[{ color: colors.primary }, whiteColor]}>{currentDayOfWeek}</Text>
                                   </View>
                                   :
                                   <View style={{ borderRadius: 50, borderWidth: 1, width: 40, height: 40, alignItems: 'center', justifyContent: 'center', borderColor: "#999", borderStyle: 'solid' }}>
-                                    <Text variant="titleLarge" style={{ color: "#999" }}>{currentDayOfWeek}</Text>
+                                    <Text variant="titleLarge" style={[{ color: "#999" }, whiteColor]}>{currentDayOfWeek}</Text>
                                   </View>
                               }
                             </TouchableOpacity>
 
                             {index !== 3 && (
                               isCompletedDay ?
-                                <MaterialCommunityIcons name="chevron-right" size={25} color={colors.primary} />
+                                <MaterialCommunityIcons name="chevron-right" size={25} style={[{ color: colors.primary }, whiteColor]} />
                                 :
-                                <MaterialCommunityIcons name="chevron-right" size={25} color={"#999"} />
+                                <MaterialCommunityIcons name="chevron-right" size={25} style={[{ color: "#999" }, whiteColor]} />
                             )}
                           </React.Fragment>
                         )
@@ -258,19 +272,19 @@ const WorkoutWeeksList = ({ route, navigation }) => {
                                 :
                                 (isCurrentDay && (isWeekCompleted || isWeekInProgress)) ?
                                   <View style={{ borderRadius: 50, borderWidth: 1, width: 40, height: 40, alignItems: 'center', justifyContent: 'center', borderColor: colors.primary, borderStyle: 'dashed' }}>
-                                    <Text variant="titleLarge" style={{ color: colors.primary }}>{currentDayOfWeek}</Text>
+                                    <Text variant="titleLarge" style={[{ color: colors.primary }, whiteColor]}>{currentDayOfWeek}</Text>
                                   </View>
                                   :
                                   <View style={{ borderRadius: 50, borderWidth: 1, width: 40, height: 40, alignItems: 'center', justifyContent: 'center', borderColor: "#999", borderStyle: 'solid' }}>
-                                    <Text variant="titleLarge" style={{ color: "#999" }}>{currentDayOfWeek}</Text>
+                                    <Text variant="titleLarge" style={[{ color: "#999" }, whiteColor]}>{currentDayOfWeek}</Text>
                                   </View>
                               }
                             </TouchableOpacity>
                             {index !== 3 && (
                               isCompletedDay > 0 ?
-                                <MaterialCommunityIcons name="chevron-right" size={25} color={colors.primary} />
+                                <MaterialCommunityIcons name="chevron-right" size={25} style={[{ color: colors.primary }, whiteColor]} />
                                 :
-                                <MaterialCommunityIcons name="chevron-right" size={25} color={"#999"} />
+                                <MaterialCommunityIcons name="chevron-right" size={25} style={[{ color: "#999" }, whiteColor]} />
                             )}
                             {index === 2 && (
                               <MaterialCommunityIcons name="trophy" size={40} color={week.daysCompleted === 7 ? "#FFBF00" : "#999"} />

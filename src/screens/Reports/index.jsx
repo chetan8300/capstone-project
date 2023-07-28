@@ -24,11 +24,27 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 // Utils
 import styles from "./style";
 
-const ReportsScreen = ({ navigation, route, hideOption = false }) => {
+const ReportsScreen = ({ navigation, route, hideOption = false, isDarkMode }) => {
 	const { colors } = useTheme();
 	const [waterHistory, setWaterHistory] = useState([]);
 	const [workoutHistory, setWorkoutHistory] = React.useState({});
 	const [workoutPreference, setWorkoutPreference] = React.useState({});
+
+	let mainViewStyle = [styles.lightBackground];
+	let textStyle = [{ color: "#4e32bc" }];
+	let textBodyStyle = [{ color: "#000" }];
+	let textheadingStyle = [{ color: "#000" }];
+	let buttonStyle = [{ backgroundColor: "#4e32bc" }];
+	let cardBackground = [{}]
+
+	if (isDarkMode) {
+		mainViewStyle = [styles.darkBackground];
+		textStyle = [{ color: "#F0DBFF" }];
+		textBodyStyle = [{ color: "#fff" }];
+		textheadingStyle = [{ color: "#FBF6FF" }];
+		buttonStyle = [{ backgroundColor: "#4e32bc", borderColor: "#4e32bc" }];
+		cardBackground = [{backgroundColor: "#555"}]
+	}
 
 	const dateArray = new Array(7).fill(null);
 
@@ -147,69 +163,24 @@ const ReportsScreen = ({ navigation, route, hideOption = false }) => {
 			}
 		});
 
-		// return (
-		// 	<View style={styles.reportContainer}>
-		// 		<Text style={styles.date}>{moment(date).format("YYYY-MM-DD")}</Text>
-		// 		<Text>
-		// 			{waterData && waterData.date ? (
-		// 				<Text>Intake: {waterData.intake} Glasses</Text>
-		// 			) : (
-		// 				<Text>No record for water consumption.</Text>
-		// 			)}
-		// 		</Text>
-		// 		{/* <Text>Workout:</Text> */}
-		// 		<View>
-		// 			{Object.keys(workoutHistoryData).map((key) => {
-		// 				if (workoutHistoryData[key] === 0 || key.includes("7x4")) {
-		// 					return null;
-		// 				}
-		// 				{
-		// 					/* if (key.includes("7x4")) {
-		// 					return (
-		// 						<View key={key}>
-		// 							<Text>{key}:</Text>
-		// 							<View>
-		// 								{workoutHistoryData[key].map((weekData) => (
-		// 									<Text key={weekData.week}>
-		// 										Week {weekData.week}: {weekData.daysCompleted} Days Completed
-		// 									</Text>
-		// 								))}
-		// 							</View>
-		// 						</View>
-		// 					);
-		// 				} */
-		// 				}
-
-		// 				return (
-		// 					<View>
-		// 						<Text key={key}>
-		// 							{key}: {workoutHistoryData[key]} Days Completed
-		// 						</Text>
-		// 					</View>
-		// 				);
-		// 			})}
-		// 		</View>
-		// 	</View>
-		// );
-
 		return (
-			<Card style={styles.card}>
+			<Card style={[styles.card, cardBackground]}>
 				<Card.Content>
 					{/* <Text style={styles.cardText} variant="titleLarge">{moment(date).format("YYYY-MM-DD")}</Text> */}
-					<Text style={styles.cardTitle} variant="titleLarge">
+					<Text style={[styles.cardTitle, textStyle]} variant="titleLarge">
 						{moment(date).format("dddd, MMMM Do, YYYY")}
 					</Text>
 
 					<Text style={styles.cardText}>
 						{waterData && waterData.date ? (
 							<>
-								<Text style={styles.contentHeading}>Water Intake:{"\n"}</Text>
-								<Text style={styles.contentStatement}>
+								<Text style={[styles.contentHeading, textheadingStyle]}>Water Intake:{"\n"}</Text>
+								<Text style={[styles.contentStatement, textBodyStyle]}>
 									{waterData.intake} Glasses
 								</Text>
 							</>
 						) : (
-							<Text style={styles.contentStatement}>
+							<Text style={[styles.contentStatement, textBodyStyle]}>
 								No record for water consumption.
 							</Text>
 						)}
@@ -226,10 +197,10 @@ const ReportsScreen = ({ navigation, route, hideOption = false }) => {
 
 								return (
 									<>
-										<Text style={[styles.contentHeading]} key={key}>
+										<Text style={[styles.contentHeading, textheadingStyle]} key={key}>
 											{keyToNameMap[key]}:
 										</Text>
-										<Text style={[styles.cardText, styles.contentStatement]}>
+										<Text style={[styles.cardText, styles.contentStatement, textBodyStyle]}>
 											{workoutHistoryData[key]}x Completed
 										</Text>
 									</>
@@ -238,7 +209,7 @@ const ReportsScreen = ({ navigation, route, hideOption = false }) => {
 						</View>
 					) : (
 						<View style={styles.contentStatementContainer}>
-							<Text style={styles.contentStatement}>
+							<Text style={[styles.contentStatement, textBodyStyle]}>
 								No workouts to display.
 							</Text>
 						</View>
@@ -254,18 +225,18 @@ const ReportsScreen = ({ navigation, route, hideOption = false }) => {
 				<View>
 					{!hideOption && (
 						<TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-							<MaterialCommunityIcons name="menu" size={28} color="black" />
+							<MaterialCommunityIcons name="menu" size={28} style={[textStyle]} />
 						</TouchableOpacity>
 					)}
 				</View>
 
 				<View style={styles.header}>
-					<Text variant="headlineLarge" style={styles.name}>
+					<Text variant="headlineLarge" style={[styles.name, textStyle]}>
 						Reports
 					</Text>
 				</View>
 			</View>
-			<Text variant="titleLarge" style={styles.flatListHeader}>
+			<Text variant="titleLarge" style={[styles.flatListHeader, textStyle]}>
 				Weekly Report
 			</Text>
 			<HorizontalLine color={colors.secondary} height={2} />

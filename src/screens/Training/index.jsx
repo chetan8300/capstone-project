@@ -17,19 +17,35 @@ import hoc from "../../components/HOC";
 
 // Utils
 import { workoutByType } from "../../utils/workouts";
-import styles from "./styles";
+import makeStyles from "./styles";
 
 // Data
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const TrainingScreen = ({ navigation, route, hideOption = false }) => {
+const TrainingScreen = ({ navigation, route, hideOption = false, isDarkMode }) => {
+	console.log('TrainingScreen isDarkMode', isDarkMode)
 	const { colors } = useTheme();
+	const styles = makeStyles(colors)
 	const [workoutHistory, setWorkoutHistory] = React.useState(null);
 	const [workoutPreference, setWorkoutPreference] = React.useState({});
 
 	//Search bar accessories
 	const [searchQuery, setSearchQuery] = useState("");
 	const onChangeSearch = (query) => setSearchQuery(query);
+
+	let mainViewStyle = [styles.lightBackground];
+	let textStyle = [{ color: "#4e32bc" }];
+	let textBodyStyle = [{ color: "#000" }];
+	let buttonStyle = [{ backgroundColor: "#4e32bc" }];
+	let cardBackground = [{}]
+
+	if (isDarkMode) {
+		mainViewStyle = [styles.darkBackground];
+		textStyle = [{ color: "#F0DBFF" }];
+		textBodyStyle = [{ color: "#fff" }];
+		buttonStyle = [{ backgroundColor: "#4e32bc", borderColor: "#4e32bc" }];
+		cardBackground = [{backgroundColor: "#555"}]
+	}
 
 	useFocusEffect(
 		React.useCallback(() => {
@@ -90,12 +106,12 @@ const TrainingScreen = ({ navigation, route, hideOption = false }) => {
 				<View>
 					{!hideOption && (
 						<TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-							<MaterialCommunityIcons name="menu" size={28} color="black" />
+							<MaterialCommunityIcons name="menu" size={28} style={[textStyle]} />
 						</TouchableOpacity>
 					)}
 				</View>
 				<View style={styles.header}>
-					<Text variant="headlineLarge" style={styles.name}>
+					<Text variant="headlineLarge" style={[styles.name, !isDarkMode ? styles.nameLight : styles.nameDark]}>
 						Fitter
 					</Text>
 				</View>
@@ -118,11 +134,11 @@ const TrainingScreen = ({ navigation, route, hideOption = false }) => {
 						<View key={key} style={{ marginBottom: 16 }}>
 							<Text
 								variant="headlineMedium"
-								style={{ paddingBottom: 16, textTransform: "capitalize" }}
+								style={[{ paddingBottom: 16, textTransform: "capitalize" }, textBodyStyle]}
 							>
 								{key}
 							</Text>
-							<View style={{ gap: 16 }}>
+							<View style={[{ gap: 16 }]}>
 								{(searchQuery ? filteredWorkouts : workouts).map((workout) => {
 									const progress =
 										workoutHistory?.[workout.id]?.current || null;
@@ -211,15 +227,13 @@ const TrainingScreen = ({ navigation, route, hideOption = false }) => {
 																}}
 															>
 																<View
-																	style={{
-																		position: "absolute",
-																		width: `${
-																			(progress.daysCompleted / 28) * 100
-																		}%`,
-																		height: 10,
-																		backgroundColor: colors.primary,
-																		borderRadius: 8,
-																	}}
+																	style={[
+																		styles.trainingProgessOngoingBackground,
+																		// !isDarkMode ? styles.trainingProgessOngoingBackgroundLight : styles.trainingProgessOngoingBackgroundDark,
+																		{
+																			width: `${(progress.daysCompleted / 28) * 100}%`
+																		}
+																	]}
 																/>
 															</View>
 														</View>
