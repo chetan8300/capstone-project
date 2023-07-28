@@ -143,7 +143,7 @@ const DayExercisesList = ({ route, navigation, isDarkMode }) => {
       <Surface style={{ borderRadius: 30, marginBottom: 12, marginLeft: 12, marginRight: 12 }}>
         <Button
           mode="contained"
-          style={[{ borderRadius: 30 }]} labelStyle={{ fontSize: 24, lineHeight: 30, textTransform: 'uppercase' }}
+          style={[{ borderRadius: 30 }, secondaryColor]} labelStyle={{ fontSize: 24, lineHeight: 30, textTransform: 'uppercase' }}
           onPress={() => navigation.navigate('StartWorkout', { workoutType, workout: workoutId, day: workoutDay, week: workoutWeek })}
         >
           Start

@@ -287,7 +287,7 @@ const WorkoutWeeksList = ({ route, navigation, isDarkMode }) => {
                                 <MaterialCommunityIcons name="chevron-right" size={25} style={[{ color: "#999" }, whiteColor]} />
                             )}
                             {index === 2 && (
-                              <MaterialCommunityIcons name="trophy" size={40} color={week.daysCompleted === 7 ? "#FFBF00" : "#999"} />
+                              <MaterialCommunityIcons name="trophy" size={40} color={!week.daysCompleted === 7 ? "#4e32bc" : "#FFBF00"} />
                             )}
                           </React.Fragment>
                         )

@@ -26,13 +26,24 @@ const Drawer = createDrawerNavigator();
 const HomeScreen = () => {
   const { isDarkMode } = useContext(DarkModeContext);
 
+  let textStyle = [{ color: "#4e32bc" }];
+	let textBodyStyle = [{ color: "#4e32bc" }];
+	let whiteColor = [{color: "#4e32bc"}]
+	let cardBackground = [{}]
+
+	if (isDarkMode) {
+		textStyle = [{ color: "#F0DBFF" }];
+		textBodyStyle = [{ color: "#fff" }];
+		blackColor = [{ color: "#000" }];
+		cardBackground = [{backgroundColor: "#9EA2E5"}]
+	}
+
   return (
     <Tab.Navigator
       initialRouteName="Training"
-      activeColor= {isDarkMode ? "#fff" : "#000"}
-      inactiveColor="#555"
-      barStyle={{ backgroundColor: isDarkMode ? "#000" : '#fff' }}
-            // barStyle={{ backgroundColor: '#fff' }}
+      activeColor= {!isDarkMode ? "#000" : "#fff"}
+      inactiveColor={!isDarkMode ? "#555" : "#fff"}
+      barStyle={{ backgroundColor: !isDarkMode ? "#fff" : '#000' }}
     >
       <Tab.Screen
         name="Training"
@@ -40,8 +51,10 @@ const HomeScreen = () => {
         options={{
           tabBarLabel: 'Training',
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="timer" color={color} size={23} />
+            <MaterialIcons name="timer" style={[{ color: color}]} size={23} />
           ),
+          // activeTintColor: "red",
+          // inactiveTintColor: {},
         }}
       />
       <Tab.Screen

@@ -8,7 +8,7 @@ import { color } from "react-native-reanimated";
 const RoutineDetail = ({ visible, setVisible, routineIndex, exercises }) => {
 
   const { isDarkMode, setIsDarkMode } = useContext(DarkModeContext);
-  // console.log("RoutineDetail isDarkMode", isDarkMode)
+  console.log("RoutineDetail isDarkMode", isDarkMode)
   let mainViewStyle = [{}]
 	let secondaryTextColor = [{}];
 	let textBodyStyle = [{ color: "#000" }];
@@ -37,7 +37,7 @@ const RoutineDetail = ({ visible, setVisible, routineIndex, exercises }) => {
         <View style={{ flex: 1 }}>
           {exercise && (
             <>
-              <View style={{ flex: 1 }}>
+              <View style={[{ flex: 1, backgroundColor: !isDarkMode ? "#fff" : "#000"}]}>
                 <View style={{ borderBottomWidth: 1, borderColor: "#d6d6d6", paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8 }}>
                   <Text variant="titleLarge" style={[{ fontWeight: 'bold', textTransform: 'uppercase' }, textBodyStyle]}>{exercise.id.split("_").join(" ")}</Text>
                   <Text variant="titleMedium" style={{ color: "#999" }}>{exercise.count === "reps" ? `x${exercise.beginner}` : `${exercise.beginner} Seconds`}</Text>
