@@ -18,6 +18,8 @@ import CalculateBMIScreen from '../CalculateBMI';
 import MainAppDrawer from '../../components/MainAppDrawer';
 import WaterTrackerScreen from '../WaterIntake';
 import WeightTrackerScreen from '../WeightTracker';
+import HealthWellnessBlogsScreen from '../HealthAndWellnessBlogs';
+
 const Tab = createMaterialBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -107,6 +109,11 @@ const MainAppDrawerScreen = () => {
         name="Achievements"
         component={AchievementsScreen}
         options={{ title: 'Achievements' }}
+      />
+         <Drawer.Screen
+        name="Health and Wellness Blogs" 
+        component={HealthWellnessBlogsScreen}
+        options={{ title: 'Health and Wellness Blogs' }}
       />
     </Drawer.Navigator>
   )
