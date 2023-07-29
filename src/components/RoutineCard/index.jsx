@@ -6,16 +6,34 @@ import { Text, Button, Surface, Chip, useTheme } from 'react-native-paper'
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import RoutineDetail from './routine-detail'
 
-const RoutineCard = ({ routine, timerPaused, onComplete }) => {
+const RoutineCard = ({ routine, timerPaused, onComplete, isDarkMode }) => {
   const { colors } = useTheme()
   const [showRoutine, setShowRoutine] = React.useState(null)
+
+  let mainViewStyle = [{}]
+  let textStyle = [{ color: "#4e32bc" }];
+	let secondaryTextColor = [{}];
+	let textBodyStyle = [{ color: "#000" }];
+	let whiteColor = [{}]
+	let secondaryColor = [{}]
+  let blackColor = [{}]
+
+	if (isDarkMode) {
+    textStyle = [{ color: "#F0DBFF" }];
+    mainViewStyle = [{backgroundColor: '#231F20'}]
+		secondaryTextColor = [{ color: "#AAAAAA" }];
+		textBodyStyle = [{ color: "#fff" }];
+		whiteColor = [{ color: "#fff" }];
+		secondaryColor = [{color: "#F0DBFF"}]
+    blackColor = [{color: "#000"}]
+	}
 
   if (!routine) return null
 
   return (
     <View style={{ flex: 1, marginTop: 20 }}>
       <View style={{ flex: 1, alignItems: 'center' }}>
-        <Text variant="displayMedium" style={{ textTransform: 'capitalize' }}>{routine.id.split("_").join(" ")}</Text>
+        <Text variant="displayMedium" style={[{ textTransform: 'capitalize', color: "#000"}, whiteColor]}>{routine.id.split("_").join(" ")}</Text>
 
         {routine.count === "seconds" ? (
           <View style={{ marginTop: 25 }}>
@@ -28,9 +46,9 @@ const RoutineCard = ({ routine, timerPaused, onComplete }) => {
               size={200}
               onComplete={onComplete}
             >
-              {({ remainingTime, color }) => (
-                <Text style={{ color, fontSize: 80 }}>{remainingTime}</Text>
-              )}
+                  {({ remainingTime, color }) => (
+                    <Text style={[{ color:"#4e32bc", fontSize: 80 }, whiteColor]}>{remainingTime}</Text>
+                  )}
             </CountdownCircleTimer>
           </View>
         ) : (
@@ -40,7 +58,7 @@ const RoutineCard = ({ routine, timerPaused, onComplete }) => {
 
       <View style={{ marginBottom: 20 }}>
         <View>
-          <Text variant="headlineSmall" style={{ fontWeight: 'bold', marginBottom: 10 }}>Focus Area:</Text>
+          <Text variant="headlineSmall" style={[{ fontWeight: 'bold', marginBottom: 10, color: "#000" }]}>Focus Area:</Text>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
             {routine.focusArea.map((area, index) => {
               return (
@@ -59,7 +77,7 @@ const RoutineCard = ({ routine, timerPaused, onComplete }) => {
           <Button
             icon="eye"
             mode="contained-tonal"
-            style={{ borderColor: colors.primary, borderWidth: 2 }}
+            // style={{ borderColor: colors.primary, borderWidth: 2 }}
             onPress={() => setShowRoutine(true)}
           >
             View Details

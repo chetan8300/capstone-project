@@ -2,6 +2,12 @@ import { StyleSheet } from "react-native";
 import { useTheme } from "react-native-paper";
 
 const styles = StyleSheet.create({
+  lightBackground: {
+    backgroundColor: "#fff"
+  },
+  darkBackground: {
+    backgroundColor: "#231F20"
+  },
     container: {
         flex: 1,
         backgroundColor: '#fff',
@@ -22,7 +28,7 @@ const styles = StyleSheet.create({
       alignItems: "center",
     },
     name: {
-      color: "#4e32bc",
+      // color: "#4e32bc",
       fontWeight: "900",
       paddingRight: 20,
       textAlign: "center"
@@ -43,16 +49,21 @@ const styles = StyleSheet.create({
       },
       modalContainer: {
         flex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
       },
       modalContent: {
-        backgroundColor: '#fff',
         padding: 20,
         borderRadius: 10,
         width: '80%',
         height: '60%', 
+      },
+      modalContentLight: {
+        backgroundColor: '#fff',
+      },
+      modalContentDark: {
+        backgroundColor: '#9EA2E5',
       },
       modalHeader: {
         flexDirection: 'row',
@@ -99,7 +110,12 @@ const styles = StyleSheet.create({
       },
       placeholderText: {
         fontSize: 16,
+      },
+      placeholderTextLight: {
         color: '#999',
+      },
+      placeholderTextDark: {
+        color: '#0066cc',
       },
       themeContainer: {
         display: "flex",

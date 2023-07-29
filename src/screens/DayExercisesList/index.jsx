@@ -12,7 +12,7 @@ import hoc from "../../components/HOC";
 import RoutineDetail from './routine-detail'
 import { workoutByType } from '../../utils/workouts';
 
-const DayExercisesList = ({ route, navigation }) => {
+const DayExercisesList = ({ route, navigation, isDarkMode }) => {
   const { workoutType, workout: workoutId, day: workoutDay, week: workoutWeek } = route.params
   const { colors } = useTheme()
   const [showRoutine, setShowRoutine] = React.useState(null);
@@ -20,6 +20,21 @@ const DayExercisesList = ({ route, navigation }) => {
 
   const workout = workoutByType[workoutType].find((workout) => workout.id === workoutId)
   const routineForTheDay = workout.exercise
+
+
+  let mainViewStyle = [{}]
+	let secondaryTextColor = [{}];
+	let textBodyStyle = [{ color: "#000" }];
+	let whiteColor = [{}]
+	let secondaryColor = [{}]
+
+	if (isDarkMode) {
+    mainViewStyle = [{backgroundColor: '#231F20'}]
+		secondaryTextColor = [{ color: "#AAAAAA" }];
+		textBodyStyle = [{ color: "#fff" }];
+		whiteColor = [{ color: "#fff" }];
+		secondaryColor = [{color: "#F0DBFF"}]
+	}
 
   React.useEffect(() => {
     (async () => {
@@ -61,7 +76,7 @@ const DayExercisesList = ({ route, navigation }) => {
   }
 
   return (
-    <View style={{ flex: 1, width: '100%', backgroundColor: '#f2f2f2' }}>
+    <View style={[{ flex: 1, width: '100%', backgroundColor: '#f2f2f2' }, mainViewStyle]}>
       <StatusBar
         backgroundColor="#f2f2f2"
         barStyle="dark-content"
@@ -74,7 +89,7 @@ const DayExercisesList = ({ route, navigation }) => {
           onPress={() => navigation.goBack()}
         />
         <View style={{ flex: 1 }}>
-          <Text variant="titleLarge" style={{ textTransform: 'uppercase' }}>
+          <Text variant="titleLarge" style={[{ textTransform: 'uppercase' }, secondaryColor]}>
             {title}
           </Text>
         </View>
@@ -83,7 +98,7 @@ const DayExercisesList = ({ route, navigation }) => {
         <Card.Cover
           blurRadius={10}
           source={gender === "male" ? workout.male_icon : workout.female_icon}
-          style={{ borderRadius: 0 }}
+          style={[{ borderRadius: 0 }, mainViewStyle]}
         />
         <Card.Title
           title={title}
@@ -93,9 +108,9 @@ const DayExercisesList = ({ route, navigation }) => {
           style={{ position: "absolute", bottom: 10 }}
         />
       </Card>
-      <Surface elevation={0} style={{ marginLeft: 8, marginRight: 8, marginTop: 8, borderRadius: 12, paddingVertical: 10, paddingHorizontal: 16, backgroundColor: '#fff', justifyContent: 'space-between', flexDirection: 'row' }}>
-        <Text variant="bodyLarge">Routine for the day</Text>
-        <Text variant="bodyLarge">{routineForTheDay.length} workouts</Text>
+      <Surface elevation={0} style={[{ marginLeft: 8, marginRight: 8, marginTop: 8, borderRadius: 12, paddingVertical: 10, paddingHorizontal: 16, backgroundColor: !isDarkMode ? '#fff' : "#3A65CB", justifyContent: 'space-between', flexDirection: 'row' }]}>
+        <Text variant="bodyLarge" style={[{color: "#000"}, textBodyStyle]}>Routine for the day</Text>
+        <Text variant="bodyLarge" style={[{color: "#000"}, secondaryTextColor]}>{routineForTheDay.length} workouts</Text>
       </Surface>
       <FlatList
         data={routineForTheDay}
@@ -113,12 +128,12 @@ const DayExercisesList = ({ route, navigation }) => {
               style={[{ borderRadius: 12 }, extraStyle]}
               onPress={() => handlePressRouting(index)}
             >
-              <Surface elevation={0} style={[{ borderRadius: 12, paddingVertical: 10, paddingHorizontal: 16, backgroundColor: '#fff' }]}>
-                <Text variant="titleLarge" style={{ fontWeight: 'bold', textTransform: 'uppercase' }}>{item.id.split("_").join(" ")}</Text>
+              <Surface elevation={0} style={[{ borderRadius: 12, paddingVertical: 10, paddingHorizontal: 16, backgroundColor: !isDarkMode ? '#fff' : "#3A65CB" }]}>
+                <Text variant="titleLarge" style={[{ fontWeight: 'bold', textTransform: 'uppercase' }, textBodyStyle]}>{item.id.split("_").join(" ")}</Text>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
-                  <Text variant="bodyMedium" style={{ fontWeight: 'bold', color: "#999" }}>{item.count === "reps" ? "Reps" : "Time"}: </Text>
-                  <Text variant="bodyMedium" style={{ color: "#999" }}>{item.count === "reps" ? `x${item[difficulty]}` : `${item[difficulty]} Seconds`}</Text>
+                  <Text variant="bodyMedium" style={[{ fontWeight: 'bold', color: "#999" }, secondaryTextColor]}>{item.count === "reps" ? "Reps" : "Time"}: </Text>
+                  <Text variant="bodyMedium" style={[{ color: "#999" }, secondaryTextColor]}>{item.count === "reps" ? `x${item[difficulty]}` : `${item[difficulty]} Seconds`}</Text>
                 </View>
               </Surface>
             </TouchableHighlight>
@@ -128,7 +143,7 @@ const DayExercisesList = ({ route, navigation }) => {
       <Surface style={{ borderRadius: 30, marginBottom: 12, marginLeft: 12, marginRight: 12 }}>
         <Button
           mode="contained"
-          style={{ borderRadius: 30 }} labelStyle={{ fontSize: 24, lineHeight: 30, textTransform: 'uppercase' }}
+          style={[{ borderRadius: 30 }, secondaryColor]} labelStyle={{ fontSize: 24, lineHeight: 30, textTransform: 'uppercase' }}
           onPress={() => navigation.navigate('StartWorkout', { workoutType, workout: workoutId, day: workoutDay, week: workoutWeek })}
         >
           Start

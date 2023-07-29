@@ -4,10 +4,15 @@ import { useTheme } from "react-native-paper";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         padding: 5,
         width: '100%',
         // marginBottom: 20
+    },
+    containerLightMode:{
+      backgroundColor: '#fff',
+    },
+    containerDarkMode:{
+      backgroundColor: '#555',
     },
     header: {
       paddingTop: 20,
@@ -22,10 +27,15 @@ const styles = StyleSheet.create({
       alignItems: "center",
     },
     name: {
-      color: "#4e32bc",
       fontWeight: "900",
       paddingRight: 20,
       textAlign: "center"
+    },
+    nameLight: {
+      color: "#4e32bc",
+    },
+    nameDark: {
+      color: "#F0DBFF",
     },
       labelContainer: {
         flexDirection: 'row',
@@ -42,6 +52,14 @@ const styles = StyleSheet.create({
         marginRight: 4
       },
       labelLight: {
+        fontSize: 14,
+        // color: '#666',
+      },
+      labelLightMode: {
+        fontSize: 14,
+        color: '#FAF3F0',
+      },
+      labelDarkMode: {
         fontSize: 14,
         color: '#666',
       },
@@ -102,6 +120,12 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         backgroundColor: '#e0e0e0',
       },
+      tableHeaderLight: {
+        backgroundColor: '#e0e0e0',
+      },
+      tableHeaderDark: {
+        backgroundColor: '#9EA2E5',
+      },
       tableHeaderText: {
         fontWeight: 'bold',
         fontSize: 16,
@@ -125,17 +149,31 @@ const styles = StyleSheet.create({
         textAlign: 'center',
       },
       intakeContainer:{
+        borderRadius: 15,
+        padding: 20,
+      },
+      intakeContainerLight:{
         backgroundColor: '#ffffff',
+        borderRadius: 15,
+        padding: 20,
+      },
+      intakeContainerDark:{
+        backgroundColor: '#9EA2E5',
         borderRadius: 15,
         padding: 20,
       },
       historyContainer:{
         marginTop: 16,
-        backgroundColor: '#ffffff',
         borderRadius: 15,
         padding: 20,
         marginBottom: 20,
-      }
+      },
+      historyContainerLight:{
+        backgroundColor: '#ffffff',
+      },
+      historyContainerDark:{
+        backgroundColor: '#9EA2E5',
+      },
     });
 
     export default styles;

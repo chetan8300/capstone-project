@@ -8,11 +8,24 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import hoc from '../../components/HOC'
 
-const WeightTrackerScreen = ({ hideOption = false }) => {
+const WeightTrackerScreen = ({ hideOption = false ,isDarkMode }) => {
 
     const navigation = useNavigation();
     const [weight, setWeight] = useState(0);
     const [history, setHistory] = useState([])
+
+	let textStyle = [{ color: "#4e32bc" }];
+	let textBodyStyle = [{ color: "#000" }];
+	let whiteColor = [{}]
+	let cardBackground = [{}]
+
+	if (isDarkMode) {
+		textStyle = [{ color: "#F0DBFF" }];
+		textBodyStyle = [{ color: "#fff" }];
+		whiteColor = [{ borderBottomColor: "#fff" }];
+		cardBackground = [{backgroundColor: "#9EA2E5"}]
+	}
+
     useFocusEffect(React.useCallback(() => {
         loadHistory();
     }, []));
@@ -69,7 +82,7 @@ const WeightTrackerScreen = ({ hideOption = false }) => {
     }
 
     const renderHistoryItem = ({ item }) => (
-        <View style={styles.tableRow}>
+        <View style={[styles.tableRow, whiteColor]}>
             <Text style={styles.tableCell}>{moment(item.date).format('MMMM Do, YYYY')}</Text>
             <Text style={styles.tableCell}>{item.intake} Kg</Text>
         </View>
@@ -81,17 +94,17 @@ const WeightTrackerScreen = ({ hideOption = false }) => {
                 <View>
                     {!hideOption &&
                         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-                            <MaterialCommunityIcons name="menu" size={28} color="black" />
+                            <MaterialCommunityIcons name="menu" size={28} style={[textStyle]} />
                         </TouchableOpacity>
                     }
                 </View>
                 <View style={styles.header}>
-                    <Text variant="headlineLarge" style={styles.name}>Weight Tracker</Text>
+                    <Text variant="headlineLarge" style={[styles.name, textStyle]}>Weight Tracker</Text>
                 </View>
             </View>
             <View style={styles.container}>
-                <Surface style={styles.intakeContainer}>
-                    <Text style={styles.label}>Weight in Kg:</Text>
+                <Surface style={[styles.intakeContainer, !isDarkMode ? styles.intakeContainerLight : styles.intakeContainerDark]}>
+                    <Text style={[styles.label, textBodyStyle]}>Weight in Kg:</Text>
                     <TextInput style={styles.input}
                         mode='flat'
                         value={weight}
@@ -110,14 +123,14 @@ const WeightTrackerScreen = ({ hideOption = false }) => {
                     </View>
                     {lastAddedDate && (
                         <View style={{ paddingTop: 10, paddingBottom: 10, flexDirection: 'row', justifyContent: 'center' }}>
-                            <Text>Last Added: {lastAddedDate}</Text>
+                            <Text style={[textBodyStyle]}>Last Added: {lastAddedDate}</Text>
                         </View>
                     )}
                 </Surface>
             </View>
-            <Surface style={styles.historyContainer}>
+            <Surface style={[styles.historyContainer, !isDarkMode ? styles.historyContainerLight : styles.historyContainerDark]}>
                 <Text style={styles.historyTitle}>History:</Text>
-                <View style={styles.tableHeader}>
+                <View style={[styles.tableHeader, cardBackground]}>
                     <Text style={styles.tableHeaderText}>Date</Text>
                     <Text style={styles.tableHeaderText}>Weight</Text>
                 </View>

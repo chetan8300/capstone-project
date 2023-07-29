@@ -910,7 +910,6 @@ const workoutByType = {
       male_icon: require('../assets/workouts/upper_body_male.jpeg'),
       female_icon: require('../assets/workouts/upper_body_female.jpg'),
       exercise: [
-        exercises.jumping_jacks,
         exercises.arm_swings,
         exercises.skipping,
         ...upperBodyWorkouts,

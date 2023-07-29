@@ -12,7 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Navigation
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 
 // Screens
 import MainAppScreens from './src/screens/Home';
@@ -20,6 +20,8 @@ import WorkoutPreferenceScreen from './src/screens/WorkoutPreference';
 import WorkoutWeeksListScreen from './src/screens/WorkoutWeeksList';
 import DayExercisesListScreen from './src/screens/DayExercisesList';
 import StartWorkoutScreen from './src/screens/StartWorkout';
+
+import DarkModeContext from './src/utils/DarkModeContext'
 
 SplashScreen.preventAutoHideAsync();
 
@@ -59,6 +61,8 @@ const theme = {
 const App = () => {
   const [firstRoute, setFirstRoute] = React.useState("WorkoutPreference")
   const [preferenceLoaded, setPreferenceLoaded] = React.useState(false);
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
+  const [isThemeLoaded, setIsThemeLoaded] = React.useState(false)
 
   React.useEffect(() => {
     (async () => {
@@ -76,54 +80,72 @@ const App = () => {
     })()
   }, []);
 
-  if (!preferenceLoaded) {
+	React.useEffect(() => {
+		// Fetch the themeHistory value from AsyncStorage when the component mounts
+		(async () => {
+			try {
+				const jsonValue = await AsyncStorage.getItem("@themeValue:themeHistory");
+				if (jsonValue !== null) {
+					const parsedValue = JSON.parse(jsonValue);
+					setIsDarkMode(parsedValue);
+				}
+        setIsThemeLoaded(true)
+			} catch (error) {
+				console.log("Error loading history: ", error);
+			}
+		})()
+	}, []);
+
+  if (!preferenceLoaded || !isThemeLoaded) {
     return null;
   }
 
   return (
     <View style={{ flex: 1 }}>
-      <PaperProvider theme={theme}>
-        <RootSiblingParent>
-          {Platform.OS === 'android' ? (
-            <StatusBar
-              barStyle="dark-content"
-            />
-          ) : null}
-          <NavigationContainer>
-            <Stack.Navigator initialRouteName={firstRoute}>
-              <Stack.Screen
-                name="WorkoutPreference"
-                component={WorkoutPreferenceScreen}
-                options={{ headerShown: false }}
+      <DarkModeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
+        <PaperProvider theme={theme}>
+          <RootSiblingParent>
+            {Platform.OS === 'android' ? (
+              <StatusBar
+                barStyle="dark-content"
               />
-              <Stack.Screen
-                name="MainApp"
-                component={MainAppScreens}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="WorkoutWeeksList"
-                component={WorkoutWeeksListScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="DayExercisesList"
-                component={DayExercisesListScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="StartWorkout"
-                component={StartWorkoutScreen}
-                options={{
-                  headerShown: false,
-                  gestureEnabled: false
-                }}
-              />
-            </Stack.Navigator>
-          </NavigationContainer>
-          <StatusBarExpo style="auto" />
-        </RootSiblingParent>
-      </PaperProvider>
+            ) : null}
+            <NavigationContainer>
+              <Stack.Navigator initialRouteName={firstRoute}>
+                <Stack.Screen
+                  name="WorkoutPreference"
+                  component={WorkoutPreferenceScreen}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="MainApp"
+                  component={MainAppScreens}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="WorkoutWeeksList"
+                  component={WorkoutWeeksListScreen}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="DayExercisesList"
+                  component={DayExercisesListScreen}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="StartWorkout"
+                  component={StartWorkoutScreen}
+                  options={{
+                    headerShown: false,
+                    gestureEnabled: false
+                  }}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
+            <StatusBarExpo style="auto" />
+          </RootSiblingParent>
+        </PaperProvider>
+      </DarkModeContext.Provider>
     </View>
   );
 }

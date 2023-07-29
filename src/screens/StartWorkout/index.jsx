@@ -42,7 +42,7 @@ const defaultData = {
   history: [],
 }
 
-const StartWorkout = ({ navigation, route }) => {
+const StartWorkout = ({ navigation, route, isDarkMode }) => {
   const { colors } = useTheme()
   const { workoutType, workout: workoutId, day: workoutDay, week: workoutWeek } = route.params
   const workout = workoutByType[workoutType].find((workout) => workout.id === workoutId)
@@ -62,6 +62,25 @@ const StartWorkout = ({ navigation, route }) => {
   // 15 seconds is the default rest time between workouts
   // if found from workoutPreference, then we will use that value
   const [restTimeBetweenWorkouts, setRestTimeBetweenWorkouts] = React.useState(15)
+
+
+  let mainViewStyle = [{}]
+  let textStyle = [{ color: "#4e32bc" }];
+	let secondaryTextColor = [{}];
+	let textBodyStyle = [{ color: "#000" }];
+	let whiteColor = [{}]
+	let secondaryColor = [{}]
+  let blackColor = [{}]
+
+	if (isDarkMode) {
+    textStyle = [{ color: "#F0DBFF" }];
+    mainViewStyle = [{backgroundColor: '#231F20'}]
+		secondaryTextColor = [{ color: "#AAAAAA" }];
+		textBodyStyle = [{ color: "#fff" }];
+		whiteColor = [{ color: "#fff" }];
+		secondaryColor = [{color: "#F0DBFF"}]
+    blackColor = [{color: "#000"}]
+	}
 
   React.useEffect(() => {
     (async () => {
@@ -182,7 +201,7 @@ const StartWorkout = ({ navigation, route }) => {
   console.log('workoutTypeworkoutType', workoutType)
 
   return (
-    <View style={{ flex: 1, width: '100%', backgroundColor: '#f2f2f2' }}>
+    <View style={[{ flex: 1, width: '100%', backgroundColor: '#f2f2f2' }, mainViewStyle]}>
       <StatusBar
         backgroundColor="#f2f2f2"
         barStyle="dark-content"
@@ -191,18 +210,18 @@ const StartWorkout = ({ navigation, route }) => {
         <IconButton
           icon="keyboard-backspace"
           size={30}
-          iconColor={colors.primary}
+          iconColor={!isDarkMode ? colors.primary : "#F0DBFF"}
           onPress={backAction}
         />
         <View style={{ flex: 1 }}>
-          <Text variant="titleLarge" style={{ textTransform: 'uppercase' }}>
+          <Text variant="titleLarge" style={[{ textTransform: 'uppercase' }, textStyle]}>
             {workout.name} - {workoutType}
           </Text>
         </View>
         <IconButton
           icon={timerPaused ? "play" : "pause"}
           size={30}
-          iconColor={colors.primary}
+          iconColor={!isDarkMode ? colors.primary : "#F0DBFF"}
           onPress={() => {
             setTimerPaused(!timerPaused)
             Toast.show(timerPaused ? "Workout Resumed" : "Workout Paused", {
@@ -216,7 +235,7 @@ const StartWorkout = ({ navigation, route }) => {
         <IconButton
           icon="close"
           size={30}
-          iconColor={colors.primary}
+          iconColor={!isDarkMode ? colors.primary : "#F0DBFF"}
           onPress={backAction}
         />
       </View>
@@ -225,12 +244,13 @@ const StartWorkout = ({ navigation, route }) => {
           {currentExercise === "showTimer" && (
             <>
               <View style={{ alignItems: 'center', flex: 1 }}>
-                <Text variant="displayMedium" style={{ textAlign: 'center', marginTop: 16, marginBottom: 16 }}>
+                <Text variant="displayMedium" style={[{ textAlign: 'center', marginTop: 16, marginBottom: 16 }, textBodyStyle]}>
                   {lastCompletedExercise.current === null ? "Get Ready" : "Take a Rest"}
                 </Text>
                 <CountdownCircleTimer
                   isPlaying={!timerPaused}
                   duration={timerSeconds}
+                  // colors={!isDarkMode ? colors.primary : "#000"}
                   colors={colors.primary}
                   colorsTime={[10, 6, 3, 0]}
                   strokeWidth={15}
@@ -246,7 +266,7 @@ const StartWorkout = ({ navigation, route }) => {
                   }}
                 >
                   {({ remainingTime, color }) => (
-                    <Text style={{ color, fontSize: 80 }}>{remainingTime}</Text>
+                    <Text style={[{ color, fontSize: 80 }, whiteColor]}>{remainingTime}</Text>
                   )}
                 </CountdownCircleTimer>
               </View>
@@ -311,10 +331,10 @@ const StartWorkout = ({ navigation, route }) => {
       ) : (
         <View style={{ flex: 1, justifyContent: 'center', marginBottom: 20, marginLeft: 16, marginRight: 16 }}>
           <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-            <Text variant="displayMedium" style={{ textAlign: 'center', marginTop: 16, marginBottom: 16, color: colors.primary }}>
+            <Text variant="displayMedium" style={[{ textAlign: 'center', marginTop: 16, marginBottom: 16, color: colors.primary }, textStyle]}>
               Congratulations!
             </Text>
-            <Text variant="headlineMedium" style={{ textAlign: 'center', marginTop: 16, marginBottom: 16, color: colors.tertiary }}>
+            <Text variant="headlineMedium" style={{ textAlign: 'center', marginTop: 16, marginBottom: 16, color: !isDarkMode ? colors.tertiary : "#fff" }}>
               You have completed the workout for the day.
             </Text>
           </View>

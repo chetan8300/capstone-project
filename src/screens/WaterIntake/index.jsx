@@ -8,11 +8,27 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useNavigation } from "@react-navigation/native";
 import hoc from '../../components/HOC'
 
-const WaterTrackerScreen = ({ hideOption = false }) => {
+const WaterTrackerScreen = ({ hideOption = false, isDarkMode }) => {
+
+  console.log("WaterTrackerScreen isdarkMode", isDarkMode)
   const { colors } = useTheme();
   const navigation = useNavigation();
   const [waterIntake, setWaterIntake] = useState(0);
   const [history, setHistory] = useState([]);
+
+  let mainViewStyle = [styles.lightBackground];
+	let textStyle = [{ color: "#4e32bc" }];
+	let textBodyStyle = [{ color: "#000" }];
+	let buttonStyle = [{ backgroundColor: "#4e32bc" }];
+	let cardBackground = [{}]
+
+	if (isDarkMode) {
+		mainViewStyle = [styles.darkBackground];
+		textStyle = [{ color: "#F0DBFF" }];
+		textBodyStyle = [{ color: "#fff" }];
+		buttonStyle = [{ backgroundColor: "#4e32bc", borderColor: "#4e32bc" }];
+		cardBackground = [{backgroundColor: "#555"}]
+	}
 
   useEffect(() => {
     loadHistory();
@@ -68,8 +84,8 @@ const WaterTrackerScreen = ({ hideOption = false }) => {
 
   const renderHistoryItem = ({ item }) => (
     <View style={styles.tableRow}>
-      <Text style={styles.tableCell}>{moment(item.date).format('MMMM Do, YYYY')}</Text>
-      <Text style={styles.tableCell}>{item.intake} Glasses</Text>
+      <Text style={[styles.tableCell, textBodyStyle]}>{moment(item.date).format('MMMM Do, YYYY')}</Text>
+      <Text style={[styles.tableCell, textBodyStyle]}>{item.intake} Glasses</Text>
     </View>
   );
 
@@ -79,20 +95,20 @@ const WaterTrackerScreen = ({ hideOption = false }) => {
         <View>
           {!hideOption &&
             <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-              <MaterialCommunityIcons name="menu" size={28} color="black" />
+              <MaterialCommunityIcons name="menu" size={28} style={textStyle} />
             </TouchableOpacity>
           }
         </View>
         <View style={styles.header}>
-          <Text variant="headlineLarge" style={styles.name}>Track Water Intake</Text>
+          <Text variant="headlineLarge" style={[styles.name, !isDarkMode ? styles.nameLight : styles.nameDark]}>Track Water Intake</Text>
         </View>
       </View>
       {/* </Surface> */}
       <View style={styles.container}>
-        <Surface style={styles.intakeContainer}>
+        <Surface style={[styles.intakeContainer, !isDarkMode ? styles.intakeContainerLight : styles.intakeContainerDark]}>
           <View style={styles.labelContainer}>
-            <Text style={styles.label}>Today's Intake</Text>
-            <Text style={styles.labelLight}>(in glasses)</Text>
+            <Text style={[styles.label, textBodyStyle]}>Today's Intake</Text>
+            <Text style={[styles.labelLight, isDarkMode ? styles.labelLightMode : styles.labelDarkMode]}>(in glasses)</Text>
           </View>
           <View style={styles.buttonsContainer}>
             <View style={{ flexDirection: 'row', gap: 1, justifyContent: 'center', alignItems: 'center', width: '100%' }}>
@@ -120,11 +136,11 @@ const WaterTrackerScreen = ({ hideOption = false }) => {
           </Button>
           </View>
         </Surface>
-        <Surface style={styles.historyContainer}>
+        <Surface style={[styles.historyContainer, !isDarkMode ? styles.historyContainerLight : styles.historyContainerDark]}>
           <Text style={styles.historyTitle}>History:</Text>
-          <View style={styles.tableHeader}>
-            <Text style={styles.tableHeaderText}>Date</Text>
-            <Text style={styles.tableHeaderText}>Intake</Text>
+          <View style={[styles.tableHeader, !isDarkMode ? styles.tableHeaderLight : styles.tableHeaderDark]}>
+            <Text style={[styles.tableHeaderText, textBodyStyle]}>Date</Text>
+            <Text style={[styles.tableHeaderText, textBodyStyle]}>Intake</Text>
           </View>
           <FlatList
             data={history}
@@ -132,6 +148,7 @@ const WaterTrackerScreen = ({ hideOption = false }) => {
             keyExtractor={(item, index) => index.toString()}
             contentContainerStyle={styles.tableBody}
             ListHeaderComponent={() => null}
+            // style = {!isDarkMode ? "#000" : "#fff"}
           />
         </Surface>
       </View>

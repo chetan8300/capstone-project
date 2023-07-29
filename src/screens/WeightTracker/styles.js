@@ -3,11 +3,8 @@ import { useTheme } from "react-native-paper";
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
-        backgroundColor: '#fff',
         padding: 10,
         width: '100%',
-        // marginBottom: 20
     },
     header: {
         paddingTop: 20,
@@ -103,18 +100,27 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     intakeContainer: {
-        backgroundColor: '#ffffff',
         borderRadius: 15,
         padding: 20,
         maxHeight: 200,
     },
+    intakeContainerLight: {
+        backgroundColor: '#ffffff',
+    },
+    intakeContainerDark: {
+        backgroundColor: '#9EA2E5',
+    },
     historyContainer: {
         marginTop: 16,
-        backgroundColor: '#ffffff',
         borderRadius: 15,
         padding: 20,
         flex: 1,
-        // maxHeight: 400,
+    },
+    historyContainerLight: {
+        backgroundColor: '#ffffff',
+    },
+    historyContainerDark: {
+        backgroundColor: '#9EA2E5',
     }
 });
 export default styles;
