@@ -59,7 +59,7 @@ const WorkoutWeeksList = ({ route, navigation, isDarkMode }) => {
     mainViewStyle = [{backgroundColor: '#231F20'}]
 		textStyle = [{ color: "#F0DBFF" }];
 		textBodyStyle = [{ color: "#fff" }];
-		whiteColor = [{ color: "#fff" }];
+		whiteColor = [{ color: "#c0c0c0" }];
 		secondaryColor = [{color: "#F0DBFF"}]
 	}
 
@@ -139,7 +139,7 @@ const WorkoutWeeksList = ({ route, navigation, isDarkMode }) => {
         <IconButton
           icon="keyboard-backspace"
           size={30}
-          iconColor={colors.primary}
+          iconColor={!isDarkMode ? colors.primary : "#F0DBFF"}
           onPress={() => navigation.goBack()}
         />
         <View style={{ flex: 1 }}>
@@ -233,14 +233,14 @@ const WorkoutWeeksList = ({ route, navigation, isDarkMode }) => {
                               onPress={() => handlePressWeekDay(currentDayOfMonth, currentWeekOfMonth)}
                             >
                               {isCompletedDay ?
-                                <Octicons name="check-circle-fill" size={40} color={colors.primary} />
+                                !isDarkMode ? <Octicons name="check-circle-fill" size={40} color={colors.primary} /> : <Octicons name="check-circle" size={40} color={"#c0c0c0"} />
                                 :
                                 (isCurrentDay && (isWeekCompleted || isWeekInProgress)) ?
-                                  <View style={{ borderRadius: 50, borderWidth: 1, width: 40, height: 40, alignItems: 'center', justifyContent: 'center', borderColor: colors.primary, borderStyle: 'dashed' }}>
+                                  <View style={[{ borderRadius: 50, borderWidth: 1, width: 40, height: 40, alignItems: 'center', justifyContent: 'center', borderColor: !isDarkMode ? colors.primary : "#c0c0c0", borderStyle: 'dashed' }]}>
                                     <Text variant="titleLarge" style={[{ color: colors.primary }, whiteColor]}>{currentDayOfWeek}</Text>
                                   </View>
                                   :
-                                  <View style={{ borderRadius: 50, borderWidth: 1, width: 40, height: 40, alignItems: 'center', justifyContent: 'center', borderColor: "#999", borderStyle: 'solid' }}>
+                                  <View style={{ borderRadius: 50, borderWidth: 1, width: 40, height: 40, alignItems: 'center', justifyContent: 'center', borderColor: !isDarkMode ? "#999" : "#c0c0c0", borderStyle: 'solid' }}>
                                     <Text variant="titleLarge" style={[{ color: "#999" }, whiteColor]}>{currentDayOfWeek}</Text>
                                   </View>
                               }
@@ -268,7 +268,7 @@ const WorkoutWeeksList = ({ route, navigation, isDarkMode }) => {
                               onPress={() => handlePressWeekDay(currentDayOfMonth, currentWeekOfMonth)}
                             >
                               {isCompletedDay ?
-                                <Octicons name="check-circle-fill" size={40} color={colors.primary} />
+                                !isDarkMode ? <Octicons name="check-circle-fill" size={40} color={colors.primary} /> : <Octicons name="check-circle" size={40} color={"#c0c0c0"} />
                                 :
                                 (isCurrentDay && (isWeekCompleted || isWeekInProgress)) ?
                                   <View style={{ borderRadius: 50, borderWidth: 1, width: 40, height: 40, alignItems: 'center', justifyContent: 'center', borderColor: colors.primary, borderStyle: 'dashed' }}>
