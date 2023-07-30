@@ -145,6 +145,8 @@ const ReportsScreen = ({ navigation, hideOption = false, isDarkMode }) => {
 			(key) => workoutHistoryData[key] !== 0
 		)
 
+		console.log("workoutForDate", workoutForDate);
+
 		return (
 			<Card style={[styles.card, cardBackground]}>
 				<Card.Content>
@@ -167,7 +169,7 @@ const ReportsScreen = ({ navigation, hideOption = false, isDarkMode }) => {
 						)}
 					</Text>
 					{/* <Text>Workout:</Text> */}
-					{workoutForDate ? (
+					{workoutForDate && Object.keys(workoutHistoryData).length > 0 ? (
 						<View>
 							{Object.keys(workoutHistoryData).map((key) => {
 								if (workoutHistoryData[key] === 0 || key.includes("7x4")) {
