@@ -63,23 +63,16 @@ const StartWorkout = ({ navigation, route, isDarkMode }) => {
   // if found from workoutPreference, then we will use that value
   const [restTimeBetweenWorkouts, setRestTimeBetweenWorkouts] = React.useState(15)
 
-
   let mainViewStyle = [{}]
   let textStyle = [{ color: "#4e32bc" }];
-	let secondaryTextColor = [{}];
 	let textBodyStyle = [{ color: "#000" }];
 	let whiteColor = [{}]
-	let secondaryColor = [{}]
-  let blackColor = [{}]
 
 	if (isDarkMode) {
     textStyle = [{ color: "#F0DBFF" }];
     mainViewStyle = [{backgroundColor: '#231F20'}]
-		secondaryTextColor = [{ color: "#AAAAAA" }];
 		textBodyStyle = [{ color: "#fff" }];
 		whiteColor = [{ color: "#fff" }];
-		secondaryColor = [{color: "#F0DBFF"}]
-    blackColor = [{color: "#000"}]
 	}
 
   React.useEffect(() => {
@@ -181,10 +174,6 @@ const StartWorkout = ({ navigation, route, isDarkMode }) => {
   let difficulty = workoutType !== "7x4" ? workoutType : "beginner"
 
   if (workoutType === "7x4" && workoutPreference.pushUpAtOneTime && workoutPreference.activityLevel) {
-    console.log('workoutPreference inside ', workoutPreference)
-    // const activity_level = ['sedentary', 'lightly_active', 'moderately_active', 'very_active']
-    // const pushup = ['beginner', 'intermediate', 'advanced']
-
     if (workoutPreference.pushUpAtOneTime === "beginner" || workoutPreference.activityLevel.includes(["sedentary", "lightly_active"])) {
       difficulty = "beginner"
     }
@@ -198,13 +187,11 @@ const StartWorkout = ({ navigation, route, isDarkMode }) => {
     }
   }
 
-  console.log('workoutTypeworkoutType', workoutType)
-
   return (
-    <View style={[{ flex: 1, width: '100%', backgroundColor: '#f2f2f2' }, mainViewStyle]}>
+    <View style={[{ flex: 1, width: '100%', backgroundColor: '#f2f2f2' }, ...mainViewStyle]}>
       <StatusBar
-        backgroundColor="#f2f2f2"
-        barStyle="dark-content"
+        backgroundColor={!isDarkMode ? "#f2f2f2" : "#231F20"}
+        barStyle={!isDarkMode ? "dark-content" : "light-content"}
       />
       <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%', borderBottomWidth: 1, borderBottomColor: '#d6d6d6' }}>
         <IconButton
@@ -214,7 +201,7 @@ const StartWorkout = ({ navigation, route, isDarkMode }) => {
           onPress={backAction}
         />
         <View style={{ flex: 1 }}>
-          <Text variant="titleLarge" style={[{ textTransform: 'uppercase' }, textStyle]}>
+          <Text variant="titleLarge" style={[{ textTransform: 'uppercase' }, ...textStyle]}>
             {workout.name} - {workoutType}
           </Text>
         </View>
@@ -244,7 +231,7 @@ const StartWorkout = ({ navigation, route, isDarkMode }) => {
           {currentExercise === "showTimer" && (
             <>
               <View style={{ alignItems: 'center', flex: 1 }}>
-                <Text variant="displayMedium" style={[{ textAlign: 'center', marginTop: 16, marginBottom: 16 }, textBodyStyle]}>
+                <Text variant="displayMedium" style={[{ textAlign: 'center', marginTop: 16, marginBottom: 16 }, ...textBodyStyle]}>
                   {lastCompletedExercise.current === null ? "Get Ready" : "Take a Rest"}
                 </Text>
                 <CountdownCircleTimer
@@ -266,7 +253,7 @@ const StartWorkout = ({ navigation, route, isDarkMode }) => {
                   }}
                 >
                   {({ remainingTime, color }) => (
-                    <Text style={[{ color, fontSize: 80 }, whiteColor]}>{remainingTime}</Text>
+                    <Text style={[{ color, fontSize: 80 }, ...whiteColor]}>{remainingTime}</Text>
                   )}
                 </CountdownCircleTimer>
               </View>
@@ -316,6 +303,7 @@ const StartWorkout = ({ navigation, route, isDarkMode }) => {
             <RoutineCard
               routine={routineForTheDay[currentExercise]}
               timerPaused={timerPaused}
+              isDarkMode={isDarkMode}
               onComplete={() => {
                 if (currentExercise + 1 === routineForTheDay.length) {
                   setExerciseCompleted(true)

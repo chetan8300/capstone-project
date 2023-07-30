@@ -2,16 +2,12 @@ import React, { useState } from "react";
 
 import { useFocusEffect } from "@react-navigation/native";
 import {
-	TouchableHighlight,
 	TouchableOpacity,
 	View,
-	ScrollView,
-	BackHandler,
-	Alert,
 	FlatList,
 } from "react-native";
 import moment from "moment";
-import { Text, Card, useTheme, Searchbar } from "react-native-paper";
+import { Text, Card, useTheme } from "react-native-paper";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 // Common Components
@@ -23,27 +19,23 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Utils
 import styles from "./style";
+import { Fragment } from "react/cjs/react.production.min";
 
-const ReportsScreen = ({ navigation, route, hideOption = false, isDarkMode }) => {
+const ReportsScreen = ({ navigation, hideOption = false, isDarkMode }) => {
 	const { colors } = useTheme();
 	const [waterHistory, setWaterHistory] = useState([]);
 	const [workoutHistory, setWorkoutHistory] = React.useState({});
-	const [workoutPreference, setWorkoutPreference] = React.useState({});
 
-	let mainViewStyle = [styles.lightBackground];
 	let textStyle = [{ color: "#4e32bc" }];
 	let textBodyStyle = [{ color: "#000" }];
 	let textheadingStyle = [{ color: "#000" }];
-	let buttonStyle = [{ backgroundColor: "#4e32bc" }];
 	let cardBackground = [{}]
 
 	if (isDarkMode) {
-		mainViewStyle = [styles.darkBackground];
 		textStyle = [{ color: "#F0DBFF" }];
 		textBodyStyle = [{ color: "#fff" }];
 		textheadingStyle = [{ color: "#FBF6FF" }];
-		buttonStyle = [{ backgroundColor: "#4e32bc", borderColor: "#4e32bc" }];
-		cardBackground = [{backgroundColor: "#555"}]
+		cardBackground = [{ backgroundColor: "#555" }]
 	}
 
 	const dateArray = new Array(7).fill(null);
@@ -77,7 +69,6 @@ const ReportsScreen = ({ navigation, route, hideOption = false, isDarkMode }) =>
 					if (jsonValue !== null) {
 						const parsedValue = JSON.parse(jsonValue);
 						setWaterHistory(parsedValue);
-						// console.log("Water History:", parsedValue);
 					}
 				} catch (error) {
 					console.log("Error loading history: ", error);
@@ -95,9 +86,6 @@ const ReportsScreen = ({ navigation, route, hideOption = false, isDarkMode }) =>
 					const jsonValue = await AsyncStorage.getItem("@workout:history");
 					const parsedValue = jsonValue ? JSON.parse(jsonValue) : {};
 					setWorkoutHistory(parsedValue);
-					// console.log("Workout History:");
-					// console.log(JSON.stringify(parsedValue, null, 2));
-					// console.log("State:", workoutHistory)
 				} catch (error) {
 					console.log("Error loading history training: ", error);
 				}
@@ -107,17 +95,7 @@ const ReportsScreen = ({ navigation, route, hideOption = false, isDarkMode }) =>
 		}, [])
 	);
 
-	// const waterHistorySample = [
-	// 	{ date: "2023-07-17", intake: 10 },
-	// 	{ date: "2023-07-16", intake: 10 },
-	// 	{ date: "2023-07-15", intake: 10 },
-	// 	{ date: "2023-07-14", intake: 10 },
-	// 	{ date: "2023-07-13", intake: 10 },
-	// 	{ date: "2023-07-12", intake: 10 },
-	// ];
-
 	const renderHistoryItem = ({ item, index }) => {
-		// console.log("ITEM: ", item, index);
 		const dateOffset = 6 - index;
 		const currentDate = moment();
 		const date = currentDate.subtract(dateOffset, "days");
@@ -163,10 +141,13 @@ const ReportsScreen = ({ navigation, route, hideOption = false, isDarkMode }) =>
 			}
 		});
 
+		const workoutForDate = Object.keys(workoutHistoryData).every(
+			(key) => workoutHistoryData[key] !== 0
+		)
+
 		return (
 			<Card style={[styles.card, cardBackground]}>
 				<Card.Content>
-					{/* <Text style={styles.cardText} variant="titleLarge">{moment(date).format("YYYY-MM-DD")}</Text> */}
 					<Text style={[styles.cardTitle, textStyle]} variant="titleLarge">
 						{moment(date).format("dddd, MMMM Do, YYYY")}
 					</Text>
@@ -186,9 +167,7 @@ const ReportsScreen = ({ navigation, route, hideOption = false, isDarkMode }) =>
 						)}
 					</Text>
 					{/* <Text>Workout:</Text> */}
-					{Object.keys(workoutHistoryData).some(
-						(key) => workoutHistoryData[key] !== 0
-					) ? (
+					{workoutForDate ? (
 						<View>
 							{Object.keys(workoutHistoryData).map((key) => {
 								if (workoutHistoryData[key] === 0 || key.includes("7x4")) {
@@ -196,21 +175,21 @@ const ReportsScreen = ({ navigation, route, hideOption = false, isDarkMode }) =>
 								}
 
 								return (
-									<>
+									<Fragment key={key}>
 										<Text style={[styles.contentHeading, textheadingStyle]} key={key}>
 											{keyToNameMap[key]}:
 										</Text>
 										<Text style={[styles.cardText, styles.contentStatement, textBodyStyle]}>
 											{workoutHistoryData[key]}x Completed
 										</Text>
-									</>
+									</Fragment>
 								);
 							})}
 						</View>
 					) : (
 						<View style={styles.contentStatementContainer}>
 							<Text style={[styles.contentStatement, textBodyStyle]}>
-								No workouts to display.
+								No workouts report to display.
 							</Text>
 						</View>
 					)}

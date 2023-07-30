@@ -1,6 +1,6 @@
-import { ScrollView, View, FlatList, TouchableOpacity } from 'react-native'
+import { View, FlatList, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react';
-import { Button, Surface, Text, useTheme, Appbar, TextInput } from 'react-native-paper'
+import { Button, Surface, Text, TextInput } from 'react-native-paper'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './styles';
 import moment from 'moment';
@@ -8,23 +8,22 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import hoc from '../../components/HOC'
 
-const WeightTrackerScreen = ({ hideOption = false ,isDarkMode }) => {
-
+const WeightTrackerScreen = ({ hideOption = false, isDarkMode }) => {
     const navigation = useNavigation();
     const [weight, setWeight] = useState(0);
     const [history, setHistory] = useState([])
 
-	let textStyle = [{ color: "#4e32bc" }];
-	let textBodyStyle = [{ color: "#000" }];
-	let whiteColor = [{}]
-	let cardBackground = [{}]
+    let textStyle = [{ color: "#4e32bc" }];
+    let textBodyStyle = [{ color: "#000" }];
+    let whiteColor = [{}]
+    let cardBackground = [{}]
 
-	if (isDarkMode) {
-		textStyle = [{ color: "#F0DBFF" }];
-		textBodyStyle = [{ color: "#c0c0c0" }];
-		whiteColor = [{ borderBottomColor: "#fff" }];
-		cardBackground = [{backgroundColor: "#9EA2E5"}]
-	}
+    if (isDarkMode) {
+        textStyle = [{ color: "#F0DBFF" }];
+        textBodyStyle = [{ color: "#333" }];
+        whiteColor = [{ borderBottomColor: "#fff" }];
+        cardBackground = [{ backgroundColor: "#9EA2E5" }]
+    }
 
     useFocusEffect(React.useCallback(() => {
         loadHistory();
@@ -45,7 +44,6 @@ const WeightTrackerScreen = ({ hideOption = false ,isDarkMode }) => {
 
     const loadHistory = async () => {
         try {
-            // await AsyncStorage.deleteItem('@weightTracker:history');
             const jsonValue = await AsyncStorage.getItem('@weightTracker:history');
             if (jsonValue !== null) {
                 const parsedValue = JSON.parse(jsonValue);
@@ -94,22 +92,23 @@ const WeightTrackerScreen = ({ hideOption = false ,isDarkMode }) => {
                 <View>
                     {!hideOption &&
                         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-                            <MaterialCommunityIcons name="menu" size={28} style={[textStyle]} />
+                            <MaterialCommunityIcons name="menu" size={28} style={textStyle} />
                         </TouchableOpacity>
                     }
                 </View>
                 <View style={styles.header}>
-                    <Text variant="headlineLarge" style={[styles.name, textStyle]}>Weight Tracker</Text>
+                    <Text variant="headlineLarge" style={[styles.name, ...textStyle]}>Weight Tracker</Text>
                 </View>
             </View>
             <View style={styles.container}>
                 <Surface style={[styles.intakeContainer, !isDarkMode ? styles.intakeContainerLight : styles.intakeContainerDark]}>
-                    <Text style={[styles.label, textBodyStyle]}>Weight in Kg:</Text>
+                    <Text style={[styles.label, ...textBodyStyle]}>Weight in Kg:</Text>
                     <TextInput style={styles.input}
                         mode='flat'
-                        value={weight}
+                        value={weight.toString()}
                         onChangeText={text => setWeight(text)}
                         keyboardType="numeric"
+                        disabled={!addWeight}
                     />
                     <View style={styles.buttonsContainer}>
                         <Button
@@ -123,7 +122,7 @@ const WeightTrackerScreen = ({ hideOption = false ,isDarkMode }) => {
                     </View>
                     {lastAddedDate && (
                         <View style={{ paddingTop: 10, paddingBottom: 10, flexDirection: 'row', justifyContent: 'center' }}>
-                            <Text style={[textBodyStyle]}>Last Added: {lastAddedDate}</Text>
+                            <Text style={textBodyStyle}>Last Added: {lastAddedDate}</Text>
                         </View>
                     )}
                 </Surface>

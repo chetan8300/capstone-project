@@ -5,14 +5,14 @@ import React from 'react';
 // React Native & Expo Components
 import { StatusBar as StatusBarExpo } from 'expo-status-bar';
 import { View, Platform, StatusBar } from 'react-native';
-import { MD3LightTheme as DefaultTheme, PaperProvider, configureFonts } from 'react-native-paper';
+import { MD3LightTheme as DefaultTheme, PaperProvider } from 'react-native-paper';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Navigation
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 
 // Screens
 import MainAppScreens from './src/screens/Home';
@@ -84,7 +84,7 @@ const App = () => {
 		// Fetch the themeHistory value from AsyncStorage when the component mounts
 		(async () => {
 			try {
-				const jsonValue = await AsyncStorage.getItem("@themeValue:themeHistory");
+				const jsonValue = await AsyncStorage.getItem("@themeValue:isDarkMode");
 				if (jsonValue !== null) {
 					const parsedValue = JSON.parse(jsonValue);
 					setIsDarkMode(parsedValue);
@@ -105,11 +105,11 @@ const App = () => {
       <DarkModeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
         <PaperProvider theme={theme}>
           <RootSiblingParent>
-            {Platform.OS === 'android' ? (
+            {/* {Platform.OS === 'android' ? (
               <StatusBar
                 barStyle="dark-content"
               />
-            ) : null}
+            ) : null} */}
             <NavigationContainer>
               <Stack.Navigator initialRouteName={firstRoute}>
                 <Stack.Screen
@@ -142,7 +142,6 @@ const App = () => {
                 />
               </Stack.Navigator>
             </NavigationContainer>
-            <StatusBarExpo style="auto" />
           </RootSiblingParent>
         </PaperProvider>
       </DarkModeContext.Provider>

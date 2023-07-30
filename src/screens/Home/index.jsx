@@ -9,7 +9,6 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 // Screens
 import SettingsScreen from '../Settings'
 import TrainingScreen from '../Training'
-import DiscoverScreen from '../Discover'
 import ReportsScreen from '../Reports'
 import AchievementsScreen from '../Achievements'
 import CalculateBMIScreen from '../CalculateBMI';
@@ -22,6 +21,8 @@ import HealthWellnessBlogsScreen from '../HealthAndWellnessBlogs';
 
 import { useContext } from 'react';
 import DarkModeContext from '../../utils/DarkModeContext';
+import { Text } from 'react-native-paper';
+import { View } from 'react-native';
 const Tab = createMaterialBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -29,23 +30,26 @@ const HomeScreen = () => {
   const { isDarkMode } = useContext(DarkModeContext);
 
   let textStyle = [{ color: "#4e32bc" }];
-	let textBodyStyle = [{ color: "#4e32bc" }];
-	let whiteColor = [{color: "#4e32bc"}]
-	let cardBackground = [{}]
+  let textBodyStyle = [{ color: "#4e32bc" }];
+  let cardBackground = [{}]
 
-	if (isDarkMode) {
-		textStyle = [{ color: "#F0DBFF" }];
-		textBodyStyle = [{ color: "#fff" }];
-		blackColor = [{ color: "#000" }];
-		cardBackground = [{backgroundColor: "#9EA2E5"}]
-	}
+  if (isDarkMode) {
+    textStyle = [{ color: "#F0DBFF" }];
+    textBodyStyle = [{ color: "#fff" }];
+    cardBackground = [{ backgroundColor: "#9EA2E5" }]
+  }
 
   return (
     <Tab.Navigator
       initialRouteName="Training"
-      activeColor= {!isDarkMode ? "#000" : "#fff"}
-      inactiveColor={!isDarkMode ? "#555" : "#fff"}
-      barStyle={{ backgroundColor: !isDarkMode ? "#fff" : '#000' }}
+      activeColor={!isDarkMode ? "#000" : "#333"}
+      inactiveColor={!isDarkMode ? "#555" : "#888"}
+      barStyle={{ backgroundColor: !isDarkMode ? "#fff" : '#222' }}
+      renderLabel={({ route, focused, color }) => {
+        return (
+          <Text style={[{ textAlign: 'center', fontSize: 12  }, ...(isDarkMode ? [{ color: !focused ? "#888" : "#fff" }] : [{ color: color }])]}>{route.name === "CalculateBMI" ? "BMI" : route.name}</Text>
+        )
+      }}
     >
       <Tab.Screen
         name="Training"
@@ -53,10 +57,8 @@ const HomeScreen = () => {
         options={{
           tabBarLabel: 'Training',
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="timer" style={[{ color: color}]} size={23} />
+            <MaterialIcons name="timer" style={[{ color: color }]} size={23} />
           ),
-          // activeTintColor: "red",
-          // inactiveTintColor: {},
         }}
       />
       <Tab.Screen
@@ -68,7 +70,7 @@ const HomeScreen = () => {
             <MaterialIcons name="bar-chart" color={color} size={23} />
           ),
         }}
-      /> 
+      />
       <Tab.Screen
         name="CalculateBMI"
         component={CalculateBMIScreen}
@@ -77,7 +79,7 @@ const HomeScreen = () => {
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="compass" color={color} size={23} />
           ),
-          tabBarVisible:false
+          tabBarVisible: false
         }}
       />
       <Tab.Screen
@@ -113,25 +115,25 @@ const MainAppDrawerScreen = () => {
       <Drawer.Screen
         name="Home"
         component={HomeScreen}
-        options={{ title: 'Home' }} 
+        options={{ title: 'Home' }}
       />
       <Drawer.Screen
         name="Water Intake Tracker"
         component={WaterTrackerScreen}
         options={{ title: 'Water Intake Tracker' }}
-        />
-        <Drawer.Screen
+      />
+      <Drawer.Screen
         name="Weight Tracker"
         component={WeightTrackerScreen}
         options={{ title: 'Weight Tracker' }}
-        />
+      />
       <Drawer.Screen
         name="Achievements"
         component={AchievementsScreen}
         options={{ title: 'Achievements' }}
       />
-         <Drawer.Screen
-        name="Health and Wellness Blogs" 
+      <Drawer.Screen
+        name="Health and Wellness Blogs"
         component={HealthWellnessBlogsScreen}
         options={{ title: 'Health and Wellness Blogs' }}
       />

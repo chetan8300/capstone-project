@@ -16,16 +16,16 @@ const HealthWellnessBlogsScreen = ({ hideOption = false, isDarkMode }) => {
     const navigation = useNavigation();
 
     let textStyle = [{ color: "#4e32bc" }];
-	let textBodyStyle = [{ color: "#000" }];
-	let whiteColor = [{}]
-	let cardBackground = [{}]
+    let textBodyStyle = [{ color: "#000" }];
+    let whiteColor = [{}]
+    let cardBackground = [{}]
 
-	if (isDarkMode) {
-		textStyle = [{ color: "#F0DBFF" }];
-		textBodyStyle = [{ color: "#fff" }];
-		whiteColor = [{ borderBottomColor: "#fff" }];
-		cardBackground = [{backgroundColor: "#9EA2E5"}]
-	}
+    if (isDarkMode) {
+        textStyle = [{ color: "#F0DBFF" }];
+        textBodyStyle = [{ color: "#333" }];
+        whiteColor = [{ borderBottomColor: "#fff" }];
+        cardBackground = [{ backgroundColor: "#9EA2E5" }]
+    }
 
     useEffect(() => {
         loadBlogs();
@@ -65,9 +65,9 @@ const HealthWellnessBlogsScreen = ({ hideOption = false, isDarkMode }) => {
 
     const renderItem = ({ item }) => {
         return (
-            <Card style={[styles.card, cardBackground]}>
+            <Card style={[styles.card, ...cardBackground]}>
                 <View style={styles.cardTitleContainer}>
-                    <Text style={[styles.cardTitle, textBodyStyle]}>
+                    <Text style={[styles.cardTitle, ...textBodyStyle]}>
                         {item.title}
                     </Text>
                     <IconButton icon="open-in-new" onPress={() => handleOpenBlog(item.url)} />
@@ -84,7 +84,7 @@ const HealthWellnessBlogsScreen = ({ hideOption = false, isDarkMode }) => {
                         <TouchableOpacity onPress={handleCloseBlog}>
                             <MaterialCommunityIcons name="arrow-left" size={30} style={[textStyle]} />
                         </TouchableOpacity>
-                        <Text style={[{ fontSize: 20, fontWeight: 'bold', padding: 16 }, textBodyStyle]}>
+                        <Text style={[{ fontSize: 20, fontWeight: 'bold', padding: 16 }, ...textBodyStyle]}>
                             Back to Blogs List
                         </Text>
                     </View>
@@ -96,12 +96,12 @@ const HealthWellnessBlogsScreen = ({ hideOption = false, isDarkMode }) => {
                         <View>
                             {!hideOption &&
                                 <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-                                    <MaterialCommunityIcons name="menu" size={28} style={[textStyle]} />
+                                    <MaterialCommunityIcons name="menu" size={28} style={[...textStyle]} />
                                 </TouchableOpacity>
                             }
                         </View>
                         <View style={styles.header}>
-                            <Text variant="headlineLarge" style={[styles.name, textStyle]}>Fitness Blogs</Text>
+                            <Text variant="headlineLarge" style={[styles.name, ...textStyle]}>Fitness Blogs</Text>
                         </View>
                     </View>
                     <Searchbar

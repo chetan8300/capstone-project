@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Platform, SafeAreaView as SafeAreaViewIos, StyleSheet } from "react-native";
+import { Platform, SafeAreaView as SafeAreaViewIos, StatusBar, StyleSheet } from "react-native";
 import { SafeAreaView as SafeAreaViewAndroid } from "react-native-safe-area-context";
 import DarkModeContext from "../../utils/DarkModeContext";
 
@@ -7,11 +7,20 @@ const SafeAreaView = Platform.OS === "ios" ? SafeAreaViewIos : SafeAreaViewAndro
 
 const hoc = Comp => props => {
   const { isDarkMode } = useContext(DarkModeContext);
-
-  console.log("HOC isDarkMode", isDarkMode)
+  const isInner = [
+    "WorkoutWeeksList",
+    "DayExercisesList",
+    "StartWorkout",
+  ].includes(props.route.name);
 
   return (
     <SafeAreaView style={!isDarkMode ? styles.appContainer : styles.appContainerDark}>
+      {!isInner && (
+        <StatusBar
+          backgroundColor={!isDarkMode ? "#fff" : "#231F20"}
+          barStyle={!isDarkMode ? "dark-content" : "light-content"}
+        />
+      )}
       <Comp {...props} isDarkMode={isDarkMode} />
     </SafeAreaView>
   )

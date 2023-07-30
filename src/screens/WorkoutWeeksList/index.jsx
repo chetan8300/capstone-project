@@ -93,7 +93,6 @@ const WorkoutWeeksList = ({ route, navigation, isDarkMode }) => {
 
   const handlePressWeekDay = (currentDayOfMonth, currentWeekOfMonth) => {
     if (currentDayOfMonth <= progress?.current?.daysCompleted + 1) {
-      // week: Math.ceil(currentDayOfMonth / 7)
       navigation.navigate("DayExercisesList", { workoutType, workout: workoutId, day: currentDayOfMonth, week: currentWeekOfMonth })
     } else {
       Toast.show('Please finish previous challenges date first.', {
@@ -130,10 +129,10 @@ const WorkoutWeeksList = ({ route, navigation, isDarkMode }) => {
   const gender = workoutPreference?.gender || "male"
 
   return (
-    <View style={[{ flex: 1, width: '100%', backgroundColor: '#f2f2f2' }, mainViewStyle]}>
+    <View style={[{ flex: 1, width: '100%', backgroundColor: '#fff' }, mainViewStyle]}>
       <StatusBar
-        backgroundColor="#f2f2f2"
-        barStyle="dark-content"
+        backgroundColor={!isDarkMode ? "#f2f2f2" : "#231F20"}
+        barStyle={!isDarkMode ? "dark-content" : "light-content"}
       />
       <View style={[{ flexDirection: 'row', alignItems: 'center', width: '100%' }]}>
         <IconButton

@@ -1,34 +1,31 @@
-import {ScrollView, View, FlatList, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react';
-import { IconButton, Button, Surface, Text, useTheme, Appbar } from 'react-native-paper'
+import { View, FlatList, TouchableOpacity } from 'react-native'
+import { IconButton, Button, Surface, Text } from 'react-native-paper'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import styles from './styles';
 import moment from 'moment';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useNavigation } from "@react-navigation/native";
 import hoc from '../../components/HOC'
+import styles from './styles';
 
 const WaterTrackerScreen = ({ hideOption = false, isDarkMode }) => {
-
-  console.log("WaterTrackerScreen isdarkMode", isDarkMode)
-  const { colors } = useTheme();
   const navigation = useNavigation();
   const [waterIntake, setWaterIntake] = useState(0);
   const [history, setHistory] = useState([]);
 
   let mainViewStyle = [styles.lightBackground];
-	let textStyle = [{ color: "#4e32bc" }];
-	let textBodyStyle = [{ color: "#000" }];
-	let buttonStyle = [{ backgroundColor: "#4e32bc" }];
-	let cardBackground = [{}]
+  let textStyle = [{ color: "#4e32bc" }];
+  let textBodyStyle = [{ color: "#000" }];
+  let buttonStyle = [{ backgroundColor: "#4e32bc" }];
+  let cardBackground = [{}]
 
-	if (isDarkMode) {
-		mainViewStyle = [styles.darkBackground];
-		textStyle = [{ color: "#F0DBFF" }];
-		textBodyStyle = [{ color: "#fff" }];
-		buttonStyle = [{ backgroundColor: "#4e32bc", borderColor: "#4e32bc" }];
-		cardBackground = [{backgroundColor: "#555"}]
-	}
+  if (isDarkMode) {
+    mainViewStyle = [styles.darkBackground];
+    textStyle = [{ color: "#F0DBFF" }];
+    textBodyStyle = [{ color: "#fff" }];
+    buttonStyle = [{ backgroundColor: "#4e32bc", borderColor: "#4e32bc" }];
+    cardBackground = [{ backgroundColor: "#555" }]
+  }
 
   useEffect(() => {
     loadHistory();
@@ -90,7 +87,7 @@ const WaterTrackerScreen = ({ hideOption = false, isDarkMode }) => {
   );
 
   return (
-    <View style={{ flex: 1, paddingLeft: 16, paddingRight: 16, width: "100%"}}>
+    <View style={{ flex: 1, paddingLeft: 16, paddingRight: 16, width: "100%" }}>
       <View style={styles.headerMain}>
         <View>
           {!hideOption &&
@@ -132,8 +129,8 @@ const WaterTrackerScreen = ({ hideOption = false, isDarkMode }) => {
               />
             </View>
             <Button style={[styles.addButton, waterIntake === 0 && styles.disabledButton]} onPress={addWaterIntake} mode="contained" disabled={waterIntake === 0}>
-            <Text style={styles.addButtonText}>Add Intake</Text>
-          </Button>
+              <Text style={styles.addButtonText}>Add Intake</Text>
+            </Button>
           </View>
         </Surface>
         <Surface style={[styles.historyContainer, !isDarkMode ? styles.historyContainerLight : styles.historyContainerDark]}>
@@ -148,7 +145,7 @@ const WaterTrackerScreen = ({ hideOption = false, isDarkMode }) => {
             keyExtractor={(item, index) => index.toString()}
             contentContainerStyle={styles.tableBody}
             ListHeaderComponent={() => null}
-            // style = {!isDarkMode ? "#000" : "#fff"}
+          // style = {!isDarkMode ? "#000" : "#fff"}
           />
         </Surface>
       </View>

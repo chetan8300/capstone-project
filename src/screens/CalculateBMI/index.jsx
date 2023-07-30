@@ -1,40 +1,23 @@
-import {
-	TouchableHighlight,
-	TouchableOpacity,
-	View,
-	ScrollView,
-	BackHandler,
-	Alert,
-} from "react-native";
+import React from "react";
+
+import { TouchableOpacity, View } from "react-native";
 import { TextInput, Button, Surface, Text } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import React, {
-	useState,
-	useCallback,
-	useEffect,
-	useLayoutEffect,
-} from "react";
 
 // Common Components
 import hoc from "../../components/HOC";
 
 import styles from "./styles";
-import { useFocusEffect } from "@react-navigation/native";
 
 const CalculateBMIScreen = ({
 	navigation,
-	route,
 	hideOption = false,
 	isDarkMode,
 }) => {
 	const [height, setHeight] = React.useState("");
 	const [weight, setWeight] = React.useState("");
 	const [bmi, setBMI] = React.useState(null);
-
-	console.log("isDarkMode", isDarkMode);
-
-	const [workoutPreference, setWorkoutPreference] = React.useState({});
 
 	let mainViewStyle = [styles.lightBackground];
 	let textStyle = [{ color: "#4e32bc" }];
@@ -47,17 +30,6 @@ const CalculateBMIScreen = ({
 		textBodyStyle = [{ color: "#fff" }];
 		buttonStyle = [{ backgroundColor: "#4e32bc", borderColor: "#4e32bc" }];
 	}
-
-	React.useEffect(() => {
-		(async () => {
-			try {
-				const data = await AsyncStorage.getItem("workoutPreference");
-				setWorkoutPreference(data ? JSON.parse(data) : {});
-			} catch (error) {
-				console.log(error);
-			}
-		})();
-	}, []);
 
 	const calculateBMI = () => {
 		if (isNaN(height) || isNaN(weight) || height < 0 || weight < 0) {
