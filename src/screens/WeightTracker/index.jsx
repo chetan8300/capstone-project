@@ -21,7 +21,7 @@ const WeightTrackerScreen = ({ hideOption = false ,isDarkMode }) => {
 
 	if (isDarkMode) {
 		textStyle = [{ color: "#F0DBFF" }];
-		textBodyStyle = [{ color: "#fff" }];
+		textBodyStyle = [{ color: "#c0c0c0" }];
 		whiteColor = [{ borderBottomColor: "#fff" }];
 		cardBackground = [{backgroundColor: "#9EA2E5"}]
 	}
