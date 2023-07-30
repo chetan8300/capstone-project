@@ -145,8 +145,6 @@ const ReportsScreen = ({ navigation, hideOption = false, isDarkMode }) => {
 			(key) => workoutHistoryData[key] !== 0
 		)
 
-		console.log("workoutForDate", workoutForDate);
-
 		return (
 			<Card style={[styles.card, cardBackground]}>
 				<Card.Content>
