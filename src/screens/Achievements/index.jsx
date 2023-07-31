@@ -25,14 +25,12 @@ const ReportsScreen = ({ navigation, route, hideOption = false, isDarkMode }) =>
   const [weightHistory, setWeightHistory] = React.useState([]);
 
   let textStyle = [{ color: "#4e32bc" }];
-	let textBodyStyle = [{ color: "#4e32bc" }];
 	let whiteColor = [{color: "#4e32bc"}]
 	let cardBackground = [{}]
 
 	if (isDarkMode) {
 		textStyle = [{ color: "#F0DBFF" }];
-		textBodyStyle = [{ color: "#fff" }];
-		whiteColor = [{ color: "#fff" }];
+		whiteColor = [{ color: "#333" }];
 		cardBackground = [{backgroundColor: "#9EA2E5"}]
 	}
 

@@ -15,14 +15,14 @@ const WeightTrackerScreen = ({ hideOption = false, isDarkMode }) => {
     const [history, setHistory] = useState([])
 
     let textStyle = [{ color: "#4e32bc" }];
-    let textBodyStyle = [{ color: "#000" }];
+    let textBodyStyle = [{ color: "#000", textAlign: 'center' }];
     let whiteColor = [{}]
     let cardBackground = [{}]
 
     if (isDarkMode) {
         textStyle = [{ color: "#F0DBFF" }];
-        textBodyStyle = [{ color: "#333" }];
-        whiteColor = [{ borderBottomColor: "#fff" }];
+        textBodyStyle = [{ color: "#333", textAlign: 'center' }];
+        whiteColor = [{ borderBottomColor: "#666" }];
         cardBackground = [{ backgroundColor: "#9EA2E5" }]
     }
 
@@ -133,6 +133,11 @@ const WeightTrackerScreen = ({ hideOption = false, isDarkMode }) => {
                     {lastAddedDate && (
                         <View style={{ paddingTop: 10, paddingBottom: 10, flexDirection: 'row', justifyContent: 'center' }}>
                             <Text style={textBodyStyle}>Last Added: {lastAddedDate}</Text>
+                        </View>
+                    )}
+                    {!addWeight && (
+                        <View style={{ paddingTop: 0, paddingBottom: 10, flexDirection: 'row', justifyContent: 'center' }}>
+                            <Text style={textBodyStyle}>You can add weight after 7 days of last added weight.</Text>
                         </View>
                     )}
                 </Surface>

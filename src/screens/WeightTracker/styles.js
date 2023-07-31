@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 20,
         paddingVertical: 10,
-        borderBottomWidth: 2,
+        borderBottomWidth: 1,
         borderBottomColor: '#ccc',
     },
     tableCell: {
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     intakeContainer: {
         borderRadius: 15,
         padding: 20,
-        maxHeight: 200,
+        maxHeight: 250,
     },
     intakeContainerLight: {
         backgroundColor: '#ffffff',
@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
         marginTop: 16,
         borderRadius: 15,
         padding: 20,
-        flex: 1,
     },
     historyContainerLight: {
         backgroundColor: '#ffffff',

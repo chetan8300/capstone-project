@@ -22,7 +22,7 @@ const HealthWellnessBlogsScreen = ({ hideOption = false, isDarkMode }) => {
 
     if (isDarkMode) {
         textStyle = [{ color: "#F0DBFF" }];
-        textBodyStyle = [{ color: "#333" }];
+        textBodyStyle = [{ color: "#F0DBFF" }];
         whiteColor = [{ borderBottomColor: "#fff" }];
         cardBackground = [{ backgroundColor: "#9EA2E5" }]
     }
@@ -84,7 +84,7 @@ const HealthWellnessBlogsScreen = ({ hideOption = false, isDarkMode }) => {
                         <TouchableOpacity onPress={handleCloseBlog}>
                             <MaterialCommunityIcons name="arrow-left" size={30} style={[textStyle]} />
                         </TouchableOpacity>
-                        <Text style={[{ fontSize: 20, fontWeight: 'bold', padding: 16 }, ...textBodyStyle]}>
+                        <Text style={[{ fontSize: 20, fontWeight: 'bold', padding: 16 }, textBodyStyle]}>
                             Back to Blogs List
                         </Text>
                     </View>
