@@ -136,6 +136,9 @@ const ReportsScreen = ({ navigation, route, hideOption = false, isDarkMode }) =>
 
   // // total workout done till date
   const totalWorkoutDone = Object.keys(workoutHistory).reduce((acc, curr) => {
+    if (curr === "full_body_7x4") {
+      return acc + workoutHistory[curr].history.length * 28;
+    }
     return acc + workoutHistory[curr].length;
   }, 0);
 
