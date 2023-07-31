@@ -7,6 +7,7 @@ import moment from 'moment';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import hoc from '../../components/HOC'
+import { enableWeightInputNotification } from '../Settings';
 
 const WeightTrackerScreen = ({ hideOption = false, isDarkMode }) => {
     const navigation = useNavigation();
@@ -44,6 +45,7 @@ const WeightTrackerScreen = ({ hideOption = false, isDarkMode }) => {
 
     const loadHistory = async () => {
         try {
+            // await AsyncStorage.deleteItem('@weightTracker:history')
             const jsonValue = await AsyncStorage.getItem('@weightTracker:history');
             if (jsonValue !== null) {
                 const parsedValue = JSON.parse(jsonValue);
@@ -59,6 +61,14 @@ const WeightTrackerScreen = ({ hideOption = false, isDarkMode }) => {
         const entry = { date: currentDate, intake: weight };
         setWeight("")
         setHistory([...history, entry]);
+
+        const triggerTime = new Date();
+        triggerTime.setHours(9);
+        triggerTime.setMinutes(0);
+        triggerTime.setSeconds(0);
+        triggerTime.setDate(triggerTime.getDate() + 7);
+
+        enableWeightInputNotification(triggerTime);
     };
 
     let addWeight = false;
@@ -71,7 +81,7 @@ const WeightTrackerScreen = ({ hideOption = false, isDarkMode }) => {
         const lastEntry = history[history.length - 1];
         const lastEntryDate = moment(lastEntry.date);
         const today = moment();
-        // difference in days 7 or more
+        
         if (today.diff(lastEntryDate, 'days') >= 7) {
             addWeight = true;
         }

@@ -13,6 +13,30 @@ import hoc from "../../components/HOC";
 import styles from "./styles";
 import DarkModeContext from "../../utils/DarkModeContext";
 
+// Enable weekly weight notification
+export const enableWeightInputNotification = async (triggerTime) => {
+  try {
+    await Notifications.cancelAllScheduledNotificationsAsync();
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "Weight Input Reminder",
+        body: "Remember to input your weight for this week!",
+      },
+      trigger: {
+        seconds: triggerTime.getTime() - Date.now(),
+        repeats: false,
+      },
+    });
+
+    console.log("Weight input notification enabled");
+    console.log("Trigger time: ", triggerTime);
+  }
+  catch (error) {
+    console.log("Error enabling weight input notification:", error);
+    console.log("Trigger time: ", triggerTime);
+  }
+};
+
 const SettingsScreen = ({ hideOption = false }) => {
   const navigation = useNavigation();
   const { isDarkMode, setIsDarkMode } = useContext(DarkModeContext);
@@ -51,7 +75,12 @@ const SettingsScreen = ({ hideOption = false }) => {
       disableWorkoutNotifications();
     }
     if (weightInputNotificationEnabled) {
-      enableWeightInputNotification();
+      const triggerTime = new Date();
+      triggerTime.setHours(5);
+      triggerTime.setMinutes(0);
+      triggerTime.setSeconds(0);
+      triggerTime.setDate(triggerTime.getDate() + 7);
+      enableWeightInputNotification(triggerTime);
     } else {
       disableWeightInputNotification();
     }
@@ -105,8 +134,8 @@ const SettingsScreen = ({ hideOption = false }) => {
           body: "Time to drink water!",
         },
         trigger: {
-          seconds: 10,
-          repeats: false,
+          seconds: 60*60*2,
+          repeats: true,
         },
       });
       console.log("Water notifications enabled");
@@ -147,9 +176,6 @@ const SettingsScreen = ({ hideOption = false }) => {
         },
       });
       console.log("Workout notifications enabled");
-      // console.log('Trigger in hours:', selectedTime.hours);
-      // console.log('Trigger in minutes:', selectedTime.minutes);
-      // console.log('Trigger in seconds:', triggerInSeconds);
     } catch (error) {
       console.log("Error in workout notifications:", error);
     }
@@ -162,32 +188,6 @@ const SettingsScreen = ({ hideOption = false }) => {
       console.log("Workout notifications disabled");
     } catch (error) {
       console.log("Error disabling workout notifications:", error);
-    }
-  };
-
-  // Enable Weekly Weight Input Notifications
-
-  const enableWeightInputNotification = async () => {
-    try {
-      await Notifications.cancelAllScheduledNotificationsAsync();
-      const triggerTime = new Date();
-      triggerTime.setSeconds(0);
-      triggerTime.setDate(triggerTime.getDate() + (7 - triggerTime.getDay()));
-
-      await Notifications.scheduleNotificationAsync({
-        content: {
-          title: "Weight Input Reminder",
-          body: "Remember to input your weight for this week!",
-        },
-        trigger: {
-          seconds: triggerTime.getTime() - Date.now(),
-          repeats: true,
-        },
-      });
-
-      console.log("Weight input notification enabled");
-    } catch (error) {
-      console.log("Error enabling weight input notification:", error);
     }
   };
 
@@ -361,3 +361,4 @@ const SettingsScreen = ({ hideOption = false }) => {
 };
 
 export default hoc(SettingsScreen);
+
