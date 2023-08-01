@@ -4,6 +4,9 @@ Fitter - Workout Tracker Capstone Project - (Mobile Application Development - Fa
 # Description
 Fitter is a fitness app which helps users track their physical activity, monitor their progress, and achieve their fitness goals by providing key features like workouts, goal tracking and health & wellness blogs
 
+# Demo Video
+https://share.vidyard.com/watch/WCLwdo37kTwwZ3rtemmnia? 
+
 
 # Members
 - Chetankumar Godhani
